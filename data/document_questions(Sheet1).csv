@@ -1,0 +1,606 @@
+document_id,question,type,options
+Remote Work Policy,Company Name,text,None
+Remote Work Policy,Company Locations,text,None
+Remote Work Policy,Operating Country / Countries,text,None
+Remote Work Policy,Effective Date,calender,None
+Remote Work Policy,Type of remote work,multi select,"[Fully Remote, Hybrid, On-site (No Remote)]"
+Remote Work Policy,Eligibility (who this policy applies to):,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Remote Work Policy,Is approval required for remote work:,radio,"Yes, No"
+Remote Work Policy,Approval authority (if approval is required):,multi select,"[Direct Manager, Department Head, HR Business Partner, Executive Leadership, Compliance/Legal Team]"
+Remote Work Policy,Working hours per day:,text,None
+Remote Work Policy,Is working from another country allowed:,radio,"Yes, No"
+Remote Work Policy,Does the company provide work equipment:,radio,"Yes, No"
+Remote Work Policy,Can remote work be revoked by the company:,radio,"Yes, No"
+Remote Work Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Remote Work Policy,"Specify allowed remote work locations, country restrictions, time zone requirements, and approval needs for location changes.",text area,None
+Remote Work Policy,"Describe data security, system access, confidentiality requirements, and prohibited work environments for remote work.",text area,None
+Remote Work Policy,"Define working hours, availability, communication expectations, and performance monitoring for remote employees.",text area,None
+Remote Work Policy,"Outline legal, tax, payroll, or regulatory conditions that may limit or restrict remote work.",text area,None
+,,,
+Leave / PTO Policy,Company name,text,None
+Leave / PTO Policy,Company locations,text,None
+Leave / PTO Policy,Operating country/countries,text,None
+Leave / PTO Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Leave / PTO Policy,Effective date,calender,None
+Leave / PTO Policy,Leave policy details,table,"[Leave Type , Annual Days, Accrual Type, Max Carry-Forward]"
+Leave / PTO Policy,Does leave carry forward to the next period,radio,"Yes, No"
+Leave / PTO Policy,Which leave types are eligible for carry-forward,text,None
+Leave / PTO Policy,Maximum carry-forward days (if applicable),text,None
+Leave / PTO Policy,Who approves leave requests,multi select,"[Direct Manager, Department Head, HR Business Partner, Executive Leadership, Compliance/Legal Team]"
+Leave / PTO Policy,Minimum number of days’ notice required before taking leave,text,None
+Leave / PTO Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Leave / PTO Policy,"Is sandwich leave applicable? If yes, define the conditions under which weekends and/or holidays are counted as leave",text area,None
+Leave / PTO Policy,"Define the eligibility rules for availing leave during the probation period and the notice period, including any restrictions, minimum tenure requirements, or leave types that are excluded.",text area,None
+Leave / PTO Policy,"If exceptions to this policy are allowed, please describe the specific circumstances and justification for your request.",text area,None
+,,,
+Code of Conduct,Company name,text,None
+Code of Conduct,Company locations,text,None
+Code of Conduct,Operating country/countries,text,None
+Code of Conduct,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Code of Conduct,Effective date,calender,None
+Code of Conduct,Is compliance with the Code of Conduct mandatory,radio,"Yes, No"
+Code of Conduct,Expected standard of professional behavior,multi select,"[Professional, Respectful, Ethical]"
+Code of Conduct,Are conflicts of interest required to be disclosed,radio,"Yes, No"
+Code of Conduct,Is discrimination or harassment prohibited,radio,"Yes, No"
+Code of Conduct,Is the use of company property for personal purposes restricted,radio,"Yes, No"
+Code of Conduct,Are employees required to comply with all applicable laws and regulations,radio,"Yes, No"
+Code of Conduct,How can violations be reported,multi select,"[Manager, HR, Anonymous Channel]"
+Code of Conduct,Are retaliation protections provided for reporters,radio,"Yes, No"
+Code of Conduct,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Code of Conduct,Describe the disciplinary actions that may result from violations of the Code of Conduct.,text area,None
+Code of Conduct,Describe the disciplinary actions that may result from violations of the Code of Conduct.,text area,None
+Code of Conduct,"Specify rules regarding gifts, hospitality, bribery, and ethical conduct with third parties.",text area,None
+,,,
+Anti-Harassment Policy,Company name,text,None
+Anti-Harassment Policy,Company locations,text,None
+Anti-Harassment Policy,Operating country/countries,text,None
+Anti-Harassment Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Anti-Harassment Policy,Effective date,calender,None
+Anti-Harassment Policy,"is harassment prohibited in all forms (verbal, physical, written, online):",radio,"Yes, No"
+Anti-Harassment Policy,Does this policy cover workplace and work-related events,radio,"Yes, No"
+Anti-Harassment Policy,"Does this policy apply to interactions with third parties (clients, vendors)",radio,"Yes, No"
+Anti-Harassment Policy,How can harassment be reported,multi select,"[Manager, HR, Anonymous Channel]"
+Anti-Harassment Policy,Are retaliation protections provided for complainants and witnesses,radio,"Yes, No"
+Anti-Harassment Policy,Will reported complaints be investigated promptly and confidentially,radio,"Yes, No"
+Anti-Harassment Policy,Can disciplinary action be taken for policy violations,radio,"Yes, No"
+Anti-Harassment Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Anti-Harassment Policy,Define harassment and provide examples of prohibited conduct under this policy,text area,None
+Anti-Harassment Policy,Define harassment and provide examples of prohibited conduct under this policy,text area,None
+Anti-Harassment Policy,Specify how knowingly false or malicious complaints will be addressed,text area,None
+,,,
+Compensation Philosophy,Company name,text,None
+Compensation Philosophy,Company locations,text,None
+Compensation Philosophy,Operating country/countries,text,None
+Compensation Philosophy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Compensation Philosophy,Effective date,calender,None
+Compensation Philosophy,Compensation philosophy type,multi select,"[Market-based, Performance-based, Equity-focused, Mixed]"
+Compensation Philosophy,Is compensation reviewed regularly,radio,"Yes, No"
+Compensation Philosophy,Compensation review frequency,multi select,"[Management, HR, Board]"
+Compensation Philosophy,Does compensation include variable pay,radio,"Yes, No"
+Compensation Philosophy,Does compensation include equity or long-term incentives,radio,"Yes, No"
+Compensation Philosophy,Is internal pay equity considered,radio,"Yes, No"
+Compensation Philosophy,Are compensation decisions based on performance,radio,"Yes, No"
+Compensation Philosophy,Is compensation philosophy communicated to employees,radio,"Yes, No"
+Compensation Philosophy,Who approves compensation decisions,multi select,"[Management, HR, Board]"
+Compensation Philosophy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Compensation Philosophy,"Describe the company’s overall compensation philosophy and objectives, including how pay supports business strategy and talent goals.",text area,None
+Compensation Philosophy,"Describe the company’s overall compensation philosophy and objectives, including how pay supports business strategy and talent goals.",text area,None
+Compensation Philosophy,"Describe the company’s overall compensation philosophy and objectives, including how pay supports business strategy and talent goals.",text area,None
+Compensation Philosophy,"Describe the company’s overall compensation philosophy and objectives, including how pay supports business strategy and talent goals.",text area,None
+,,,
+Sabbatical Policy,Company name,text,None
+Sabbatical Policy,Company locations,text,None
+Sabbatical Policy,Operating country/countries,text,None
+Sabbatical Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Sabbatical Policy,Effective date,calender,None
+Sabbatical Policy,Is a sabbatical program offered by the company,radio,"Yes, No"
+Sabbatical Policy,Minimum tenure required to be eligible for a sabbatical,text,None
+Sabbatical Policy,Maximum sabbatical duration,text,None
+Sabbatical Policy,Is the sabbatical paid,radio,"Yes, No"
+Sabbatical Policy,"How often can an employee take a sabbatical (Once, Every X Years)",text,None
+Sabbatical Policy,Is approval required for sabbatical leave,radio,"Yes, No"
+Sabbatical Policy,Who approves sabbatical requests,multi select,"[Manager, HR, Management]"
+Sabbatical Policy,Is the employee guaranteed the same or equivalent role after return,radio,"Yes, No"
+Sabbatical Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Sabbatical Policy,Describe the purpose of the sabbatical program and its intended benefits for employees and the company.,text area,None
+Sabbatical Policy,"Explain how compensation, benefits, seniority, and employment status are treated during a sabbatical.",text area,None
+Sabbatical Policy,"Explain how compensation, benefits, seniority, and employment status are treated during a sabbatical.",text area,None
+,,,
+Travel & Expense Policy,Company name,text,None
+Travel & Expense Policy,Company locations,text,None
+Travel & Expense Policy,Operating country/countries,text,None
+Travel & Expense Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Travel & Expense Policy,Effective date,calender,None
+Travel & Expense Policy,Is business travel allowed,radio,"Yes, No"
+Travel & Expense Policy,Is prior approval required for business travel,radio,"Yes, No"
+Travel & Expense Policy,if prior approval required who approves business travel,multi select,"[Manager, HR, Finance]"
+Travel & Expense Policy,Are business-related travel expenses reimbursable,radio,"Yes, No"
+Travel & Expense Policy,Expense categories covered,multi select,"[Travel, Lodging, Meals, Local Transport, Other]"
+Travel & Expense Policy,Is there a maximum expense limit per trip,radio,"Yes, No"
+Travel & Expense Policy,Maximum expense amount (if applicable),text,None
+Travel & Expense Policy,Is proof of expense required (receipts/invoices),radio,"Yes, No"
+Travel & Expense Policy,Time limit to submit expense claims,text,None
+Travel & Expense Policy,Reimbursement method,radio,multi select
+Travel & Expense Policy,Can reimbursement be denied if policy is not followed,radio,"Yes, No"
+Travel & Expense Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Travel & Expense Policy,Describe the purpose of business travel and the types of trips covered under this policy.,text area,None
+Travel & Expense Policy,Describe the purpose of business travel and the types of trips covered under this policy.,text area,None
+Travel & Expense Policy,Describe the purpose of business travel and the types of trips covered under this policy.,text area,None
+,,,
+Equipment Policy,Company name,text,None
+Equipment Policy,Company locations,text,None
+Equipment Policy,Operating country/countries,text,None
+Equipment Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Equipment Policy,Effective date,calender,None
+Equipment Policy,Does the company provide work equipment?,radio,"Yes, No"
+Equipment Policy,Types of equipment provided,multi select,"[Laptop, Monitor, Accessories, Other]"
+Equipment Policy,Is company-provided equipment mandatory for work?,radio,"Yes, No"
+Equipment Policy,Can equipment be used for personal purposes? ,radio,"Yes, No"
+Equipment Policy,Who is responsible for equipment care and maintenance?,multi select,"[Employee, Company]"
+Equipment Policy,Must loss or damage of equipment be reported?,radio,"Yes, No"
+Equipment Policy,Must equipment be returned upon exit or role change?,radio,"Yes, No"
+Equipment Policy,Can the company request equipment return at any time?,radio,"Yes, No"
+Equipment Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Equipment Policy,Describe the purpose of providing company equipment and who the policy applies to.,text area,None
+Equipment Policy,"Define acceptable use of company-provided equipment and any prohibited activities, including misuse or unauthorized access.",text area,None
+Equipment Policy,"Explain responsibilities, reporting timelines, and potential liability in cases of loss, theft, or damage of equipment.",text area,None
+Equipment Policy,"Describe the process for equipment return, inspection, and data security requirements upon exit or role change.",text area,None
+,,,
+Referral Program Policy,Company name,text,None
+Referral Program Policy,Company locations,text,None
+Referral Program Policy,Operating country/countries,text,None
+Referral Program Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Referral Program Policy,Effective date,calender,None
+Referral Program Policy,Is an employee referral program offered by the company,radio,"Yes, No"
+Referral Program Policy,Who can be referred under this program,multi select,"[Job Candidates, Freelancers, Vendors] "
+Referral Program Policy,How can referrals be submitted,multi select,"[Email, HR Tool, ATS, Other] "
+Referral Program Policy,Is there a limit on the number of referrals per employee,radio,"Yes, No"
+Referral Program Policy,Referral submission validity period,text,None
+Referral Program Policy,Is a referral reward or incentive offered,radio,"Yes, No"
+Referral Program Policy,Type of referral reward,multi select,"[Cash Bonus, Gift Cards, Equity, Other]"
+Referral Program Policy,When is the referral reward paid,radio," [On Hiring, After Probation, After a certrain Months]"
+Referral Program Policy,Briefly explain reward eligibility conditions,text area,None
+Referral Program Policy,Can referrals be disqualified due to policy violations,radio,"Yes, No"
+Referral Program Policy,Are referrals subject to standard hiring processes and background checks,radio,"Yes, No"
+Referral Program Policy,Describe the purpose of the employee referral program and how it supports hiring goals.,text area,None
+Referral Program Policy,"Define who is eligible or ineligible to participate in the referral program, including any role-based or relationship-based exclusions.",text area,None
+Referral Program Policy,"Define who is eligible or ineligible to participate in the referral program, including any role-based or relationship-based exclusions.",text area,None
+,,,
+Privacy Policy,Company name,text,None
+Privacy Policy,Company locations,text,None
+Privacy Policy,Operating country/countries,text,None
+Privacy Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Privacy Policy,Effective date,calender,None
+Privacy Policy,Is personal data collected,radio,"Yes, No"
+Privacy Policy,Types of personal data collected,multi select,"[Name, Email, Phone, IP Address, Other]"
+Privacy Policy,"Is data collected automatically (cookies, analytics, logs)",radio,"Yes, No"
+Privacy Policy,Purpose of data collection,multi select,"[Service delivery, Communication, Analytics, Legal compliance]"
+Privacy Policy,Is personal data shared with third parties,radio,"Yes, No"
+Privacy Policy,Third-party data sharing purpose,multi select,"[Service providers, Analytics, Legal requirements]"
+Privacy Policy,Is personal data stored electronically,radio,"Yes, No"
+Privacy Policy,Is personal data protected using reasonable security measures,radio,"Yes, No"
+Privacy Policy,Is data retained only as long as necessary,radio,"Yes, No"
+Privacy Policy,Can users access or request correction of their personal data,radio,"Yes, No"
+Privacy Policy,Can users request deletion of their personal data,radio,"Yes, No"
+Privacy Policy,Is this policy compliant with applicable data protection laws,radio,"Yes, No"
+Privacy Policy,Can access to services be restricted for policy violations,radio,"Yes, No"
+Privacy Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Privacy Policy,"Identify who is responsible for personal data processing, protection, and compliance under this policy.",text area,None
+Privacy Policy,"Describe how individuals can exercise their data rights (access, correction, deletion), including request procedures and response timelines.",text area,None
+Privacy Policy,"Describe how individuals can exercise their data rights (access, correction, deletion), including request procedures and response timelines.",text area,None
+,,,
+Cookie Policy,Company name,text,None
+Cookie Policy,Company locations,text,None
+Cookie Policy,Operating country/countries,text,None
+Cookie Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Cookie Policy,Effective date,calender,None
+Cookie Policy,Does the website use cookies,radio,"Yes, No"
+Cookie Policy,Types of cookies used,multi select,"[Essential, Analytics, Functional, Advertising]"
+Cookie Policy,Are cookies used for analytics or performance tracking,radio,"Yes, No"
+Cookie Policy,user consent required before placing non-essential cookies,radio,"Yes, No"
+Cookie Policy,Can users manage or disable cookies through browser settings,radio,"Yes, No"
+Cookie Policy,Is a cookie consent banner displayed on the website,radio,"Yes, No"
+Cookie Policy,Are third-party cookies used,radio,"Yes, No"
+Cookie Policy,Purpose of third-party cookies,multi select,"[Analytics, Advertising, Embedded content]"
+Cookie Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Cookie Policy,Describe how cookies are used on the website and the purpose of each category of cookies,text area,None
+Cookie Policy,"Explain how users can provide, withdraw, or manage their cookie consent and preferences",text area,None
+Cookie Policy,"List third-party cookies used, their providers, and the purpose for which they are set.",text area,None
+Cookie Policy,"List third-party cookies used, their providers, and the purpose for which they are set.",text area,None
+,,,
+Acceptable Use Policy,Company name,text,None
+Acceptable Use Policy,Company locations,text,None
+Acceptable Use Policy,Operating country/countries,text,None
+Acceptable Use Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Acceptable Use Policy,Effective date,calender,None
+Acceptable Use Policy,Is acceptable use of company systems and services mandatory,radio,"Yes, No"
+Acceptable Use Policy,Is illegal activity prohibited while using company services,radio,"Yes, No"
+Acceptable Use Policy,Is misuse or abuse of systems prohibited,radio,"Yes, No"
+Acceptable Use Policy,Is unauthorized access or attempt to bypass security prohibited,radio,"Yes, No"
+Acceptable Use Policy,"Is harmful, abusive, or offensive content prohibited",radio,"Yes, No"
+Acceptable Use Policy,Is spamming or excessive automated activity prohibited,radio,"Yes, No"
+Acceptable Use Policy,Is intellectual property infringement prohibited,radio,"Yes, No"
+Acceptable Use Policy,Can access to services be suspended or terminated for violations,radio,"Yes, No"
+Acceptable Use Policy,Can reported violations be investigated by the company,radio,"Yes, No"
+Acceptable Use Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Acceptable Use Policy,"Describe the purpose of this Acceptable Use Policy and the systems, services, and users it applies to.",text area,None
+Acceptable Use Policy,"Explain whether and how the company may monitor the use of its systems, and outline employee privacy expectations.",text area,None
+Acceptable Use Policy,Describe potential consequences or disciplinary actions for violations of this policy.,text area,None
+Acceptable Use Policy,Outline user responsibilities for complying with this policy and reporting suspected misuse or violations.,text area,None
+,,,
+Security Policy,Company name,text,None
+Security Policy,Company locations,text,None
+Security Policy,Operating country/countries,text,None
+Security Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Security Policy,Effective date,calender,None
+Security Policy,Is compliance with security requirements mandatory,radio,"Yes, No"
+Security Policy,Are reasonable technical and organizational security measures implemented,radio,"Yes, No"
+Security Policy,Is access to systems restricted based on roles and responsibilities,radio,"Yes, No"
+Security Policy,Is authentication required to access company systems,radio,"Yes, No"
+Security Policy,Is multi-factor authentication enforced where applicable,radio,"Yes, No"
+Security Policy,Is encryption used to protect sensitive data,radio,"Yes, No"
+Security Policy,Is there a process to report security incidents,radio,"Yes, No"
+Security Policy,Are security incidents investigated and addressed promptly,radio,"Yes, No"
+Security Policy,Can access be restricted or revoked for security violations,radio,"Yes, No"
+Security Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Security Policy,"Describe the purpose of the security policy and the systems, data, and users it applies to.",text area,None
+Security Policy,"Define security responsibilities of employees, contractors, managers, and IT or security teams.",text area,None
+Security Policy,"Describe the steps for reporting, responding to, and escalating security incidents.",text area,None
+Security Policy,"Specify any security awareness, training, or acknowledgment requirements for users.",text area,None
+,,,
+Copyright Policy (DMCA),Company name,text,None
+Copyright Policy (DMCA),Company locations,text,None
+Copyright Policy (DMCA),Operating country/countries,text,None
+Copyright Policy (DMCA),Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Copyright Policy (DMCA),Effective date,calender,None
+Copyright Policy (DMCA),Does the company respect intellectual property rights,radio,"Yes, No"
+Copyright Policy (DMCA),Is unauthorized use of copyrighted content prohibited,radio,"Yes, No"
+Copyright Policy (DMCA),Does the company comply with the DMCA takedown process,radio,"Yes, No"
+Copyright Policy (DMCA),Is there a process to submit copyright infringement notices,radio,"Yes, No"
+Copyright Policy (DMCA),Is a designated agent assigned to receive DMCA notices,radio,"Yes, No"
+Copyright Policy (DMCA),Can infringing content be removed upon valid notice,radio,"Yes, No"
+Copyright Policy (DMCA),Can repeat infringers have their access terminated,radio,"Yes, No"
+Copyright Policy (DMCA),"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Copyright Policy (DMCA),Method to submit DMCA notices,radio,"[Email, Web Form]"
+Copyright Policy (DMCA),Describe the types of intellectual property covered by this policy and how the company protects its own and third-party rights.,text area,None
+Copyright Policy (DMCA),"Explain the process for submitting, reviewing, and responding to copyright infringement or DMCA takedown notices.",text area,None
+Copyright Policy (DMCA),"Describe how counter-notices, disputes, or claims of wrongful takedown are handled.",text area,None
+Copyright Policy (DMCA),Define how repeat infringement is identified and the actions that may be taken against repeat infringers.,text area,None
+,,,
+API Rate Limiting Policy,Company name,text,None
+API Rate Limiting Policy,Company locations,text,None
+API Rate Limiting Policy,Operating country/countries,text,None
+API Rate Limiting Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+API Rate Limiting Policy,Effective date,calender,None
+API Rate Limiting Policy,Is API usage subject to rate limits,radio,"Yes, No"
+API Rate Limiting Policy,what is the Rate limit type,text,None
+API Rate Limiting Policy,Rate limit type,multi select,"[Requests per minute, Requests per hour, Requests per day]"
+API Rate Limiting Policy,Maximum allowed requests per limit period,text,None
+API Rate Limiting Policy,What happens when the rate limit is exceeded,multi select,"[Throttle, Temporary Block, Error Response]"
+API Rate Limiting Policy,Are rate limits enforced automatically,radio,"Yes, No"
+API Rate Limiting Policy,Can API access be suspended for repeated violations,radio,"Yes, No"
+API Rate Limiting Policy,Are higher rate limits available by request,radio,"Yes, No"
+API Rate Limiting Policy,Who approves rate limit exceptions,radio,"[Engineering, Support]"
+API Rate Limiting Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+API Rate Limiting Policy,"Describe the purpose of API rate limiting and the APIs, users, or applications to which it applies.",text area,None
+API Rate Limiting Policy,Explain acceptable API usage patterns and behaviors considered abusive or excessive.,text area,None
+API Rate Limiting Policy,"Describe how API usage is monitored, how rate limit violations are enforced, and whether users are notified when limits are approached or exceeded.",text area,None
+API Rate Limiting Policy,"Describe how API usage is monitored, how rate limit violations are enforced, and whether users are notified when limits are approached or exceeded.",text area,None
+,,,
+Dependency Update Policy,Company name,text,None
+Dependency Update Policy,Company locations,text,None
+Dependency Update Policy,Operating country/countries,text,None
+Dependency Update Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Dependency Update Policy,Effective date,calender,None
+Dependency Update Policy,Are third-party dependencies used in company systems,radio,"Yes, No"
+Dependency Update Policy,Is there a defined process to update dependencies regularly,radio,"Yes, No"
+Dependency Update Policy,Dependency update frequency,radio,"[Monthly, Quarterly, As Needed]"
+Dependency Update Policy,Are security vulnerabilities in dependencies monitored,radio,"Yes, No"
+Dependency Update Policy,Are critical security updates prioritized,radio,"Yes, No"
+Dependency Update Policy,Are dependency updates tested before deployment,radio,"Yes, No"
+Dependency Update Policy,Can deployments be blocked if critical dependencies are outdated,radio,"Yes, No"
+Dependency Update Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Dependency Update Policy,"Describe the types of third-party dependencies covered by this policy, including libraries, frameworks, services, and tools.",text area,None
+Dependency Update Policy,"Define responsibilities for identifying, updating, testing, and approving third-party dependencies.",text area,None
+Dependency Update Policy,"Explain how security vulnerabilities in dependencies are assessed, prioritized, and remediated.",text area,None
+Dependency Update Policy,Describe how end-of-life or unsupported dependencies are identified and handled.,text area,None
+,,,
+Expense Reimbursement Policy,Company name,text,None
+Expense Reimbursement Policy,Company locations,text,None
+Expense Reimbursement Policy,Operating country/countries,text,None
+Expense Reimbursement Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Expense Reimbursement Policy,Effective date,calender,None
+Expense Reimbursement Policy,Are business-related expenses eligible for reimbursement,radio,"Yes, No"
+Expense Reimbursement Policy,Eligible expense categories,multi select,"[Travel, Meals, Lodging, Office Supplies, Internet/Phone, Other]"
+Expense Reimbursement Policy,Briefly describe any excluded expenses (if applicable),text,None
+Expense Reimbursement Policy,Is there a reimbursement limit per expense or period,radio,"Yes, No"
+Expense Reimbursement Policy,Reimbursement limit details (amount and period),text,None
+Expense Reimbursement Policy,Is approval required before submitting expenses,radio,"Yes, No"
+Expense Reimbursement Policy,Who approves expense reimbursements,radio,"[Manager, Finance, HR]"
+Expense Reimbursement Policy,Time limit to submit expense claims,text,None
+Expense Reimbursement Policy,Is proof of expense required,radio,"Yes, No"
+Expense Reimbursement Policy,Accepted proof types,radio,"[Receipts, Invoices, Digital Copies] "
+Expense Reimbursement Policy,Reimbursement method,radio,"[Payroll, Bank Transfer, Expense Platform]"
+Expense Reimbursement Policy,Can reimbursement be denied if policy requirements are not met,radio,"Yes, No"
+Expense Reimbursement Policy,Are exceptions to this policy allowed,radio,"Yes, No"
+Expense Reimbursement Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Expense Reimbursement Policy,Describe the purpose of the expense reimbursement policy and the types of business expenses it is intended to cover.,text area,None
+Expense Reimbursement Policy,Explain general eligibility criteria for reimbursable expenses and provide guidance on common non-reimbursable items.,text area,None
+Expense Reimbursement Policy,"Describe the process for submitting, reviewing, and approving expense claims, including timelines and responsibilities.",text area,None
+Expense Reimbursement Policy,"Describe the process for submitting, reviewing, and approving expense claims, including timelines and responsibilities.",text area,None
+,,,
+Procurement Policy,Company name,text,None
+Procurement Policy,Company locations,text,None
+Procurement Policy,Operating country/countries,text,None
+Procurement Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Procurement Policy,Effective date,calender,None
+Procurement Policy,Are purchases required to follow a formal procurement process,radio,"Yes, No"
+Procurement Policy,Types of purchases covered under this policy,multi select,"[Goods, Services, Software, Subscriptions, Other]"
+Procurement Policy,Briefly describe any purchases excluded from this policy (if applicable),text,None
+Procurement Policy,Is prior approval required before making a purchase,radio,"Yes, No"
+Procurement Policy,Who can approve purchases,multi select,"Manager, Finance, Procurement]"
+Procurement Policy,Approval threshold type,radio,"[Amount-based, Category-based, Both]"
+Procurement Policy,Is vendor comparison or quotation required,radio,"Yes, No"
+Procurement Policy,Types of required documents,multi select,"[Purchase Order, Invoice, Contract]"
+Procurement Policy,Can procurement requests be rejected if policy is not followed,radio,"Yes, No"
+Procurement Policy,Are exceptions to this policy allowed,radio,"Yes, No"
+Procurement Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Procurement Policy,Describe the purpose of the procurement policy and the types of purchases and users it applies to.,text area,None
+Procurement Policy,"Explain how vendors are evaluated and selected, including due diligence, compliance, and risk considerations.",text area,None
+Procurement Policy,"Explain how vendors are evaluated and selected, including due diligence, compliance, and risk considerations.",text area,None
+Procurement Policy,"Specify documentation, record-keeping, and audit requirements related to procurement activities.",text area,None
+,,,
+Financial Controls Policy,Company name,text,None
+Financial Controls Policy,Company locations,text,None
+Financial Controls Policy,Operating country/countries,text,None
+Financial Controls Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Financial Controls Policy,Effective date,calender,None
+Financial Controls Policy,Does the company maintain formal financial controls,radio,"Yes, No"
+Financial Controls Policy,Primary objectives of financial controls,multi select,"[Accuracy, Fraud Prevention, Compliance, Transparency]"
+Financial Controls Policy,Briefly describe the overall approach to financial controls,text,None
+Financial Controls Policy,Is approval required for financial transactions,radio,"Yes, No"
+Financial Controls Policy,Who can authorize financial transactions,multi select,"[Management, Finance, Department Heads]"
+Financial Controls Policy,"Is segregation of duties implemented (e.g., approval vs payment)",radio,"Yes, No"
+Financial Controls Policy,Are financial records maintained accurately and timely,radio,"Yes, No"
+Financial Controls Policy,Are periodic financial reviews or reconciliations performed,radio,"Yes, No"
+Financial Controls Policy,Financial review frequency,radio,"[Monthly, Quarterly, Annually]"
+Financial Controls Policy,Are financial controls monitored for effectiveness,radio,"Yes, No"
+Financial Controls Policy,Can corrective action be taken for control failures,radio,"Yes, No"
+Financial Controls Policy,Are exceptions to this policy allowed,radio,"Yes, No"
+Financial Controls Policy,Explain how financial control exceptions are approved and documented,text area,None
+Financial Controls Policy,"Describe the purpose of the financial controls policy and the financial activities, entities, and users it applies to.",text area,None
+Financial Controls Policy,"Define the roles and responsibilities of management, finance, and other stakeholders in implementing and maintaining financial controls.",text area,None
+Financial Controls Policy,"Explain how financial risks and potential fraud are identified, prevented, and addressed.",text area,None
+Financial Controls Policy,"Describe how financial controls are monitored, audited, and improved over time.",text area,None
+,,,
+Revenue Recognition Policy,Company name,text,None
+Revenue Recognition Policy,Company locations,text,None
+Revenue Recognition Policy,Operating country/countries,text,None
+Revenue Recognition Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Revenue Recognition Policy,Effective date,calender,None
+Revenue Recognition Policy,Does the company follow a formal revenue recognition policy,radio,"Yes, No"
+Revenue Recognition Policy,Primary revenue sources,multi select,"[Product Sales, Subscription Revenue, Services, Licensing, Other]"
+Revenue Recognition Policy,When is revenue recognized,text,None
+Revenue Recognition Policy,Briefly explain how revenue recognition timing is determined,text,None
+Revenue Recognition Policy,Are customer contracts reviewed before revenue recognition,radio,"Yes, No"
+Revenue Recognition Policy,Are performance obligations identified in contracts,radio,"Yes, No"
+Revenue Recognition Policy,Is revenue allocated across multiple obligations,radio,"Yes, No"
+Revenue Recognition Policy,"Are refunds, discounts, or credits considered in revenue recognition",radio,"Yes, No"
+Revenue Recognition Policy,Is revenue reviewed periodically for accuracy,radio,"Yes, No"
+Revenue Recognition Policy,Revenue review frequency,radio,"[Monthly, Quarterly]"
+Revenue Recognition Policy,Are exceptions to this policy allowed,radio,"Yes, No"
+Revenue Recognition Policy,Explain how revenue recognition exceptions are approved and documented,text area,None
+Revenue Recognition Policy,Describe the purpose of the revenue recognition policy and the revenue streams and transactions it applies to.,text area,None
+Revenue Recognition Policy,"Specify the accounting standards or regulations followed for revenue recognition (e.g., IFRS, ASC 606) and how compliance is ensured.",text area,None
+Revenue Recognition Policy,"Define responsibilities for contract review, revenue calculation, approval, and financial reporting.",text area,None
+Revenue Recognition Policy,"Explain how significant judgments, estimates, or assumptions in revenue recognition are reviewed and approved.",text area,None
+,,,
+Social Media Policy,Company name,text,None
+Social Media Policy,Company locations,text,None
+Social Media Policy,Operating country/countries,text,None
+Social Media Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Social Media Policy,Effective date,calender,None
+Social Media Policy,Does the company allow employees to use social media in a work-related context,radio,"Yes, No"
+Social Media Policy,Types of social media covered under this policy,multi select,"[LinkedIn, Twitter/X, Facebook, Instagram]"
+Social Media Policy,Are employees allowed to represent the company on social media,radio,"Yes, No"
+Social Media Policy,Is respectful and professional conduct required on social media,radio,"Yes, No"
+Social Media Policy,Is sharing confidential or proprietary information prohibited,radio,"Yes, No"
+Social Media Policy,Is the use of company branding or logos restricted,radio,"Yes, No"
+Social Media Policy,Are employees required to clarify personal opinions versus company views,radio,"Yes, No"
+Social Media Policy,Briefly describe any required disclaimers for personal accounts,text,None
+Social Media Policy,Can the company take action for social media policy violations,radio,"Yes, No"
+Social Media Policy,Are social media activities monitored for policy compliance,radio,"Yes, No"
+Social Media Policy,Explain how revenue recognition exceptions are approved and documented,text area,None
+,,,
+Performance Review Process,Procedure name,text,None
+Performance Review Process,Applies to roles,multi select,"[Employee, Manager, HR, Finance, IT, Other]"
+Performance Review Process,Procedure owner,text,None
+Performance Review Process,Effective date,calendar,None
+Performance Review Process,Last reviewed date,calendar,None
+Performance Review Process,What is the primary purpose of this performance review process?,text area,None
+Performance Review Process,Which employees does this performance review apply to?,text area,None
+Performance Review Process,Who should use this document?,multi select,"[Employees, Managers, HR Team, Leadership]"
+Performance Review Process,Define roles and responsibilities involved in the performance review process.,table,"[Role, Responsibilities]"
+Performance Review Process,How often are performance reviews conducted?,multi select,"[Monthly, Quarterly, Bi-annually, Annually]"
+Performance Review Process,What information or inputs are required before starting the review?,text area,None
+Performance Review Process,Which tools or systems are used to conduct and document performance reviews?,text area,None
+Performance Review Process,Describe the step-by-step procedure for conducting a performance review.,text area,None
+Performance Review Process,What are the expected outcomes of the performance review?,text area,None
+Performance Review Process,How are performance review results communicated to employees?,text area,None
+Performance Review Process,"Are performance improvement plans or development actions required after the review? If yes, describe the process.",text area,None
+Performance Review Process,Are there any exceptions to the standard performance review process?,radio,"Yes, No"
+Performance Review Process,"How are exceptions, disputes, or disagreements handled and escalated?",text area,None
+Performance Review Process,What records or documentation must be maintained after completing the review?,text area,None
+,,,
+Offboarding Procedure,Company Name,text,None
+Offboarding Procedure,Document Version,text,None
+Offboarding Procedure,Effective Date,calendar,None
+Offboarding Procedure,Who owns this offboarding process?,multi select,"[HR Team, People Operations, IT Team, Management, Other]"
+Offboarding Procedure,What is the primary purpose of this offboarding procedure?,text,None
+Offboarding Procedure,Who should use this document?,multi select,"[HR Team, Managers, IT Team, Finance Team, Leadership]"
+Offboarding Procedure,Define roles and responsibilities involved in offboarding,table,"[Role, Responsibility]"
+Offboarding Procedure,What triggers the offboarding process?,multi select,"[Resignation, Termination, End of Contract, Retirement, Other]"
+Offboarding Procedure,What inputs are required before starting the offboarding process?,text,None
+Offboarding Procedure,Which tools or systems are used during offboarding?,text,None
+Offboarding Procedure,Describe the step-by-step offboarding procedure,text area,None
+Offboarding Procedure,Is manager approval required during offboarding?,radio,"[Yes, No]"
+Offboarding Procedure,Are company assets required to be returned during offboarding?,radio,"[Yes, No]"
+Offboarding Procedure,Are access rights and system credentials revoked as part of offboarding?,radio,"[Yes, No]"
+Offboarding Procedure,Are there any exceptions to the standard offboarding procedure? if yes explain.,text area,None
+,,,
+Incident Response Plan (operational in nature),Company Name,text,None
+Incident Response Plan (operational in nature),Document Version,text,None
+Incident Response Plan (operational in nature),Effective Date,calendar,None
+Incident Response Plan (operational in nature),Last Reviewed Date,calendar,None
+Incident Response Plan (operational in nature),Who owns this incident response process?,multi select,"[Security Team, IT Operations, SRE Team, Incident Management Team, Other]"
+Incident Response Plan (operational in nature),What is the primary purpose of this incident response plan?,text,None
+Incident Response Plan (operational in nature),What types of incidents does this plan cover?,multi select,"[System outage, Security incident, Data breach, Performance degradation, Network issue, Application failure, Other]"
+Incident Response Plan (operational in nature),Who should use this document?,multi select,"[IT Operations, SRE Team, Security Team, Engineering Team, Management]"
+Incident Response Plan (operational in nature),Define roles and responsibilities,table,"[Role, Responsibility]"
+Incident Response Plan (operational in nature),What are the mandatory preconditions for initiating incident response?,multi select,"[Monitoring alert triggered, User-reported issue, Security alert, Service downtime detected, Manual escalation]"
+Incident Response Plan (operational in nature),How are incidents classified by severity?,radio,"[Critical, High, Medium, Low]"
+Incident Response Plan (operational in nature),What information is required when an incident is identified?,text area,None
+Incident Response Plan (operational in nature),Which tools or systems are used during incident response?,multi select,"[Monitoring tools, Ticketing system, Incident management tool, Communication tool, Logging system]"
+Incident Response Plan (operational in nature),Describe the step-by-step incident response procedure,text area,None
+Incident Response Plan (operational in nature),When should an incident be escalated?,text area,None
+Incident Response Plan (operational in nature),"If there any exceptions to the standard incident response process, describe the exception scenarios and actions",text area,None
+Incident Response Plan (operational in nature),Describe the incident communication process (internal and external),text area,None
+Incident Response Plan (operational in nature),Explain how incident resolution and recovery are validated,text area,None
+Incident Response Plan (operational in nature),Describe post-incident review or root cause analysis process,text area,None
+Incident Response Plan (operational in nature),Explain how lessons learned are documented and shared,text area,None
+Incident Response Plan (operational in nature),Describe how this incident response plan is reviewed and updated,text area,None
+,,,
+Customer Onboarding Checklist,Company Name,text,None
+Customer Onboarding Checklist,Document Version,text,None
+Customer Onboarding Checklist,Effective Date,calendar,None
+Customer Onboarding Checklist,Last Reviewed Date,calendar,None
+Customer Onboarding Checklist,Which internal team owns customer onboarding for the first 30 days?,radio,"[Customer Success, Implementation Team, Operations, Sales, Other]"
+Customer Onboarding Checklist,What type of customers does this 30-day onboarding apply to?,text area,None
+Customer Onboarding Checklist,What are the primary onboarding goals for the first 30 days?,text area,None
+Customer Onboarding Checklist,What information must be available immediately after purchase to start onboarding?,text area,None
+Customer Onboarding Checklist,Define internal roles and responsibilities during the first 30 days,table,"[Role, Responsibility]"
+Customer Onboarding Checklist,How is the 30-day onboarding structured into phases?,multi select,"[Day 1–3 (Setup & Access), Day 4–10 (Configuration), Day 11–20 (Training & Usage), Day 21–30 (Adoption & Handover)]"
+Customer Onboarding Checklist,Provide the step-by-step onboarding checklist for the first 30 days,table,"[Phase/Day Range, Task, Owner, Completion Criteria]"
+Customer Onboarding Checklist,Which tools or systems are used during customer onboarding?,multi select,"[CRM, Ticketing Tool, Email, Onboarding Platform, Documentation Portal, Other]"
+Customer Onboarding Checklist,What situations require internal escalation during the first 30 days?,text area,None
+Customer Onboarding Checklist,Who should onboarding issues be escalated to?,radio,"[Customer Success Lead, Implementation Manager, Engineering, Support, Management]"
+Customer Onboarding Checklist,How is successful completion of 30-day onboarding confirmed?,radio,"[Internal checklist sign-off, Customer confirmation, First value milestone achieved, Handover to support/account management]"
+Customer Onboarding Checklist,"If there any exceptions to the standard onboarding process, describe the exception scenarios and handling approach",text area,None
+,,,
+Incident Response Runbook,Company Name,text,None
+Incident Response Runbook,Document Version,text,None
+Incident Response Runbook,Effective Date,calendar,None
+Incident Response Runbook,Who owns this runbook?,multi select,"[IT Operations, SRE Team, Security Team, Incident Management Team, Other]"
+Incident Response Runbook,What is the primary purpose of this runbook?,text,None
+Incident Response Runbook,Which types of incidents does this runbook cover?,multi select,"[System outage, Security incident, Application failure, Network issue, Performance degradation, Other]"
+Incident Response Runbook,Who should use this document?,multi select,"[IT Operations, SRE Team, Security Team, Engineering Team, Management]"
+Incident Response Runbook,Define roles and responsibilities,table,"[Role, Responsibility]"
+Incident Response Runbook,What are the mandatory preconditions for using this runbook?,multi select,"[Monitoring alert triggered, User-reported issue, Incident ID, Affected system, Severity level]"
+Incident Response Runbook,Which tools or systems are used during incident response?,multi select,"[Monitoring tools, Ticketing system, Incident management tool, Logging system, Communication platform]"
+Incident Response Runbook,Step-by-step incident response actions,table,"[Step No, Action, Owner, Notes]"
+Incident Response Runbook,Are there any exceptions to the standard incident response process?,radio,"[Yes, No]"
+Incident Response Runbook,"If there any exceptions to the standard incident response process escalation is required, who should it be escalated to?",text area,None
+,,,
+Deployment SOP,Company Name,text,None
+Deployment SOP,Document Version,text,None
+Deployment SOP,Effective Date of this SOP,calendar,None
+Deployment SOP,Who is responsible for this deployment process?,text,None
+Deployment SOP,What is the main goal of this deployment SOP?,text,None
+Deployment SOP,Which environments does this SOP cover?,multi select,"[Development, Staging, Production, QA, Other]"
+Deployment SOP,What approvals are required before deployment?,text,None
+Deployment SOP,What pre-deployment checks must be completed?,text,None
+Deployment SOP,"Which tools, scripts, or systems are required during deployment?",text,None
+Deployment SOP,Step-by-step deployment instructions,table,"[Step No, Action, Responsible Role, Notes / Checks]"
+Deployment SOP,Describe the rollback plan if deployment fails,text area,None
+Deployment SOP,How should deployment success be verified?,text,None
+Deployment SOP,Are there any exceptions or special cases for deployment?,radio,"[Yes, No]"
+Deployment SOP,Describe the exceptions and required actions,text area,None
+Deployment SOP,Describe post-deployment activities and validation steps,text area,None
+Deployment SOP,Explain how deployment issues or failures should be reported and tracked,text area,None
+Deployment SOP,"Describe communication requirements before, during, and after deployment",text area,None
+,,,
+Database Migration SOP,Company Name,text,None
+Database Migration SOP,Document Version,text,None
+Database Migration SOP,Effective Date of this SOP,calendar,None
+Database Migration SOP,Who is responsible for this database migration?,text,None
+Database Migration SOP,What is the purpose of this database migration SOP?,text,None
+Database Migration SOP,Which databases or systems are covered by this SOP?,text,None
+Database Migration SOP,What type of database migration is being performed?,multi select,"[Schema Migration, Data Migration, Version Upgrade, Platform Migration, Cloud Migration, Other]"
+Database Migration SOP,Is planned downtime required for this migration?,radio,"[Yes, No]"
+Database Migration SOP,What pre-migration checks must be completed?,text,None
+Database Migration SOP,Which tools or systems are required for migration?,text,None
+Database Migration SOP,Step-by-step database migration procedure,table,"[Step No, Action, Responsible Role, Notes / Checks]"
+Database Migration SOP,How is migration success validated after completion?,text,None
+Database Migration SOP,Is rollback required if migration fails?,radio,"[Yes, No]"
+Database Migration SOP,Describe the rollback or failure-handling procedure,text area,None
+Database Migration SOP,Are there any exceptions or special considerations?,radio,"[Yes, No]"
+Database Migration SOP,"If yes, describe the exceptions and handling approach",text area,None
+,,,
+Backup & Recovery Procedure,Company Name,text,None
+Backup & Recovery Procedure,Document Version,text,None
+Backup & Recovery Procedure,Effective Date of this Procedure,calendar,None
+Backup & Recovery Procedure,Who owns or is responsible for backups and recovery?,text,None
+Backup & Recovery Procedure,What is the purpose of this backup and recovery procedure?,text,None
+Backup & Recovery Procedure,Which systems or data are covered by this procedure?,multi select,"[Databases, File Servers, Application Data, Cloud Storage, Other]"
+Backup & Recovery Procedure,What backup frequency and retention policy applies?,text,None
+Backup & Recovery Procedure,Which tools or systems are used for backup and recovery?,text,None
+Backup & Recovery Procedure,Step-by-step backup and recovery procedure,table,"[Step No, Action, Responsible Role, Notes / Checks]"
+Backup & Recovery Procedure,How is backup success verified?,text,None
+Backup & Recovery Procedure,"If recovery is required, describe the recovery steps",text area,None
+Backup & Recovery Procedure,Are there any exceptions or special cases for certain systems?,radio,"[Yes, No]"
+Backup & Recovery Procedure,"If yes, describe the exceptions and handling approach",text area,None
+Backup & Recovery Procedure,Is escalation required during backup or recovery operations?,radio,"[Yes, No]"
+Backup & Recovery Procedure,"If escalation is required, who should it be escalated to?",text area,None
+,,,
+Security Incident Playbook,Company Name,text,None
+Security Incident Playbook,Document Version,text,None
+Security Incident Playbook,Effective Date of this Playbook,calendar,None
+Security Incident Playbook,Who owns or is responsible for managing security incidents?,text,None
+Security Incident Playbook,What is the purpose of this security incident playbook?,text,None
+Security Incident Playbook,Which types of security incidents does this playbook cover?,multi select,"[Data breach, Malware infection, Unauthorized access, Phishing, Denial-of-service attack, Insider threat, Other]"
+Security Incident Playbook,Who should use this document?,multi select,"[Security Team, IT Operations, SRE Team, Management, Legal/Compliance Team]"
+Security Incident Playbook,Define roles and responsibilities,table,"[Role, Responsibility]"
+Security Incident Playbook,What information must be available when a security incident is identified?,multi select,"[Incident report, Affected system, Time detected, Severity classification, Monitoring alerts]"
+Security Incident Playbook,Step-by-step security incident response actions,table,"[Step No, Action, Responsible Role, Notes / Checks]"
+Security Incident Playbook,Are there any exceptions or special security incident scenarios?,radio,"[Yes, No]"
+Security Incident Playbook,"If yes, describe the exceptions and required actions",text area,None
+Security Incident Playbook,Is escalation required for security incidents?,radio,"[Yes, No]"
+Security Incident Playbook,"If escalation is required, who should the incident be escalated to?",text area,None
+Security Incident Playbook,Describe how security incidents should be contained and mitigated,text area,None
+Security Incident Playbook,Describe communication requirements during a security incident (internal and external),text area,None
+Security Incident Playbook,Describe post-incident review and root cause analysis process,text area,None
+Security Incident Playbook,Describe how lessons learned are documented and preventive actions are implemented,text area,None
+,,,
+On-Call Rotation Guide,Company Name,text,None
+On-Call Rotation Guide,Document Version,text,None
+On-Call Rotation Guide,Effective Date of this Guide,calendar,None
+On-Call Rotation Guide,Who owns or manages the on-call process?,text,None
+On-Call Rotation Guide,What is the purpose of this on-call rotation guide?,text,None
+On-Call Rotation Guide,Which teams or roles are included in the on-call rotation?,text,None
+On-Call Rotation Guide,What is the on-call rotation schedule?,radio,"[Weekly, Bi-weekly, Monthly, Custom]"
+On-Call Rotation Guide,"If custom schedule is used, briefly describe it",text,None
+On-Call Rotation Guide,Define roles and responsibilities,table,"[Role, Responsibility]"
+On-Call Rotation Guide,Step-by-step on-call procedure,table,"[Step No, Action, Owner, Notes / Checks]"
+On-Call Rotation Guide,Describe the escalation process (when and to whom incidents are escalated),text area,None
+On-Call Rotation Guide,Describe shift handover guidelines between on-call rotations,text area,None
+On-Call Rotation Guide,Are there any exceptions or special cases for on-call rotation?,radio,"[Yes, No]"
+On-Call Rotation Guide,"If yes, describe the exceptions and required actions",text area,None
+On-Call Rotation Guide,Describe expectations for response time and availability during on-call shifts,text area,None
+On-Call Rotation Guide,Describe how on-call incidents and actions should be documented or logged,text area,None
+On-Call Rotation Guide,"Describe compensation, time-off, or recovery policies related to on-call duties (if applicable)",text area,None
+,,,
+Monitoring & Alerting Setup,Company Name,text,None
+Monitoring & Alerting Setup,Document Version,text,None
+Monitoring & Alerting Setup,Effective Date of this SOP,calendar,None
+Monitoring & Alerting Setup,Who is responsible for maintaining monitoring and alerting?,text,None
+Monitoring & Alerting Setup,"List the systems, applications, or services that need to be monitored",text area,None
+Monitoring & Alerting Setup,What metrics or events should trigger alerts?,text,None
+Monitoring & Alerting Setup,What are the recovery or remediation steps when an alert is triggered?,text area,None
+Monitoring & Alerting Setup,Which tools or platforms are used for monitoring and alerting?,text,None
+Monitoring & Alerting Setup,How are alert severities defined?,radio,"[Critical, High, Medium, Low]"
+Monitoring & Alerting Setup,Who receives alerts and notifications?,text,None
+Monitoring & Alerting Setup,How are alerts escalated if not acknowledged?,text area,None
+Monitoring & Alerting Setup,Are alerts monitored 24/7?,radio,"[Yes, No]"
+Monitoring & Alerting Setup,Are there any exceptions or special cases in monitoring or alerting?,radio,"[Yes, No]"
+Monitoring & Alerting Setup,"If yes, describe the exceptions and required actions",text area,None
+Monitoring & Alerting Setup,Describe how monitoring and alerting configurations are reviewed and updated,text area,None

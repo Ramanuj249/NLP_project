@@ -1,109 +1,100 @@
-# import streamlit as st
-# import requests
-#
-# BACKEND_URL = "http://localhost:8000"
-#
-# st.title("Documentation Generator")
-#
-# # Get categories
-# categories = requests.get(f"{BACKEND_URL}/categories").json()
-# doc_types = requests.get(f"{BACKEND_URL}/document-types").json()
-#
-# # Convert to dropdown-friendly format
-# category_map = {c["category_name"]: c["id"] for c in categories}
-# doc_type_map = {d["document_type_name"]: d["id"] for d in doc_types}
-#
-#
-# selected_category = st.selectbox("Select Category", category_map.keys())
-# selected_doc_type = st.selectbox("Select Document Type", doc_type_map.keys())
-#
-# if st.button("Get Documents"):
-#     params = {
-#         "category_id": category_map[selected_category],
-#         "document_type_id": doc_type_map[selected_doc_type]
-#     }
-#
-#     res = requests.get(f"{BACKEND_URL}/documents", params=params)
-#     documents = res.json()
-#
-#     if documents:
-#         for doc in documents:
-#             st.write("📄", doc["title"])
-#     else:
-#         st.warning("No documents found")
-
-
-
-
-
-########
-# st.title("My First App")
-#
-# if st.button("Get Data"):
-#     res = requests.get("http://localhost:8000/")
-#     st.json(res.json())
-
+import requests
+from callback import fetch_questions_for_document, render_questions
 
 
 import streamlit as st
-import pandas as pd
+from callback import submit_document
 
-st.title("Interactive Streamlit Demo")
+BACKEND_URL = "http://localhost:8000"
 
-st.header("1️⃣ Single Choice Question")
-single_choice = st.radio(
-    "Choose your favorite fruit:",
-    ["Apple", "Banana", "Cherry", "Date", "Elderberry"]
+st.button("Submit Responses", on_click=submit_document)
+st.title("Documentation Generator")
+
+# --- Initialize session state ---
+if "documents" not in st.session_state:
+    st.session_state.documents = []
+
+if "categories" not in st.session_state:
+    st.session_state.categories = requests.get(f"{BACKEND_URL}/categories").json()
+
+if "doc_types" not in st.session_state:
+    st.session_state.doc_types = requests.get(f"{BACKEND_URL}/document-types").json()
+
+if "questions" not in st.session_state:
+    st.session_state.questions = []
+
+if "last_doc_id" not in st.session_state:
+    st.session_state.last_doc_id = None
+
+
+# --- Maps for dropdowns ---
+category_map = {c["category_name"]: c["id"] for c in st.session_state.categories}
+doc_type_map = {d["document_type_name"]: d["id"] for d in st.session_state.doc_types}
+
+# --- Initialize selected values if not present ---
+if "selected_category" not in st.session_state:
+    st.session_state.selected_category = list(category_map.keys())[0]
+
+if "selected_doc_type" not in st.session_state:
+    st.session_state.selected_doc_type = list(doc_type_map.keys())[0]
+
+
+# --- Dropdowns for categories ---
+selected_category = st.selectbox(
+    "Select Category",
+    list(category_map.keys()),
+    index=list(category_map.keys()).index(st.session_state.selected_category),
+    key="selected_category"
 )
-st.write("You selected:", single_choice)
 
-st.header("2️⃣ Multiple Choice Question")
-multi_choice = st.multiselect(
-    "Select your favorite colors:",
-    ["Red", "Blue", "Green", "Yellow", "Purple"]
+# --- Dropdowns for document type ---
+selected_doc_type = st.selectbox(
+    "Select Document Type",
+    list(doc_type_map.keys()),
+    index=list(doc_type_map.keys()).index(st.session_state.selected_doc_type),
+    key="selected_doc_type"
 )
-st.write("You selected:", multi_choice)
 
-st.header("3️⃣ Short Answer")
-short_answer = st.text_input("Write a short answer (one line):")
-st.write("You wrote:", short_answer)
+# --- Fetch documents only when button clicked ---
+if st.button("Get Documents"):
+    params = {
+        "category_id": category_map[selected_category],
+        "document_type_id": doc_type_map[selected_doc_type]
+    }
 
-st.header("4️⃣ Paragraph Answer")
-paragraph_answer = st.text_area("Write a paragraph answer:")
-st.write("You wrote:", paragraph_answer)
+    res = requests.get(f"{BACKEND_URL}/documents", params=params)
+    st.session_state.documents = res.json()
 
-st.header("5️⃣ Yes / No Question")
-yes_no = st.selectbox("Do you like programming?", ["Yes", "No"])
-yes_no_bool = True if yes_no == "Yes" else False
-st.write("Saved as boolean:", yes_no_bool)
+# --- Show documents if available ---
+documents = st.session_state.documents
 
-st.header("6️⃣ Table Input")
-# Default table
-if 'table_data' not in st.session_state:
-    st.session_state.table_data = pd.DataFrame(columns=["Name", "Age", "City", "Occupation"])
+if documents:
+    doc_map = {doc["title"]: doc for doc in documents}
 
-# Display table
-st.write("Current Table:")
-st.dataframe(st.session_state.table_data)
+    st.session_state.doc_map = doc_map
 
-# Add a new row
-with st.form("add_row_form"):
-    st.subheader("Add a New Row")
-    name = st.text_input("Name")
-    age = st.text_input("Age")
-    city = st.text_input("City")
-    occupation = st.text_input("Occupation")
-    if st.form_submit_button("Add Row"):
-        new_row = {"Name": name, "Age": age, "City": city, "Occupation": occupation}
-        st.session_state.table_data = pd.concat([st.session_state.table_data, pd.DataFrame([new_row])], ignore_index=True)
+    placeholder = "-- Select a document --"
+    doc_titles = [placeholder] + list(doc_map.keys())
 
-# Add new column
-with st.form("add_column_form"):
-    st.subheader("Add a New Column")
-    new_column_name = st.text_input("Column Name")
-    default_value = st.text_input("Default Value")
-    if st.form_submit_button("Add Column") and new_column_name:
-        st.session_state.table_data[new_column_name] = default_value
+    # Initialize selected document
+    if "selected_doc_title" not in st.session_state:
+        st.session_state.selected_doc_title = placeholder
 
-st.write("Updated Table:")
-st.dataframe(st.session_state.table_data)
+    selected_doc_title = st.selectbox(
+        "Select a Document",
+        doc_titles,
+        index=doc_titles.index(st.session_state.selected_doc_title),
+        key="selected_doc_title",
+        on_change=fetch_questions_for_document
+    )
+    # st.write(st.session_state)
+    if st.session_state.questions:
+        st.subheader("Questions")
+        # for q in st.session_state.questions:
+        #     st.write(f"• {q['question']}")
+        if st.session_state.questions:
+            render_questions(st.session_state.questions)
+
+            if st.button("Submit Responses"):
+                st.json(st.session_state.answers)
+

@@ -1,4 +1,6 @@
 from fastapi import FastAPI
+from pydantic import BaseModel
+from typing import List, Any
 from database import get_connection
 
 app = FastAPI()
@@ -31,16 +33,28 @@ def get_document_types():
 def get_documents(category_id: int, document_type_id: int):
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
-
     query = """
     SELECT id, title
     FROM documents
     WHERE category_id = %s
     AND document_type_id = %s
     """
-
     cursor.execute(query, (category_id, document_type_id))
     data = cursor.fetchall()
     conn.close()
-
     return data
+
+@app.get("/questions")
+def get_question(document_id: int):
+    conn = get_connection()
+    cursor = conn.cursor(dictionary=True)
+    query = """
+    SELECT id, question, type, options
+    FROM questions 
+    WHERE document_id = %s
+    """
+    cursor.execute(query, (document_id,))
+    data = cursor.fetchall()
+    conn.close()
+    return data
+

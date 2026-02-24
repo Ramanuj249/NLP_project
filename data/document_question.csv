@@ -1,0 +1,1632 @@
+﻿document_id,question,type,options
+Remote Work Policy,Company Name,text,None
+Remote Work Policy,Company Locations,text,None
+Remote Work Policy,Operating Country / Countries,text,None
+Remote Work Policy,Effective Date,calendar,None
+Remote Work Policy,Type of remote work,multi select,"[Fully Remote, Hybrid, On-site (No Remote)]"
+Remote Work Policy,Eligibility (who this policy applies to):,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Remote Work Policy,Is approval required for remote work:,bol_radio,"[Yes, No]"
+Remote Work Policy,Approval authority (if approval is required):,multi select,"[Direct Manager, Department Head, HR Business Partner, Executive Leadership, Compliance/Legal Team]"
+Remote Work Policy,Working hours per day:,text,None
+Remote Work Policy,Is working from another country allowed:,bol_radio,"[Yes, No]"
+Remote Work Policy,Does the company provide work equipment:,bol_radio,"[Yes, No]"
+Remote Work Policy,Can remote work be revoked by the company:,bol_radio,"[Yes, No]"
+Remote Work Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Remote Work Policy,"Specify allowed remote work locations, country restrictions, time zone requirements, and approval needs for location changes.",text area,None
+Remote Work Policy,"Describe data security, system access, confidentiality requirements, and prohibited work environments for remote work.",text area,None
+Remote Work Policy,"Define working hours, availability, communication expectations, and performance monitoring for remote employees.",text area,None
+Remote Work Policy,"Outline legal, tax, payroll, or regulatory conditions that may limit or restrict remote work.",text area,None
+PTO / Leave Policy,Company name,text,None
+PTO / Leave Policy,Company locations,text,None
+PTO / Leave Policy,Operating country/countries,text,None
+PTO / Leave Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+PTO / Leave Policy,Effective date,calendar,None
+PTO / Leave Policy,Leave policy details,table,"[Leave Type , Annual Days, Accrual Type, Max Carry-Forward]"
+PTO / Leave Policy,Does leave carry forward to the next period,bol_radio,"[Yes, No]"
+PTO / Leave Policy,Which leave types are eligible for carry-forward,text,None
+PTO / Leave Policy,Maximum carry-forward days (if applicable),text,None
+PTO / Leave Policy,Who approves leave requests,multi select,"[Direct Manager, Department Head, HR Business Partner, Executive Leadership, Compliance/Legal Team]"
+PTO / Leave Policy,Minimum number of days’ notice required before taking leave,text,None
+PTO / Leave Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+PTO / Leave Policy,"Is sandwich leave applicable? If yes, define the conditions under which weekends and/or holidays are counted as leave",text area,None
+PTO / Leave Policy,"Define the eligibility rules for availing leave during the probation period and the notice period, including any restrictions, minimum tenure requirements, or leave types that are excluded.",text area,None
+PTO / Leave Policy,"If exceptions to this policy are allowed, please describe the specific circumstances and justification for your request.",text area,None
+Code of Conduct,Company name,text,None
+Code of Conduct,Company locations,text,None
+Code of Conduct,Operating country/countries,text,None
+Code of Conduct,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Code of Conduct,Effective date,calendar,None
+Code of Conduct,Is compliance with the Code of Conduct mandatory,bol_radio,"[Yes, No]"
+Code of Conduct,Expected standard of professional behavior,multi select,"[Professional, Respectful, Ethical]"
+Code of Conduct,Are conflicts of interest required to be disclosed,bol_radio,"[Yes, No]"
+Code of Conduct,Is discrimination or harassment prohibited,bol_radio,"[Yes, No]"
+Code of Conduct,Is the use of company property for personal purposes restricted,bol_radio,"[Yes, No]"
+Code of Conduct,Are employees required to comply with all applicable laws and regulations,bol_radio,"[Yes, No]"
+Code of Conduct,How can violations be reported,multi select,"[Manager, HR, Anonymous Channel]"
+Code of Conduct,Are retaliation protections provided for reporters,bol_radio,"[Yes, No]"
+Code of Conduct,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Code of Conduct,Describe the disciplinary actions that may result from violations of the Code of Conduct.,text area,None
+Code of Conduct,Describe the disciplinary actions that may result from violations of the Code of Conduct.,text area,None
+Code of Conduct,"Specify rules regarding gifts, hospitality, bribery, and ethical conduct with third parties.",text area,None
+Anti-Harassment Policy,Company name,text,None
+Anti-Harassment Policy,Company locations,text,None
+Anti-Harassment Policy,Operating country/countries,text,None
+Anti-Harassment Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Anti-Harassment Policy,Effective date,calendar,None
+Anti-Harassment Policy,"is harassment prohibited in all forms (verbal, physical, written, online):",bol_radio,"[Yes, No]"
+Anti-Harassment Policy,Does this policy cover workplace and work-related events,bol_radio,"[Yes, No]"
+Anti-Harassment Policy,"Does this policy apply to interactions with third parties (clients, vendors)",bol_radio,"[Yes, No]"
+Anti-Harassment Policy,How can harassment be reported,multi select,"[Manager, HR, Anonymous Channel]"
+Anti-Harassment Policy,Are retaliation protections provided for complainants and witnesses,bol_radio,"[Yes, No]"
+Anti-Harassment Policy,Will reported complaints be investigated promptly and confidentially,bol_radio,"[Yes, No]"
+Anti-Harassment Policy,Can disciplinary action be taken for policy violations,bol_radio,"[Yes, No]"
+Anti-Harassment Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Anti-Harassment Policy,Define harassment and provide examples of prohibited conduct under this policy,text area,None
+Anti-Harassment Policy,Define harassment and provide examples of prohibited conduct under this policy,text area,None
+Anti-Harassment Policy,Specify how knowingly false or malicious complaints will be addressed,text area,None
+Compensation Philosophy,Company name,text,None
+Compensation Philosophy,Company locations,text,None
+Compensation Philosophy,Operating country/countries,text,None
+Compensation Philosophy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Compensation Philosophy,Effective date,calendar,None
+Compensation Philosophy,Compensation philosophy type,multi select,"[Market-based, Performance-based, Equity-focused, Mixed]"
+Compensation Philosophy,Is compensation reviewed regularly,bol_radio,"[Yes, No]"
+Compensation Philosophy,Compensation review frequency,multi select,"[Management, HR, Board]"
+Compensation Philosophy,Does compensation include variable pay,bol_radio,"[Yes, No]"
+Compensation Philosophy,Does compensation include equity or long-term incentives,bol_radio,"[Yes, No]"
+Compensation Philosophy,Is internal pay equity considered,bol_radio,"[Yes, No]"
+Compensation Philosophy,Are compensation decisions based on performance,bol_radio,"[Yes, No]"
+Compensation Philosophy,Is compensation philosophy communicated to employees,bol_radio,"[Yes, No]"
+Compensation Philosophy,Who approves compensation decisions,multi select,"[Management, HR, Board]"
+Compensation Philosophy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Compensation Philosophy,"Describe the company’s overall compensation philosophy and objectives, including how pay supports business strategy and talent goals.",text area,None
+Compensation Philosophy,"Describe the company’s overall compensation philosophy and objectives, including how pay supports business strategy and talent goals.",text area,None
+Compensation Philosophy,"Describe the company’s overall compensation philosophy and objectives, including how pay supports business strategy and talent goals.",text area,None
+Compensation Philosophy,"Describe the company’s overall compensation philosophy and objectives, including how pay supports business strategy and talent goals.",text area,None
+Sabbatical Policy,Company name,text,None
+Sabbatical Policy,Company locations,text,None
+Sabbatical Policy,Operating country/countries,text,None
+Sabbatical Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Sabbatical Policy,Effective date,calendar,None
+Sabbatical Policy,Is a sabbatical program offered by the company,bol_radio,"[Yes, No]"
+Sabbatical Policy,Minimum tenure required to be eligible for a sabbatical,text,None
+Sabbatical Policy,Maximum sabbatical duration,text,None
+Sabbatical Policy,Is the sabbatical paid,bol_radio,"[Yes, No]"
+Sabbatical Policy,"How often can an employee take a sabbatical (Once, Every X Years)",text,None
+Sabbatical Policy,Is approval required for sabbatical leave,bol_radio,"[Yes, No]"
+Sabbatical Policy,Who approves sabbatical requests,multi select,"[Manager, HR, Management]"
+Sabbatical Policy,Is the employee guaranteed the same or equivalent role after return,bol_radio,"[Yes, No]"
+Sabbatical Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Sabbatical Policy,Describe the purpose of the sabbatical program and its intended benefits for employees and the company.,text area,None
+Sabbatical Policy,"Explain how compensation, benefits, seniority, and employment status are treated during a sabbatical.",text area,None
+Sabbatical Policy,"Explain how compensation, benefits, seniority, and employment status are treated during a sabbatical.",text area,None
+Travel & Expense Policy,Company name,text,None
+Travel & Expense Policy,Company locations,text,None
+Travel & Expense Policy,Operating country/countries,text,None
+Travel & Expense Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Travel & Expense Policy,Effective date,calendar,None
+Travel & Expense Policy,Is business travel allowed,bol_radio,"[Yes, No]"
+Travel & Expense Policy,Is prior approval required for business travel,bol_radio,"[Yes, No]"
+Travel & Expense Policy,if prior approval required who approves business travel,multi select,"[Manager, HR, Finance]"
+Travel & Expense Policy,Are business-related travel expenses reimbursable,bol_radio,"[Yes, No]"
+Travel & Expense Policy,Expense categories covered,multi select,"[Travel, Lodging, Meals, Local Transport, Other]"
+Travel & Expense Policy,Is there a maximum expense limit per trip,bol_radio,"[Yes, No]"
+Travel & Expense Policy,Maximum expense amount (if applicable),text,None
+Travel & Expense Policy,Is proof of expense required (receipts/invoices),bol_radio,"[Yes, No]"
+Travel & Expense Policy,Time limit to submit expense claims,text,None
+Travel & Expense Policy,Reimbursement method,radio,"[Bank Transfer, Payroll Addition, Cash]"
+Travel & Expense Policy,Can reimbursement be denied if policy is not followed,bol_radio,"[Yes, No]"
+Travel & Expense Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Travel & Expense Policy,Describe the purpose of business travel and the types of trips covered under this policy.,text area,None
+Travel & Expense Policy,Describe the purpose of business travel and the types of trips covered under this policy.,text area,None
+Travel & Expense Policy,Describe the purpose of business travel and the types of trips covered under this policy.,text area,None
+Equipment Policy,Company name,text,None
+Equipment Policy,Company locations,text,None
+Equipment Policy,Operating country/countries,text,None
+Equipment Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Equipment Policy,Effective date,calendar,None
+Equipment Policy,Does the company provide work equipment?,bol_radio,"[Yes, No]"
+Equipment Policy,Types of equipment provided,multi select,"[Laptop, Monitor, Accessories, Other]"
+Equipment Policy,Is company-provided equipment mandatory for work?,bol_radio,"[Yes, No]"
+Equipment Policy,Can equipment be used for personal purposes? ,bol_radio,"[Yes, No]"
+Equipment Policy,Who is responsible for equipment care and maintenance?,multi select,"[Employee, Company]"
+Equipment Policy,Must loss or damage of equipment be reported?,bol_radio,"[Yes, No]"
+Equipment Policy,Must equipment be returned upon exit or role change?,bol_radio,"[Yes, No]"
+Equipment Policy,Can the company request equipment return at any time?,bol_radio,"[Yes, No]"
+Equipment Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Equipment Policy,Describe the purpose of providing company equipment and who the policy applies to.,text area,None
+Equipment Policy,"Define acceptable use of company-provided equipment and any prohibited activities, including misuse or unauthorized access.",text area,None
+Equipment Policy,"Explain responsibilities, reporting timelines, and potential liability in cases of loss, theft, or damage of equipment.",text area,None
+Equipment Policy,"Describe the process for equipment return, inspection, and data security requirements upon exit or role change.",text area,None
+Referral Program,Company name,text,None
+Referral Program,Company locations,text,None
+Referral Program,Operating country/countries,text,None
+Referral Program,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Referral Program,Effective date,calendar,None
+Referral Program,Is an employee referral program offered by the company,bol_radio,"[Yes, No]"
+Referral Program,Who can be referred under this program,multi select,"[Job Candidates, Freelancers, Vendors] "
+Referral Program,How can referrals be submitted,multi select,"[Email, HR Tool, ATS, Other] "
+Referral Program,Is there a limit on the number of referrals per employee,bol_radio,"[Yes, No]"
+Referral Program,Referral submission validity period,text,None
+Referral Program,Is a referral reward or incentive offered,bol_radio,"[Yes, No]"
+Referral Program,Type of referral reward,multi select,"[Cash Bonus, Gift Cards, Equity, Other]"
+Referral Program,When is the referral reward paid,radio,"[On Hiring, After Probation, After a certrain Months]"
+Referral Program,Briefly explain reward eligibility conditions,text area,None
+Referral Program,Can referrals be disqualified due to policy violations,bol_radio,"[Yes, No]"
+Referral Program,Are referrals subject to standard hiring processes and background checks,bol_radio,"[Yes, No]"
+Referral Program,Describe the purpose of the employee referral program and how it supports hiring goals.,text area,None
+Referral Program,"Define who is eligible or ineligible to participate in the referral program, including any role-based or relationship-based exclusions.",text area,None
+Referral Program,"Define who is eligible or ineligible to participate in the referral program, including any role-based or relationship-based exclusions.",text area,None
+Privacy Policy,Company name,text,None
+Privacy Policy,Company locations,text,None
+Privacy Policy,Operating country/countries,text,None
+Privacy Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Privacy Policy,Effective date,calendar,None
+Privacy Policy,Is personal data collected,bol_radio,"[Yes, No]"
+Privacy Policy,Types of personal data collected,multi select,"[Name, Email, Phone, IP Address, Other]"
+Privacy Policy,"Is data collected automatically (cookies, analytics, logs)",bol_radio,"[Yes, No]"
+Privacy Policy,Purpose of data collection,multi select,"[Service delivery, Communication, Analytics, Legal compliance]"
+Privacy Policy,Is personal data shared with third parties,bol_radio,"[Yes, No]"
+Privacy Policy,Third-party data sharing purpose,multi select,"[Service providers, Analytics, Legal requirements]"
+Privacy Policy,Is personal data stored electronically,bol_radio,"[Yes, No]"
+Privacy Policy,Is personal data protected using reasonable security measures,bol_radio,"[Yes, No]"
+Privacy Policy,Is data retained only as long as necessary,bol_radio,"[Yes, No]"
+Privacy Policy,Can users access or request correction of their personal data,bol_radio,"[Yes, No]"
+Privacy Policy,Can users request deletion of their personal data,bol_radio,"[Yes, No]"
+Privacy Policy,Is this policy compliant with applicable data protection laws,bol_radio,"[Yes, No]"
+Privacy Policy,Can access to services be restricted for policy violations,bol_radio,"[Yes, No]"
+Privacy Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Privacy Policy,"Identify who is responsible for personal data processing, protection, and compliance under this policy.",text area,None
+Privacy Policy,"Describe how individuals can exercise their data rights (access, correction, deletion), including request procedures and response timelines.",text area,None
+Privacy Policy,"Describe how individuals can exercise their data rights (access, correction, deletion), including request procedures and response timelines.",text area,None
+Cookie Policy,Company name,text,None
+Cookie Policy,Company locations,text,None
+Cookie Policy,Operating country/countries,text,None
+Cookie Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Cookie Policy,Effective date,calendar,None
+Cookie Policy,Does the website use cookies,bol_radio,"[Yes, No]"
+Cookie Policy,Types of cookies used,multi select,"[Essential, Analytics, Functional, Advertising]"
+Cookie Policy,Are cookies used for analytics or performance tracking,bol_radio,"[Yes, No]"
+Cookie Policy,user consent required before placing non-essential cookies,bol_radio,"[Yes, No]"
+Cookie Policy,Can users manage or disable cookies through browser settings,bol_radio,"[Yes, No]"
+Cookie Policy,Is a cookie consent banner displayed on the website,bol_radio,"[Yes, No]"
+Cookie Policy,Are third-party cookies used,bol_radio,"[Yes, No]"
+Cookie Policy,Purpose of third-party cookies,multi select,"[Analytics, Advertising, Embedded content]"
+Cookie Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Cookie Policy,Describe how cookies are used on the website and the purpose of each category of cookies,text area,None
+Cookie Policy,"Explain how users can provide, withdraw, or manage their cookie consent and preferences",text area,None
+Cookie Policy,"List third-party cookies used, their providers, and the purpose for which they are set.",text area,None
+Cookie Policy,"List third-party cookies used, their providers, and the purpose for which they are set.",text area,None
+Acceptable Use Policy,Company name,text,None
+Acceptable Use Policy,Company locations,text,None
+Acceptable Use Policy,Operating country/countries,text,None
+Acceptable Use Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Acceptable Use Policy,Effective date,calendar,None
+Acceptable Use Policy,Is acceptable use of company systems and services mandatory,bol_radio,"[Yes, No]"
+Acceptable Use Policy,Is illegal activity prohibited while using company services,bol_radio,"[Yes, No]"
+Acceptable Use Policy,Is misuse or abuse of systems prohibited,bol_radio,"[Yes, No]"
+Acceptable Use Policy,Is unauthorized access or attempt to bypass security prohibited,bol_radio,"[Yes, No]"
+Acceptable Use Policy,"Is harmful, abusive, or offensive content prohibited",bol_radio,"[Yes, No]"
+Acceptable Use Policy,Is spamming or excessive automated activity prohibited,bol_radio,"[Yes, No]"
+Acceptable Use Policy,Is intellectual property infringement prohibited,bol_radio,"[Yes, No]"
+Acceptable Use Policy,Can access to services be suspended or terminated for violations,bol_radio,"[Yes, No]"
+Acceptable Use Policy,Can reported violations be investigated by the company,bol_radio,"[Yes, No]"
+Acceptable Use Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Acceptable Use Policy,"Describe the purpose of this Acceptable Use Policy and the systems, services, and users it applies to.",text area,None
+Acceptable Use Policy,"Explain whether and how the company may monitor the use of its systems, and outline employee privacy expectations.",text area,None
+Acceptable Use Policy,Describe potential consequences or disciplinary actions for violations of this policy.,text area,None
+Acceptable Use Policy,Outline user responsibilities for complying with this policy and reporting suspected misuse or violations.,text area,None
+Security Policy,Company name,text,None
+Security Policy,Company locations,text,None
+Security Policy,Operating country/countries,text,None
+Security Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Security Policy,Effective date,calendar,None
+Security Policy,Is compliance with security requirements mandatory,bol_radio,"[Yes, No]"
+Security Policy,Are reasonable technical and organizational security measures implemented,bol_radio,"[Yes, No]"
+Security Policy,Is access to systems restricted based on roles and responsibilities,bol_radio,"[Yes, No]"
+Security Policy,Is authentication required to access company systems,bol_radio,"[Yes, No]"
+Security Policy,Is multi-factor authentication enforced where applicable,bol_radio,"[Yes, No]"
+Security Policy,Is encryption used to protect sensitive data,bol_radio,"[Yes, No]"
+Security Policy,Is there a process to report security incidents,bol_radio,"[Yes, No]"
+Security Policy,Are security incidents investigated and addressed promptly,bol_radio,"[Yes, No]"
+Security Policy,Can access be restricted or revoked for security violations,bol_radio,"[Yes, No]"
+Security Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Security Policy,"Describe the purpose of the security policy and the systems, data, and users it applies to.",text area,None
+Security Policy,"Define security responsibilities of employees, contractors, managers, and IT or security teams.",text area,None
+Security Policy,"Describe the steps for reporting, responding to, and escalating security incidents.",text area,None
+Security Policy,"Specify any security awareness, training, or acknowledgment requirements for users.",text area,None
+Copyright Policy (DMCA),Company name,text,None
+Copyright Policy (DMCA),Company locations,text,None
+Copyright Policy (DMCA),Operating country/countries,text,None
+Copyright Policy (DMCA),Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Copyright Policy (DMCA),Effective date,calendar,None
+Copyright Policy (DMCA),Does the company respect intellectual property rights,bol_radio,"[Yes, No]"
+Copyright Policy (DMCA),Is unauthorized use of copyrighted content prohibited,bol_radio,"[Yes, No]"
+Copyright Policy (DMCA),Does the company comply with the DMCA takedown process,bol_radio,"[Yes, No]"
+Copyright Policy (DMCA),Is there a process to submit copyright infringement notices,bol_radio,"[Yes, No]"
+Copyright Policy (DMCA),Is a designated agent assigned to receive DMCA notices,bol_radio,"[Yes, No]"
+Copyright Policy (DMCA),Can infringing content be removed upon valid notice,bol_radio,"[Yes, No]"
+Copyright Policy (DMCA),Can repeat infringers have their access terminated,bol_radio,"[Yes, No]"
+Copyright Policy (DMCA),"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Copyright Policy (DMCA),Method to submit DMCA notices,radio,"[Email, Web Form]"
+Copyright Policy (DMCA),Describe the types of intellectual property covered by this policy and how the company protects its own and third-party rights.,text area,None
+Copyright Policy (DMCA),"Explain the process for submitting, reviewing, and responding to copyright infringement or DMCA takedown notices.",text area,None
+Copyright Policy (DMCA),"Describe how counter-notices, disputes, or claims of wrongful takedown are handled.",text area,None
+Copyright Policy (DMCA),Define how repeat infringement is identified and the actions that may be taken against repeat infringers.,text area,None
+API Rate Limiting Policy,Company name,text,None
+API Rate Limiting Policy,Company locations,text,None
+API Rate Limiting Policy,Operating country/countries,text,None
+API Rate Limiting Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+API Rate Limiting Policy,Effective date,calendar,None
+API Rate Limiting Policy,Is API usage subject to rate limits,bol_radio,"[Yes, No]"
+API Rate Limiting Policy,what is the Rate limit type,text,None
+API Rate Limiting Policy,Rate limit type,multi select,"[Requests per minute, Requests per hour, Requests per day]"
+API Rate Limiting Policy,Maximum allowed requests per limit period,text,None
+API Rate Limiting Policy,What happens when the rate limit is exceeded,multi select,"[Throttle, Temporary Block, Error Response]"
+API Rate Limiting Policy,Are rate limits enforced automatically,bol_radio,"[Yes, No]"
+API Rate Limiting Policy,Can API access be suspended for repeated violations,bol_radio,"[Yes, No]"
+API Rate Limiting Policy,Are higher rate limits available by request,bol_radio,"[Yes, No]"
+API Rate Limiting Policy,Who approves rate limit exceptions,radio,"[Engineering, Support]"
+API Rate Limiting Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+API Rate Limiting Policy,"Describe the purpose of API rate limiting and the APIs, users, or applications to which it applies.",text area,None
+API Rate Limiting Policy,Explain acceptable API usage patterns and behaviors considered abusive or excessive.,text area,None
+API Rate Limiting Policy,"Describe how API usage is monitored, how rate limit violations are enforced, and whether users are notified when limits are approached or exceeded.",text area,None
+API Rate Limiting Policy,"Describe how API usage is monitored, how rate limit violations are enforced, and whether users are notified when limits are approached or exceeded.",text area,None
+Dependency Update Policy,Company name,text,None
+Dependency Update Policy,Company locations,text,None
+Dependency Update Policy,Operating country/countries,text,None
+Dependency Update Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Dependency Update Policy,Effective date,calendar,None
+Dependency Update Policy,Are third-party dependencies used in company systems,bol_radio,"[Yes, No]"
+Dependency Update Policy,Is there a defined process to update dependencies regularly,bol_radio,"[Yes, No]"
+Dependency Update Policy,Dependency update frequency,radio,"[Monthly, Quarterly, As Needed]"
+Dependency Update Policy,Are security vulnerabilities in dependencies monitored,bol_radio,"[Yes, No]"
+Dependency Update Policy,Are critical security updates prioritized,bol_radio,"[Yes, No]"
+Dependency Update Policy,Are dependency updates tested before deployment,bol_radio,"[Yes, No]"
+Dependency Update Policy,Can deployments be blocked if critical dependencies are outdated,bol_radio,"[Yes, No]"
+Dependency Update Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Dependency Update Policy,"Describe the types of third-party dependencies covered by this policy, including libraries, frameworks, services, and tools.",text area,None
+Dependency Update Policy,"Define responsibilities for identifying, updating, testing, and approving third-party dependencies.",text area,None
+Dependency Update Policy,"Explain how security vulnerabilities in dependencies are assessed, prioritized, and remediated.",text area,None
+Dependency Update Policy,Describe how end-of-life or unsupported dependencies are identified and handled.,text area,None
+Expense Reimbursement Policy,Company name,text,None
+Expense Reimbursement Policy,Company locations,text,None
+Expense Reimbursement Policy,Operating country/countries,text,None
+Expense Reimbursement Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Expense Reimbursement Policy,Effective date,calendar,None
+Expense Reimbursement Policy,Are business-related expenses eligible for reimbursement,bol_radio,"[Yes, No]"
+Expense Reimbursement Policy,Eligible expense categories,multi select,"[Travel, Meals, Lodging, Office Supplies, Internet/Phone, Other]"
+Expense Reimbursement Policy,Briefly describe any excluded expenses (if applicable),text,None
+Expense Reimbursement Policy,Is there a reimbursement limit per expense or period,bol_radio,"[Yes, No]"
+Expense Reimbursement Policy,Reimbursement limit details (amount and period),text,None
+Expense Reimbursement Policy,Is approval required before submitting expenses,bol_radio,"[Yes, No]"
+Expense Reimbursement Policy,Who approves expense reimbursements,radio,"[Manager, Finance, HR]"
+Expense Reimbursement Policy,Time limit to submit expense claims,text,None
+Expense Reimbursement Policy,Is proof of expense required,bol_radio,"[Yes, No]"
+Expense Reimbursement Policy,Accepted proof types,radio,"[Receipts, Invoices, Digital Copies] "
+Expense Reimbursement Policy,Reimbursement method,radio,"[Payroll, Bank Transfer, Expense Platform]"
+Expense Reimbursement Policy,Can reimbursement be denied if policy requirements are not met,bol_radio,"[Yes, No]"
+Expense Reimbursement Policy,Are exceptions to this policy allowed,bol_radio,"[Yes, No]"
+Expense Reimbursement Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Expense Reimbursement Policy,Describe the purpose of the expense reimbursement policy and the types of business expenses it is intended to cover.,text area,None
+Expense Reimbursement Policy,Explain general eligibility criteria for reimbursable expenses and provide guidance on common non-reimbursable items.,text area,None
+Expense Reimbursement Policy,"Describe the process for submitting, reviewing, and approving expense claims, including timelines and responsibilities.",text area,None
+Expense Reimbursement Policy,"Describe the process for submitting, reviewing, and approving expense claims, including timelines and responsibilities.",text area,None
+Procurement Policy,Company name,text,None
+Procurement Policy,Company locations,text,None
+Procurement Policy,Operating country/countries,text,None
+Procurement Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Procurement Policy,Effective date,calendar,None
+Procurement Policy,Are purchases required to follow a formal procurement process,bol_radio,"[Yes, No]"
+Procurement Policy,Types of purchases covered under this policy,multi select,"[Goods, Services, Software, Subscriptions, Other]"
+Procurement Policy,Briefly describe any purchases excluded from this policy (if applicable),text,None
+Procurement Policy,Is prior approval required before making a purchase,bol_radio,"[Yes, No]"
+Procurement Policy,Who can approve purchases,multi select,"[Manager, Finance, Procurement]"
+Procurement Policy,Approval threshold type,radio,"[Amount-based, Category-based, Both]"
+Procurement Policy,Is vendor comparison or quotation required,bol_radio,"[Yes, No]"
+Procurement Policy,Types of required documents,multi select,"[Purchase Order, Invoice, Contract]"
+Procurement Policy,Can procurement requests be rejected if policy is not followed,bol_radio,"[Yes, No]"
+Procurement Policy,Are exceptions to this policy allowed,bol_radio,"[Yes, No]"
+Procurement Policy,"If exceptions to this policy are allowed, please describe the specific circumstances.",text area,None
+Procurement Policy,Describe the purpose of the procurement policy and the types of purchases and users it applies to.,text area,None
+Procurement Policy,"Explain how vendors are evaluated and selected, including due diligence, compliance, and risk considerations.",text area,None
+Procurement Policy,"Explain how vendors are evaluated and selected, including due diligence, compliance, and risk considerations.",text area,None
+Procurement Policy,"Specify documentation, record-keeping, and audit requirements related to procurement activities.",text area,None
+Financial Controls Policy,Company name,text,None
+Financial Controls Policy,Company locations,text,None
+Financial Controls Policy,Operating country/countries,text,None
+Financial Controls Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Financial Controls Policy,Effective date,calendar,None
+Financial Controls Policy,Does the company maintain formal financial controls,bol_radio,"[Yes, No]"
+Financial Controls Policy,Primary objectives of financial controls,multi select,"[Accuracy, Fraud Prevention, Compliance, Transparency]"
+Financial Controls Policy,Briefly describe the overall approach to financial controls,text,None
+Financial Controls Policy,Is approval required for financial transactions,bol_radio,"[Yes, No]"
+Financial Controls Policy,Who can authorize financial transactions,multi select,"[Management, Finance, Department Heads]"
+Financial Controls Policy,"Is segregation of duties implemented (e.g., approval vs payment)",bol_radio,"[Yes, No]"
+Financial Controls Policy,Are financial records maintained accurately and timely,bol_radio,"[Yes, No]"
+Financial Controls Policy,Are periodic financial reviews or reconciliations performed,bol_radio,"[Yes, No]"
+Financial Controls Policy,Financial review frequency,radio,"[Monthly, Quarterly, Annually]"
+Financial Controls Policy,Are financial controls monitored for effectiveness,bol_radio,"[Yes, No]"
+Financial Controls Policy,Can corrective action be taken for control failures,bol_radio,"[Yes, No]"
+Financial Controls Policy,Are exceptions to this policy allowed,bol_radio,"[Yes, No]"
+Financial Controls Policy,Explain how financial control exceptions are approved and documented,text area,None
+Financial Controls Policy,"Describe the purpose of the financial controls policy and the financial activities, entities, and users it applies to.",text area,None
+Financial Controls Policy,"Define the roles and responsibilities of management, finance, and other stakeholders in implementing and maintaining financial controls.",text area,None
+Financial Controls Policy,"Explain how financial risks and potential fraud are identified, prevented, and addressed.",text area,None
+Financial Controls Policy,"Describe how financial controls are monitored, audited, and improved over time.",text area,None
+Revenue Recognition Policy,Company name,text,None
+Revenue Recognition Policy,Company locations,text,None
+Revenue Recognition Policy,Operating country/countries,text,None
+Revenue Recognition Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Revenue Recognition Policy,Effective date,calendar,None
+Revenue Recognition Policy,Does the company follow a formal revenue recognition policy,bol_radio,"[Yes, No]"
+Revenue Recognition Policy,Primary revenue sources,multi select,"[Product Sales, Subscription Revenue, Services, Licensing, Other]"
+Revenue Recognition Policy,When is revenue recognized,text,None
+Revenue Recognition Policy,Briefly explain how revenue recognition timing is determined,text,None
+Revenue Recognition Policy,Are customer contracts reviewed before revenue recognition,bol_radio,"[Yes, No]"
+Revenue Recognition Policy,Are performance obligations identified in contracts,bol_radio,"[Yes, No]"
+Revenue Recognition Policy,Is revenue allocated across multiple obligations,bol_radio,"[Yes, No]"
+Revenue Recognition Policy,"Are refunds, discounts, or credits considered in revenue recognition",bol_radio,"[Yes, No]"
+Revenue Recognition Policy,Is revenue reviewed periodically for accuracy,bol_radio,"[Yes, No]"
+Revenue Recognition Policy,Revenue review frequency,radio,"[Monthly, Quarterly]"
+Revenue Recognition Policy,Are exceptions to this policy allowed,bol_radio,"[Yes, No]"
+Revenue Recognition Policy,Explain how revenue recognition exceptions are approved and documented,text area,None
+Revenue Recognition Policy,Describe the purpose of the revenue recognition policy and the revenue streams and transactions it applies to.,text area,None
+Revenue Recognition Policy,"Specify the accounting standards or regulations followed for revenue recognition (e.g., IFRS, ASC 606) and how compliance is ensured.",text area,None
+Revenue Recognition Policy,"Define responsibilities for contract review, revenue calculation, approval, and financial reporting.",text area,None
+Revenue Recognition Policy,"Explain how significant judgments, estimates, or assumptions in revenue recognition are reviewed and approved.",text area,None
+Social Media Policy,Company name,text,None
+Social Media Policy,Company locations,text,None
+Social Media Policy,Operating country/countries,text,None
+Social Media Policy,Applies to,multi select,"[Full-time, Part-time, Contractor, Intern, Freelance]"
+Social Media Policy,Effective date,calendar,None
+Social Media Policy,Does the company allow employees to use social media in a work-related context,bol_radio,"[Yes, No]"
+Social Media Policy,Types of social media covered under this policy,multi select,"[LinkedIn, Twitter/X, Facebook, Instagram]"
+Social Media Policy,Are employees allowed to represent the company on social media,bol_radio,"[Yes, No]"
+Social Media Policy,Is respectful and professional conduct required on social media,bol_radio,"[Yes, No]"
+Social Media Policy,Is sharing confidential or proprietary information prohibited,bol_radio,"[Yes, No]"
+Social Media Policy,Is the use of company branding or logos restricted,bol_radio,"[Yes, No]"
+Social Media Policy,Are employees required to clarify personal opinions versus company views,bol_radio,"[Yes, No]"
+Social Media Policy,Briefly describe any required disclaimers for personal accounts,text,None
+Social Media Policy,Can the company take action for social media policy violations,bol_radio,"[Yes, No]"
+Social Media Policy,Are social media activities monitored for policy compliance,bol_radio,"[Yes, No]"
+Social Media Policy,Explain how revenue recognition exceptions are approved and documented,text area,None
+Performance Review Process,Procedure name,text,None
+Performance Review Process,Applies to roles,multi select,"[Employee, Manager, HR, Finance, IT, Other]"
+Performance Review Process,Procedure owner,text,None
+Performance Review Process,Effective date,calendar,None
+Performance Review Process,Last reviewed date,calendar,None
+Performance Review Process,What is the primary purpose of this performance review process?,text area,None
+Performance Review Process,Which employees does this performance review apply to?,text area,None
+Performance Review Process,Who should use this document?,multi select,"[Employees, Managers, HR Team, Leadership]"
+Performance Review Process,Define roles and responsibilities involved in the performance review process.,table,"[Role, Responsibilities]"
+Performance Review Process,How often are performance reviews conducted?,multi select,"[Monthly, Quarterly, Bi-annually, Annually]"
+Performance Review Process,What information or inputs are required before starting the review?,text area,None
+Performance Review Process,Which tools or systems are used to conduct and document performance reviews?,text area,None
+Performance Review Process,Describe the step-by-step procedure for conducting a performance review.,text area,None
+Performance Review Process,What are the expected outcomes of the performance review?,text area,None
+Performance Review Process,How are performance review results communicated to employees?,text area,None
+Performance Review Process,"Are performance improvement plans or development actions required after the review? If yes, describe the process.",text area,None
+Performance Review Process,Are there any exceptions to the standard performance review process?,bol_radio,"[Yes, No]"
+Performance Review Process,"How are exceptions, disputes, or disagreements handled and escalated?",text area,None
+Performance Review Process,What records or documentation must be maintained after completing the review?,text area,None
+Offboarding Procedure,Company Name,text,None
+Offboarding Procedure,Document Version,text,None
+Offboarding Procedure,Effective Date,calendar,None
+Offboarding Procedure,Who owns this offboarding process?,multi select,"[HR Team, People Operations, IT Team, Management, Other]"
+Offboarding Procedure,What is the primary purpose of this offboarding procedure?,text,None
+Offboarding Procedure,Who should use this document?,multi select,"[HR Team, Managers, IT Team, Finance Team, Leadership]"
+Offboarding Procedure,Define roles and responsibilities involved in offboarding,table,"[Role, Responsibility]"
+Offboarding Procedure,What triggers the offboarding process?,multi select,"[Resignation, Termination, End of Contract, Retirement, Other]"
+Offboarding Procedure,What inputs are required before starting the offboarding process?,text,None
+Offboarding Procedure,Which tools or systems are used during offboarding?,text,None
+Offboarding Procedure,Describe the step-by-step offboarding procedure,text area,None
+Offboarding Procedure,Is manager approval required during offboarding?,bol_radio,"[Yes, No]"
+Offboarding Procedure,Are company assets required to be returned during offboarding?,bol_radio,"[Yes, No]"
+Offboarding Procedure,Are access rights and system credentials revoked as part of offboarding?,bol_radio,"[Yes, No]"
+Offboarding Procedure,Are there any exceptions to the standard offboarding procedure? if yes explain.,text area,None
+Onboarding Checklist,Company Name,text,None
+Onboarding Checklist,Document Version,text,None
+Onboarding Checklist,Effective Date,calendar,None
+Onboarding Checklist,Who owns this onboarding process,radio,"[HR Team, People Operations, Hiring Manager, Other]"
+Onboarding Checklist,What is the primary purpose of this onboarding checklist,text area,None
+Onboarding Checklist,Which employees does this onboarding process apply to,text area,None
+Onboarding Checklist,Who should use this document,multi select,"[HR Team, Hiring Managers, Team Leads, IT Support, New Hire]"
+Onboarding Checklist,Define roles and responsibilities,table,"[Role, Responsibility]"
+Onboarding Checklist,What are the mandatory preconditions and required inputs for onboarding process,multi select,"[Offer accepted, Joining date confirmed, Employee details ready, System access request submitted]"
+Onboarding Checklist,Which tools or systems are used during onboarding,multi select,"[HRMS, Payroll, IT ticketing, LMS, Email/Collaboration tools]"
+Onboarding Checklist,Step-by-step onboarding tasks (Day 1 / 30 / 60 / 90),table,"[Step No, Action, Owner, Timeline (Day 1 / 30 / 60 / 90), Notes]"
+Onboarding Checklist,Are there any exceptions to the standard onboarding process,bol_radio,"[Yes, No]"
+Onboarding Checklist,"If escalation is required during onboarding, who should it be escalated to",text,None
+Onboarding Checklist,Are there any mandatory training or compliance requirements during onboarding,multi select,"[Code of Conduct, Information Security, Data Privacy, Workplace Safety, Anti-harassment, Other]"
+Onboarding Checklist,"If mandatory training is required, by when must it be completed",text,None
+Onboarding Checklist,How is onboarding completion tracked and verified,radio,"[HR confirmation, Manager sign-off, System-based checklist, Combination]"
+Onboarding Checklist,What success criteria defines a completed onboarding (Day 90 readiness),text area,None
+Onboarding Checklist,How is feedback collected from new hires about the onboarding experience,multi select,"[Survey, 1:1 meeting, HR check-in, Manager review, Not collected]"
+Incident Response Plan,Company Name,text,None
+Incident Response Plan,Document Version,text,None
+Incident Response Plan,Effective Date,calendar,None
+Incident Response Plan,Last Reviewed Date,calendar,None
+Incident Response Plan,Who owns this incident response process?,multi select,"[Security Team, IT Operations, SRE Team, Incident Management Team, Other]"
+Incident Response Plan,What is the primary purpose of this incident response plan?,text,None
+Incident Response Plan,What types of incidents does this plan cover?,multi select,"[System outage, Security incident, Data breach, Performance degradation, Network issue, Application failure, Other]"
+Incident Response Plan,Who should use this document?,multi select,"[IT Operations, SRE Team, Security Team, Engineering Team, Management]"
+Incident Response Plan,Define roles and responsibilities,table,"[Role, Responsibility]"
+Incident Response Plan,What are the mandatory preconditions for initiating incident response?,multi select,"[Monitoring alert triggered, User-reported issue, Security alert, Service downtime detected, Manual escalation]"
+Incident Response Plan,How are incidents classified by severity?,radio,"[Critical, High, Medium, Low]"
+Incident Response Plan,What information is required when an incident is identified?,text area,None
+Incident Response Plan,Which tools or systems are used during incident response?,multi select,"[Monitoring tools, Ticketing system, Incident management tool, Communication tool, Logging system]"
+Incident Response Plan,Describe the step-by-step incident response procedure,text area,None
+Incident Response Plan,When should an incident be escalated?,text area,None
+Incident Response Plan,"If there any exceptions to the standard incident response process, describe the exception scenarios and actions",text area,None
+Incident Response Plan,Describe the incident communication process (internal and external),text area,None
+Incident Response Plan,Explain how incident resolution and recovery are validated,text area,None
+Incident Response Plan,Describe post-incident review or root cause analysis process,text area,None
+Incident Response Plan,Explain how lessons learned are documented and shared,text area,None
+Incident Response Plan,Describe how this incident response plan is reviewed and updated,text area,None
+Customer Onboarding Checklist,Company Name,text,None
+Customer Onboarding Checklist,Document Version,text,None
+Customer Onboarding Checklist,Effective Date,calendar,None
+Customer Onboarding Checklist,Last Reviewed Date,calendar,None
+Customer Onboarding Checklist,Which internal team owns customer onboarding for the first 30 days?,radio,"[Customer Success, Implementation Team, Operations, Sales, Other]"
+Customer Onboarding Checklist,What type of customers does this 30-day onboarding apply to?,text area,None
+Customer Onboarding Checklist,What are the primary onboarding goals for the first 30 days?,text area,None
+Customer Onboarding Checklist,What information must be available immediately after purchase to start onboarding?,text area,None
+Customer Onboarding Checklist,Define internal roles and responsibilities during the first 30 days,table,"[Role, Responsibility]"
+Customer Onboarding Checklist,How is the 30-day onboarding structured into phases?,multi select,"[Day 1–3 (Setup & Access), Day 4–10 (Configuration), Day 11–20 (Training & Usage), Day 21–30 (Adoption & Handover)]"
+Customer Onboarding Checklist,Provide the step-by-step onboarding checklist for the first 30 days,table,"[Phase/Day Range, Task, Owner, Completion Criteria]"
+Customer Onboarding Checklist,Which tools or systems are used during customer onboarding?,multi select,"[CRM, Ticketing Tool, Email, Onboarding Platform, Documentation Portal, Other]"
+Customer Onboarding Checklist,What situations require internal escalation during the first 30 days?,text area,None
+Customer Onboarding Checklist,Who should onboarding issues be escalated to?,radio,"[Customer Success Lead, Implementation Manager, Engineering, Support, Management]"
+Customer Onboarding Checklist,How is successful completion of 30-day onboarding confirmed?,radio,"[Internal checklist sign-off, Customer confirmation, First value milestone achieved, Handover to support/account management]"
+Customer Onboarding Checklist,"If there any exceptions to the standard onboarding process, describe the exception scenarios and handling approach",text area,None
+Incident Response Runbook,Company Name,text,None
+Incident Response Runbook,Document Version,text,None
+Incident Response Runbook,Effective Date,calendar,None
+Incident Response Runbook,Who owns this runbook?,multi select,"[IT Operations, SRE Team, Security Team, Incident Management Team, Other]"
+Incident Response Runbook,What is the primary purpose of this runbook?,text,None
+Incident Response Runbook,Which types of incidents does this runbook cover?,multi select,"[System outage, Security incident, Application failure, Network issue, Performance degradation, Other]"
+Incident Response Runbook,Who should use this document?,multi select,"[IT Operations, SRE Team, Security Team, Engineering Team, Management]"
+Incident Response Runbook,Define roles and responsibilities,table,"[Role, Responsibility]"
+Incident Response Runbook,What are the mandatory preconditions for using this runbook?,multi select,"[Monitoring alert triggered, User-reported issue, Incident ID, Affected system, Severity level]"
+Incident Response Runbook,Which tools or systems are used during incident response?,multi select,"[Monitoring tools, Ticketing system, Incident management tool, Logging system, Communication platform]"
+Incident Response Runbook,Step-by-step incident response actions,table,"[Step No, Action, Owner, Notes]"
+Incident Response Runbook,Are there any exceptions to the standard incident response process?,bol_radio,"[Yes, No]"
+Incident Response Runbook,"If there any exceptions to the standard incident response process escalation is required, who should it be escalated to?",text area,None
+Deployment SOP,Company Name,text,None
+Deployment SOP,Document Version,text,None
+Deployment SOP,Effective Date of this SOP,calendar,None
+Deployment SOP,Who is responsible for this deployment process?,text,None
+Deployment SOP,What is the main goal of this deployment SOP?,text,None
+Deployment SOP,Which environments does this SOP cover?,multi select,"[Development, Staging, Production, QA, Other]"
+Deployment SOP,What approvals are required before deployment?,text,None
+Deployment SOP,What pre-deployment checks must be completed?,text,None
+Deployment SOP,"Which tools, scripts, or systems are required during deployment?",text,None
+Deployment SOP,Step-by-step deployment instructions,table,"[Step No, Action, Responsible Role, Notes / Checks]"
+Deployment SOP,Describe the rollback plan if deployment fails,text area,None
+Deployment SOP,How should deployment success be verified?,text,None
+Deployment SOP,Are there any exceptions or special cases for deployment?,bol_radio,"[Yes, No]"
+Deployment SOP,Describe the exceptions and required actions,text area,None
+Deployment SOP,Describe post-deployment activities and validation steps,text area,None
+Deployment SOP,Explain how deployment issues or failures should be reported and tracked,text area,None
+Deployment SOP,"Describe communication requirements before, during, and after deployment",text area,None
+Database Migration SOP,Company Name,text,None
+Database Migration SOP,Document Version,text,None
+Database Migration SOP,Effective Date of this SOP,calendar,None
+Database Migration SOP,Who is responsible for this database migration?,text,None
+Database Migration SOP,What is the purpose of this database migration SOP?,text,None
+Database Migration SOP,Which databases or systems are covered by this SOP?,text,None
+Database Migration SOP,What type of database migration is being performed?,multi select,"[Schema Migration, Data Migration, Version Upgrade, Platform Migration, Cloud Migration, Other]"
+Database Migration SOP,Is planned downtime required for this migration?,bol_radio,"[Yes, No]"
+Database Migration SOP,What pre-migration checks must be completed?,text,None
+Database Migration SOP,Which tools or systems are required for migration?,text,None
+Database Migration SOP,Step-by-step database migration procedure,table,"[Step No, Action, Responsible Role, Notes / Checks]"
+Database Migration SOP,How is migration success validated after completion?,text,None
+Database Migration SOP,Is rollback required if migration fails?,bol_radio,"[Yes, No]"
+Database Migration SOP,Describe the rollback or failure-handling procedure,text area,None
+Database Migration SOP,Are there any exceptions or special considerations?,bol_radio,"[Yes, No]"
+Database Migration SOP,"If yes, describe the exceptions and handling approach",text area,None
+Backup & Recovery Procedure,Company Name,text,None
+Backup & Recovery Procedure,Document Version,text,None
+Backup & Recovery Procedure,Effective Date of this Procedure,calendar,None
+Backup & Recovery Procedure,Who owns or is responsible for backups and recovery?,text,None
+Backup & Recovery Procedure,What is the purpose of this backup and recovery procedure?,text,None
+Backup & Recovery Procedure,Which systems or data are covered by this procedure?,multi select,"[Databases, File Servers, Application Data, Cloud Storage, Other]"
+Backup & Recovery Procedure,What backup frequency and retention policy applies?,text,None
+Backup & Recovery Procedure,Which tools or systems are used for backup and recovery?,text,None
+Backup & Recovery Procedure,Step-by-step backup and recovery procedure,table,"[Step No, Action, Responsible Role, Notes / Checks]"
+Backup & Recovery Procedure,How is backup success verified?,text,None
+Backup & Recovery Procedure,"If recovery is required, describe the recovery steps",text area,None
+Backup & Recovery Procedure,Are there any exceptions or special cases for certain systems?,bol_radio,"[Yes, No]"
+Backup & Recovery Procedure,"If yes, describe the exceptions and handling approach",text area,None
+Backup & Recovery Procedure,Is escalation required during backup or recovery operations?,bol_radio,"[Yes, No]"
+Backup & Recovery Procedure,"If escalation is required, who should it be escalated to?",text area,None
+Security Incident Playbook,Company Name,text,None
+Security Incident Playbook,Document Version,text,None
+Security Incident Playbook,Effective Date of this Playbook,calendar,None
+Security Incident Playbook,Who owns or is responsible for managing security incidents?,text,None
+Security Incident Playbook,What is the purpose of this security incident playbook?,text,None
+Security Incident Playbook,Which types of security incidents does this playbook cover?,multi select,"[Data breach, Malware infection, Unauthorized access, Phishing, Denial-of-service attack, Insider threat, Other]"
+Security Incident Playbook,Who should use this document?,multi select,"[Security Team, IT Operations, SRE Team, Management, Legal/Compliance Team]"
+Security Incident Playbook,Define roles and responsibilities,table,"[Role, Responsibility]"
+Security Incident Playbook,What information must be available when a security incident is identified?,multi select,"[Incident report, Affected system, Time detected, Severity classification, Monitoring alerts]"
+Security Incident Playbook,Step-by-step security incident response actions,table,"[Step No, Action, Responsible Role, Notes / Checks]"
+Security Incident Playbook,Are there any exceptions or special security incident scenarios?,bol_radio,"[Yes, No]"
+Security Incident Playbook,"If yes, describe the exceptions and required actions",text area,None
+Security Incident Playbook,Is escalation required for security incidents?,bol_radio,"[Yes, No]"
+Security Incident Playbook,"If escalation is required, who should the incident be escalated to?",text area,None
+Security Incident Playbook,Describe how security incidents should be contained and mitigated,text area,None
+Security Incident Playbook,Describe communication requirements during a security incident (internal and external),text area,None
+Security Incident Playbook,Describe post-incident review and root cause analysis process,text area,None
+Security Incident Playbook,Describe how lessons learned are documented and preventive actions are implemented,text area,None
+On-Call Rotation Guide,Company Name,text,None
+On-Call Rotation Guide,Document Version,text,None
+On-Call Rotation Guide,Effective Date of this Guide,calendar,None
+On-Call Rotation Guide,Who owns or manages the on-call process?,text,None
+On-Call Rotation Guide,What is the purpose of this on-call rotation guide?,text,None
+On-Call Rotation Guide,Which teams or roles are included in the on-call rotation?,text,None
+On-Call Rotation Guide,What is the on-call rotation schedule?,radio,"[Weekly, Bi-weekly, Monthly, Custom]"
+On-Call Rotation Guide,"If custom schedule is used, briefly describe it",text,None
+On-Call Rotation Guide,Define roles and responsibilities,table,"[Role, Responsibility]"
+On-Call Rotation Guide,Step-by-step on-call procedure,table,"[Step No, Action, Owner, Notes / Checks]"
+On-Call Rotation Guide,Describe the escalation process (when and to whom incidents are escalated),text area,None
+On-Call Rotation Guide,Describe shift handover guidelines between on-call rotations,text area,None
+On-Call Rotation Guide,Are there any exceptions or special cases for on-call rotation?,bol_radio,"[Yes, No]"
+On-Call Rotation Guide,"If yes, describe the exceptions and required actions",text area,None
+On-Call Rotation Guide,Describe expectations for response time and availability during on-call shifts,text area,None
+On-Call Rotation Guide,Describe how on-call incidents and actions should be documented or logged,text area,None
+On-Call Rotation Guide,"Describe compensation, time-off, or recovery policies related to on-call duties (if applicable)",text area,None
+Monitoring & Alerting Setup,Company Name,text,None
+Monitoring & Alerting Setup,Document Version,text,None
+Monitoring & Alerting Setup,Effective Date of this SOP,calendar,None
+Monitoring & Alerting Setup,Who is responsible for maintaining monitoring and alerting?,text,None
+Monitoring & Alerting Setup,"List the systems, applications, or services that need to be monitored",text area,None
+Monitoring & Alerting Setup,What metrics or events should trigger alerts?,text,None
+Monitoring & Alerting Setup,What are the recovery or remediation steps when an alert is triggered?,text area,None
+Monitoring & Alerting Setup,Which tools or platforms are used for monitoring and alerting?,text,None
+Monitoring & Alerting Setup,How are alert severities defined?,radio,"[Critical, High, Medium, Low]"
+Monitoring & Alerting Setup,Who receives alerts and notifications?,text,None
+Monitoring & Alerting Setup,How are alerts escalated if not acknowledged?,text area,None
+Monitoring & Alerting Setup,Are alerts monitored 24/7?,bol_radio,"[Yes, No]"
+Monitoring & Alerting Setup,Are there any exceptions or special cases in monitoring or alerting?,bol_radio,"[Yes, No]"
+Monitoring & Alerting Setup,"If yes, describe the exceptions and required actions",text area,None
+Monitoring & Alerting Setup,Describe how monitoring and alerting configurations are reviewed and updated,text area,None
+Contract Review Checklist,Company Name,text,None
+Contract Review Checklist,Document Version,text,None
+Contract Review Checklist,Contract Title / Name,text,None
+Contract Review Checklist,Contract Type,radio,"[Vendor agreement, Customer agreement, Partnership agreement, Employment contract, NDA, Other]"
+Contract Review Checklist,Who are the contracting parties,text,None
+Contract Review Checklist,What is the purpose of the contract,text area,None
+Contract Review Checklist,Is this a new contract or a renewal,radio,"[New, Renewal, Amendment]"
+Contract Review Checklist,Contract term (start date / duration),text,None
+Contract Review Checklist,Does the contract involve payments,bol_radio,"[Yes, No]"
+Contract Review Checklist,Does the contract involve personal or confidential data,radio,"[Yes, No, Not sure]"
+Contract Review Checklist,Does the contract include key obligations for your company,radio,"[Yes, No, Not sure]"
+Contract Review Checklist,Are termination rights defined,radio,"[Yes, No, Not sure]"
+Contract Review Checklist,Are there any clauses that feel risky or unclear,radio,"[Yes, No, Not sure]"
+Contract Review Checklist,"If yes, briefly describe the concern",text area,None
+Contract Review Checklist,Who should review or approve this contract,radio,"[Legal Team, Compliance Team, Finance Team, Business Owner]"
+Contract Review Checklist,Current contract status,radio,"[Draft, Under review, Approved, Signed]"
+Employee Handbook,Organization Name,text,None
+Employee Handbook,Type of Organization,radio,"[Startup, SME, Enterprise, Non-profit]"
+Employee Handbook,Who is this employee handbook intended for?,multi select,"[All Employees, Managers, Interns, Contractors]"
+Employee Handbook,Where does this handbook apply?,radio,"[Single Country, Multiple Countries, Global]"
+Employee Handbook,Primary country or region of operation (if applicable),text,None
+Employee Handbook,What work model does your company follow?,multi select,"[On-site, Remote, Hybrid]"
+Employee Handbook,What should be the overall tone of this handbook?,radio,"[Friendly & Informal, Professional & Balanced, Strict & Policy-Driven]"
+Employee Handbook,Which core policy areas should be included in the handbook?,multi select,"[Working Hours & Attendance, Leave & Time Off, Code of Conduct, Workplace Behavior & Ethics, Remote Work, Workplace Safety, Data & Information Security]"
+Employee Handbook,How are working hours generally structured?,radio,"[Fixed Hours, Flexible Hours, Shift-Based, Role-Dependent]"
+Employee Handbook,Are employees required to track or report working hours?,radio,"[Required, Automated, No tracking]"
+Employee Handbook,Which types of leave should be covered?,multi select,"[Paid Leave, Sick Leave, Public Holidays, Parental Leave, Unpaid Leave]"
+Employee Handbook,How should employee conduct and disciplinary issues be handled?,radio,"[Guidance-First Approach, Progressive Discipline, Zero-Tolerance Policy]"
+Employee Handbook,Define key roles responsible for employee policies,table,"[Role, Responsibility]"
+Employee Handbook,Should workplace safety and health guidelines be included?,bol_radio,"[Yes, No]"
+Employee Handbook,Should data security and confidentiality rules be included?,bol_radio,"[Yes, No]"
+Employee Handbook,Are employees required to acknowledge or sign the handbook?,radio,"[Digital Acknowledgment, Written signature, Not required]"
+Employee Handbook,Are there any exceptions to the standard employee policies?,bol_radio,"[Yes, No]"
+Employee Handbook,"If yes, describe the exceptions",text area,None
+Employee Handbook,Who should employees contact for questions or clarifications?,text,None
+Employee Handbook,Effective date of this employee handbook,calendar,None
+Employee Handbook,"Describe your companyâ€™s mission, values, or principles that should be reflected in the employee handbook",text area,None
+Employee Handbook,Describe the overall workplace culture and behavior expectations you want employees to follow,text area,None
+Employee Handbook,"Describe how performance, feedback, and professional growth are handled in your organization",text area,None
+Employee Handbook,"Describe how employee concerns, grievances, or conflicts should be raised and resolved",text area,None
+Employee Handbook,"Describe any unique practices, benefits, or rules that make your organization different and should be included",text area,None
+Benefits Guide,Organization Name,text,None
+Benefits Guide,Who is this benefits guide intended for?,multi select,"[Full-Time Employees, Part-Time Employees, Interns, Contractors]"
+Benefits Guide,Where does this benefits guide apply?,radio,"[Single Country, Multiple Countries, Global]"
+Benefits Guide,Which categories of benefits should be included?,multi select,"[Health & Insurance, Paid Time Off, Financial Benefits, Learning & Development, Wellness Benefits, Other Benefits]"
+Benefits Guide,Are all benefits available to all employee types?,radio,"[Yes, all employees receive the same benefits, No, benefits vary by employee type]"
+Benefits Guide,How are benefits typically provided?,multi select,"[Employer-Provided, Reimbursement-Based, Third-Party Provider, Optional / Employee-Opt-In]"
+Benefits Guide,When do employees become eligible for benefits?,radio,"[Immediately upon joining, After probation period, After a fixed time period, Role-dependent]"
+Benefits Guide,How can employees enroll in or access their benefits?,radio,"[Automatically enrolled, Through HR portal, By submitting a request to HR, Through an external provider]"
+Benefits Guide,"If there are any limitations or exclusions employees should be aware of, please describe the key limitations or exclusions",text area,None
+Benefits Guide,Do any benefits require periodic renewal or re-enrollment?,bol_radio,"[Yes, No]"
+Benefits Guide,How often are employee benefits reviewed or updated?,radio,"[Annually, Bi-annually, As needed, Not defined]"
+Benefits Guide,Should this benefits guide include any legal or tax-related disclaimers?,bol_radio,"[Yes, No]"
+Benefits Guide,Describe how benefit-related changes or updates are communicated to employees,text area,None
+Benefits Guide,Describe any special or unique benefits your organization offers that should be highlighted,text area,None
+Benefits Guide,Who should employees contact for benefits-related questions?,text,None
+Data Security Training,Organization Name,text,None
+Data Security Training,Who is this data security training intended for?,multi select,"[All Employees, Managers, Engineering Team, Sales Team, Contractors]"
+Data Security Training,Where does this data security training apply?,radio,"[Single Country, Multiple Countries, Global]"
+Data Security Training,"In your own words, why is data security important for your organization?",text area,None
+Data Security Training,Which data security topics should be included in the training?,multi select,"[Data Classification, Password & Access Management, Phishing Awareness, Device Security, Remote Work Security, Incident Reporting]"
+Data Security Training,Describe the key data security risks employees should be aware of,text area,None
+Data Security Training,Should this training be mandatory for employees?,radio,"[Yes, mandatory for everyone, Mandatory for specific roles, Optional but recommended]"
+Data Security Training,"If training is mandatory for specific roles, which roles must complete it?",text,None
+Data Security Training,How often should employees complete this training?,radio,"[One-time, Annually, Bi-annually, Upon role change]"
+Data Security Training,How should this training be delivered?,multi select,"[Online self-paced, Live sessions, Recorded videos, Written materials]"
+Data Security Training,What actions or behaviors do you expect employees to follow after completing the training?,text area,None
+Data Security Training,Do employees need to complete an assessment or acknowledgment after training?,radio,"[Yes, assessment required, Yes, acknowledgment only, No]"
+Data Security Training,What should employees do if they suspect a data security incident or breach?,text area,None
+Data Security Training,Who should employees contact for data security questions or to report an incident?,text,None
+Data Security Training,Describe how data security responsibilities differ across roles or departments,text area,None
+Data Security Training,Describe common data handling mistakes employees should avoid,text area,None
+Data Security Training,Describe expectations around secure use of personal devices and remote work setups,text area,None
+Data Security Training,Describe how data security updates or new threats should be communicated to employees,text area,None
+Data Security Training,Describe any past data security incidents or lessons learned that should influence this training,text area,None
+Training Materials,Organization Name,text,None
+Training Materials,What is the primary goal of this training?,radio,"[Product Knowledge, Sales Skills, Customer Onboarding, Support Enablement, Compliance Awareness]"
+Training Materials,Who is this training intended for?,multi select,"[Sales Team, Customer Success, Support Team, Pre-Sales, Partners]"
+Training Materials,What experience level is this training designed for?,radio,"[New Joiners, Intermediate, Advanced, Mixed Levels]"
+Training Materials,"Which products, services, or offerings does this training cover?",text area,None
+Training Materials,Which core topics should be included in the training?,multi select,"[Product Overview, Value Proposition, Key Features, Pricing Basics, Common Objections, Customer Use Cases, Competitive Positioning]"
+Training Materials,Describe the key messages or takeaways learners should remember,text area,None
+Training Materials,How should this training be delivered?,multi select,"[Live Sessions, Recorded Videos, Slide Decks, Written Guides, Hands-on Demos]"
+Training Materials,"If real-world examples or scenarios should be included, describe the type of scenarios",text area,None
+Training Materials,How should learners demonstrate understanding after the training?,radio,"[Quiz or Assessment, Role-Play, Practical Exercise, Manager Review, No Validation Needed]"
+Training Materials,Is this training mandatory?,radio,"[Yes, mandatory, Optional but recommended]"
+Training Materials,How often should this training be refreshed or repeated?,radio,"[One-time, Quarterly, Bi-annually, Annually, As needed]"
+Training Materials,"Describe common objections, questions, or challenges learners should be prepared to handle",text area,None
+Training Materials,Describe ideal customer profiles or target audiences this training should focus on,text area,None
+Training Materials,Describe best practices or dos and donâ€™ts learners should follow when interacting with customers,text area,None
+Training Materials,Describe how this training should align with your sales or customer-facing playbooks,text area,None
+Training Materials,Who should learners contact if they have questions about this training?,text,None
+Feature Comparison Sheet,Product or Solution Name,text,None
+Feature Comparison Sheet,Who is this feature comparison intended for?,radio,"[Prospective Customers, Existing Customers, Sales Team, Partners]"
+Feature Comparison Sheet,What is the primary purpose of this comparison?,radio,"[Competitive positioning, Customer education, Internal sales enablement]"
+Feature Comparison Sheet,Which products are being compared?,table,"[Product Name, Type - Your Product / Competitor]"
+Feature Comparison Sheet,How many comparison features should be included?,radio,"[3-5 key features, 6-10 features, 10+ features]"
+Feature Comparison Sheet,List the features or capabilities to compare,table,"[Feature Name, Short Description]"
+Feature Comparison Sheet,How should feature availability be represented?,radio,"[Yes / No, Available / Not Available, Tier-based, Custom Notes]"
+Feature Comparison Sheet,"If pricing-related features should be included, describe how pricing or cost differences should be presented",text area,None
+Feature Comparison Sheet,What level of detail should be shown for each feature?,radio,"[High-level summary, Moderate detail, Detailed explanation]"
+Feature Comparison Sheet,"If there are key differentiator features, describe which features should be highlighted and why",text area,None
+Feature Comparison Sheet,"If there are any limitations or exclusions that should be disclosed, describe them clearly",text area,None
+Feature Comparison Sheet,What tone should the comparison use?,radio,"[Neutral & factual, Sales-friendly, Strongly competitive]"
+Feature Comparison Sheet,Describe the ideal customer or use case this comparison is designed to influence,text area,None
+Feature Comparison Sheet,Describe common competitor strengths or claims this comparison should address,text area,None
+Feature Comparison Sheet,"Describe any compliance, legal, or accuracy considerations that must be respected in this comparison",text area,None
+Feature Comparison Sheet,"Describe how this comparison should be used by sales or customer-facing teams (e.g., pitch, follow-up, demo support)",text area,None
+Feature Comparison Sheet,Who should be contacted if there are questions about this comparison?,text,None
+Pricing & Packaging Doc,Product or Service Name,text,None
+Pricing & Packaging Doc,Who is this pricing document intended for?,radio,"[Prospective Customers, Existing Customers, Sales Team, Partners]"
+Pricing & Packaging Doc,What is the primary goal of this pricing document?,radio,"[Explain pricing structure, Compare plans, Support sales conversations]"
+Pricing & Packaging Doc,What pricing model do you use?,multi select,"[Flat Pricing, Per-User Pricing, Usage-Based Pricing, Tiered Pricing, Custom / Quote-Based]"
+Pricing & Packaging Doc,List the pricing packages or plans you offer,table,"[Plan Name, Target Customer, Short Description]"
+Pricing & Packaging Doc,How should pricing amounts be shown in this document?,radio,"[Exact prices, Price ranges, No prices (contact sales)]"
+Pricing & Packaging Doc,"Explain how pricing works across plans (e.g., differences, limits, scaling)",text area,None
+Pricing & Packaging Doc,"If there are any add-ons or optional features customers can purchase separately, describe them",text area,None
+Pricing & Packaging Doc,"If there are any usage limits, thresholds, or fair-use rules customers should know about, explain them",text area,None
+Pricing & Packaging Doc,Describe the main value or benefit customers receive at each pricing tier,text area,None
+Pricing & Packaging Doc,Describe common customer objections or questions related to pricing that this document should address,text area,None
+Pricing & Packaging Doc,"Describe any discounts, promotions, or special pricing conditions that may apply",text area,None
+Pricing & Packaging Doc,"Describe any pricing-related terms, assumptions, or caveats customers should be aware of",text area,None
+Pricing & Packaging Doc,Who should customers contact for pricing questions or custom quotes?,text,None
+Security Questionnaire Responses,Organization Name,text,None
+Security Questionnaire Responses,Who are these security responses intended for?,radio,"[Enterprise Customers, Enterprise Prospects, Internal Sales & Security Teams]"
+Security Questionnaire Responses,What is the primary use of this document?,radio,"[Responding to enterprise security questionnaires, Supporting procurement and vendor risk assessments]"
+Security Questionnaire Responses,Which security domains should be addressed in these responses?,multi select,"[Information Security, Data Protection & Privacy, Access Management, Infrastructure & Network Security, Application Security, Incident Response, Compliance & Governance, Third-Party Risk]"
+Security Questionnaire Responses,Briefly describe your organizationâ€™s overall security posture and approach,text area,None
+Security Questionnaire Responses,"Describe how security policies and procedures are documented, approved, and maintained",text area,None
+Security Questionnaire Responses,How is access to systems and data restricted based on job roles and responsibilities?,text area,None
+Security Questionnaire Responses,Which access control mechanisms are used across systems?,multi select,"[Role-Based Access Control, Least Privilege, Multi-Factor Authentication, Single Sign-On, Manual Approval]"
+Security Questionnaire Responses,Describe the technical and organizational measures used to protect customer data,text area,None
+Security Questionnaire Responses,Which types of customer data does your organization typically process or store?,multi select,"[Personal Data, Financial Data, Authentication Data, Usage Data, Sensitive Personal Data, No Customer Data Stored]"
+Security Questionnaire Responses,Describe your incident response and breach management process,text area,None
+Security Questionnaire Responses,"In the event of a security incident, how are affected customers typically informed?",text area,None
+Security Questionnaire Responses,Are employees required to complete security or data protection training?,radio,"[Yes, mandatory for all employees, Mandatory for specific roles, Optional, No formal training]"
+Security Questionnaire Responses,Describe the frequency and content of employee security training programs,text area,None
+Security Questionnaire Responses,Do third-party vendors or service providers have access to customer data?,radio,"[Yes, regularly, Yes, limited access, No]"
+Security Questionnaire Responses,"Describe how third-party vendors are assessed, approved, and monitored for security risks",text area,None
+Security Questionnaire Responses,Which compliance frameworks or standards does your organization align with (if any)?,multi select,"[ISO 27001, SOC 2, GDPR, HIPAA, PCI-DSS, None, Other]"
+Security Questionnaire Responses,Describe how compliance requirements are implemented and monitored internally,text area,None
+Security Questionnaire Responses,"If there are security details that cannot be shared externally due to confidentiality or risk, describe the boundaries",text area,None
+Security Questionnaire Responses,"What supporting evidence can be provided upon request (e.g., policies, reports, certifications)?",text area,None
+Security Questionnaire Responses,Who should enterprise customers contact for follow-up security or compliance questions?,text,None
+API Documentation,API Name or Product Name,text,None
+API Documentation,Who is this API documentation intended for?,radio,"[External Developers, Internal Developers, Partners]"
+API Documentation,What is the primary purpose of this API?,radio,"[Data access, System integration, Automation, Platform extension]"
+API Documentation,Which API style is used?,radio,"[REST, GraphQL, gRPC, Webhooks, Mixed]"
+API Documentation,Describe the core problem this API solves for developers,text area,None
+API Documentation,What authentication methods does the API support?,multi select,"[API Keys, OAuth 2.0, JWT, Basic Auth, No Authentication]"
+API Documentation,"Describe how developers obtain, rotate, and revoke credentials",text area,None
+API Documentation,What environments are available for this API?,multi select,"[Sandbox, Staging, Production]"
+API Documentation,Provide the base URL(s) for the API,text,None
+API Documentation,List the main API endpoints that should be documented,table,"[Endpoint Path, HTTP Method, Description]"
+API Documentation,Describe request payload structure and required fields,text area,None
+API Documentation,What request data formats are supported?,multi select,"[JSON, XML, Form Data]"
+API Documentation,What response formats are returned by the API?,multi select,"[JSON, XML, Plain Text]"
+API Documentation,"If there are rate limits, throttling rules, or usage restrictions, describe them",text area,None
+API Documentation,Describe common error scenarios developers may encounter and how to handle them,text area,None
+API Documentation,List common error codes and their meaning,table,"[Error Code, Description]"
+API Documentation,"Describe any pagination, filtering, or sorting mechanisms supported by the API",text area,None
+API Documentation,Describe versioning strategy and backward compatibility guarantees,text area,None
+API Documentation,Describe security best practices developers should follow when using the API,text area,None
+API Documentation,Describe example use cases or workflows this API is commonly used for,text area,None
+API Documentation,Describe how breaking changes or deprecations are communicated to developers,text area,None
+API Documentation,Who should developers contact for API support or questions?,text,None
+Integration Guides,Integration Name or Title,text,None
+Integration Guides,Which external service is being integrated?,radio,"[Salesforce, Slack, HubSpot, Jira, Zendesk, Other]"
+Integration Guides,Who is this integration guide intended for?,radio,"[Developers, Admins, Technical Users, Mixed Audience]"
+Integration Guides,What is the main purpose of this integration?,radio,"[Data Sync, Notifications, Workflow Automation, User Management, Reporting]"
+Integration Guides,How does this integration primarily connect to the external service?,radio,"[API-based, Webhooks, Native App / Plugin, Mixed Approach]"
+Integration Guides,What level of setup complexity should be assumed for this integration?,radio,"[Basic configuration, Moderate setup, Advanced technical setup]"
+Integration Guides,What prerequisites are required before setting up this integration?,multi select,"[Admin access, API credentials, Enabled features in external service, Network access, None]"
+Integration Guides,Describe the high-level steps involved in setting up the integration,text area,None
+Integration Guides,What data or actions are involved in this integration?,multi select,"[Read data, Write data, Sync data, Trigger actions, Receive notifications]"
+Integration Guides,Describe how data flows between your system and the external service,text area,None
+Integration Guides,"Describe any limitations, constraints, or known caveats users should be aware of",text area,None
+Integration Guides,Describe common setup mistakes or configuration issues users might encounter,text area,None
+Integration Guides,Describe recommended best practices for maintaining or monitoring this integration,text area,None
+Integration Guides,"Describe how authentication, permissions, or access tokens are managed for this integration",text area,None
+Integration Guides,"Describe how updates, breaking changes, or deprecations from the external service are handled",text area,None
+Integration Guides,Describe troubleshooting steps or common errors users should know how to resolve,text area,None
+Integration Guides,Who should users contact for integration-related support?,text,None
+Code Review Guidelines,Organization or Team Name,text,None
+Code Review Guidelines,Who are these code review guidelines intended for,radio,"[All Engineers, Senior Engineers Only, Tech Leads & Reviewers, Mixed Engineering Roles]"
+Code Review Guidelines,What is the primary goal of code reviews in your organization,multi select,"[Code Quality, Security, Knowledge Sharing, Maintainability, Compliance]"
+Code Review Guidelines,Which types of code changes must go through a formal code review,multi select,"[All changes, Feature development, Bug fixes, Refactoring, Infrastructure changes]"
+Code Review Guidelines,What review model does your team primarily follow,radio,"[Peer review, Lead approval, Multiple reviewers required, Automated + manual review]"
+Code Review Guidelines,Are there defined expectations for authors before submitting code for review,bol_radio,"[Yes, No]"
+Code Review Guidelines,"If yes, describe what authors should verify before requesting a review",text area,None
+Code Review Guidelines,What aspects should reviewers focus on during code reviews,multi select,"[Logic correctness, Readability, Performance, Security risks, Test coverage, Coding standards]"
+Code Review Guidelines,Are there any checks that must be completed before code can be approved,bol_radio,"[Yes, No]"
+Code Review Guidelines,"If yes, list required pre-approval checks",multi select,"[Automated tests passing, Linting checks, Build success, Security scans, Documentation updated]"
+Code Review Guidelines,How should reviewers provide feedback on code changes,radio,"[Inline comments, Summary feedback, Both]"
+Code Review Guidelines,How are disagreements or conflicting review comments resolved,text area,None
+Code Review Guidelines,Are there guidelines for review turnaround time,bol_radio,"[Yes, No]"
+Code Review Guidelines,"If yes, specify the expected review timeline",text,None
+Code Review Guidelines,Who is responsible for maintaining and updating these code review guidelines,text,None
+Design System Documentation,Company or Organization Name,text,None
+Design System Documentation,Document Version,text,None
+Design System Documentation,What is the primary purpose of this Design System documentation,radio,"[Ensure design consistency, Improve collaboration, Speed up product development, Standardize UI/UX]"
+Design System Documentation,Who is the intended audience for this Design System,multi select,"[Designers, Developers, Product Managers, QA Team, External partners]"
+Design System Documentation,Which products or platforms does this Design System apply to,multi select,"[Web applications, Mobile applications, Design prototypes, Marketing assets]"
+Design System Documentation,What core design principles guide this Design System,text area,None
+Design System Documentation,Which design foundations are included in the Design System,multi select,"[Colors, Typography, Spacing, Grid system, Icons, Illustrations]"
+Design System Documentation,Are reusable UI components documented in this Design System,bol_radio,"[Yes, No]"
+Design System Documentation,"If yes, list the main UI components included",text area,None
+Design System Documentation,Are usage guidelines provided for components and patterns,bol_radio,"[Yes, No]"
+Design System Documentation,"If yes, describe how components should and should not be used",text area,None
+Design System Documentation,Are accessibility standards considered in the Design System,bol_radio,"[Yes, No]"
+Design System Documentation,"If yes, which accessibility guidelines are followed",multi select,"[WCAG 2.1, WCAG 2.2, Internal accessibility standards]"
+Design System Documentation,How is the Design System maintained and updated over time,text area,None
+Design System Documentation,Who owns and maintains the Design System documentation,radio,"[Design Team, Product Team, Design System Team, Engineering Team]"
+Design System Documentation,How often is the Design System documentation reviewed or updated,radio,"[As changes occur, Quarterly, Annually]"
+Design System Documentation,"Are there any constraints, limitations, or known gaps in the Design System",text area,None
+Architecture Decision Records (ADR),ADR Title (Decision Name),text,None
+Architecture Decision Records (ADR),"What system, service, or component does this decision relate to?",text,None
+Architecture Decision Records (ADR),What type of architectural decision is this?,radio,"[Technology selection, Design pattern, Infrastructure choice, Integration approach, Data architecture]"
+Architecture Decision Records (ADR),Describe the context and background leading up to this decision,text area,None
+Architecture Decision Records (ADR),What problem or requirement led to this decision?,text area,None
+Architecture Decision Records (ADR),What options or alternatives were considered?,table,"[Option Name, Brief Description]"
+Architecture Decision Records (ADR),Describe the key evaluation criteria used to assess the alternatives,text area,None
+Architecture Decision Records (ADR),What decision was ultimately made?,text area,None
+Architecture Decision Records (ADR),Why was this option chosen over the alternatives?,text area,None
+Architecture Decision Records (ADR),What are the expected benefits of this decision?,multi select,"[Performance, Scalability, Maintainability, Cost Efficiency, Security, Developer Productivity]"
+Architecture Decision Records (ADR),"What trade-offs, risks, or drawbacks are acknowledged with this decision?",text area,None
+Architecture Decision Records (ADR),What is the current status of this decision?,radio,"[Proposed, Accepted, Implemented, Deprecated]"
+Architecture Decision Records (ADR),When does this decision take effect?,text,None
+Architecture Decision Records (ADR),Who was involved in making or approving this decision?,text,None
+Architecture Decision Records (ADR),"Describe any dependencies, constraints, or systems impacted by this decision",text area,None
+Architecture Decision Records (ADR),Describe how this decision affects future architectural choices or scalability,text area,None
+Architecture Decision Records (ADR),"Describe any follow-up actions, migrations, or implementation tasks required",text area,None
+CI/CD Pipeline Documentation,Pipeline Name or Identifier,text,None
+CI/CD Pipeline Documentation,Which teams use or depend on this CI/CD pipeline?,multi select,"[Engineering, QA, DevOps, Security, Product]"
+CI/CD Pipeline Documentation,What is the primary goal of this pipeline?,radio,"[Automated testing, Continuous deployment, Build validation, Release management]"
+CI/CD Pipeline Documentation,What types of code changes trigger the pipeline?,multi select,"[Commits, Pull requests, Merges to main branch, Manual trigger, Scheduled runs]"
+CI/CD Pipeline Documentation,Describe the overall workflow and sequence of stages in this pipeline,text area,None
+CI/CD Pipeline Documentation,Which stages are included in this pipeline?,multi select,"[Build, Unit Testing, Integration Testing, Security Scanning, Packaging, Deployment]"
+CI/CD Pipeline Documentation,Describe the types of automated tests executed as part of this pipeline,text area,None
+CI/CD Pipeline Documentation,"Describe quality gates, security checks, or approval criteria required before deployment",text area,None
+CI/CD Pipeline Documentation,Does this pipeline deploy to multiple environments?,radio,"[Yes, multiple environments, No, single environment]"
+CI/CD Pipeline Documentation,Which environments are supported by this pipeline?,multi select,"[Development, Staging, Production]"
+CI/CD Pipeline Documentation,"Describe how deployments differ across environments (e.g., configs, approvals, timing)",text area,None
+CI/CD Pipeline Documentation,"Describe how secrets, credentials, and sensitive configuration values are managed",text area,None
+CI/CD Pipeline Documentation,"Describe how deployment failures, rollbacks, or pipeline errors are handled",text area,None
+CI/CD Pipeline Documentation,Describe whether manual approvals are required and who is responsible for approving releases,text area,None
+CI/CD Pipeline Documentation,"Describe monitoring, logging, or alerting associated with this pipeline",text area,None
+CI/CD Pipeline Documentation,"Describe how pipeline changes are tested, reviewed, and rolled out safely",text area,None
+CI/CD Pipeline Documentation,"Describe any known limitations, bottlenecks, or risks in the current pipeline",text area,None
+CI/CD Pipeline Documentation,Who owns and maintains this CI/CD pipeline documentation?,text,None
+Infrastructure as Code (IaC) Docs,IaC Project or Repository Name,text,None
+Infrastructure as Code (IaC) Docs,Who is the primary audience for this IaC documentation?,radio,"[DevOps Engineers, Platform Team, SREs, Mixed Engineering Teams]"
+Infrastructure as Code (IaC) Docs,What is the main purpose of using Infrastructure as Code in your organization?,multi select,"[Consistency, Automation, Scalability, Auditability, Disaster Recovery]"
+Infrastructure as Code (IaC) Docs,Which type of infrastructure is managed using IaC?,multi select,"[Cloud resources, On-prem infrastructure, Hybrid environment]"
+Infrastructure as Code (IaC) Docs,Which IaC tools or frameworks are used?,multi select,"[Terraform, CloudFormation, Pulumi, ARM Templates, Ansible, Other]"
+Infrastructure as Code (IaC) Docs,How is infrastructure defined in your IaC setup?,radio,"[Declarative configuration, Imperative scripts, Combination of both]"
+Infrastructure as Code (IaC) Docs,"Describe how infrastructure changes are managed, reviewed, and approved through version control",text area,None
+Infrastructure as Code (IaC) Docs,Describe how multiple environments are supported and managed using IaC,text area,None
+Infrastructure as Code (IaC) Docs,Which environments are managed using IaC?,multi select,"[Development, Testing, Staging, Production]"
+Infrastructure as Code (IaC) Docs,"Describe how environment-specific configurations, variables, or modules are handled",text area,None
+Infrastructure as Code (IaC) Docs,Describe safeguards in place to prevent unintended or unsafe infrastructure changes,text area,None
+Infrastructure as Code (IaC) Docs,"Describe how secrets, credentials, and sensitive values are stored and accessed in the IaC workflow",text area,None
+Infrastructure as Code (IaC) Docs,"Describe how infrastructure changes are planned, tested, and validated before applying",text area,None
+Infrastructure as Code (IaC) Docs,"Describe rollback, recovery, or remediation strategies if infrastructure changes fail",text area,None
+Infrastructure as Code (IaC) Docs,Describe how IaC changes are deployed via CI/CD pipelines (if applicable),text area,None
+Infrastructure as Code (IaC) Docs,Describe documentation or diagrams maintained to explain the infrastructure architecture,text area,None
+Infrastructure as Code (IaC) Docs,"Describe any known limitations, technical debt, or constraints of the current IaC approach",text area,None
+CI/CD Pipeline Documentation,Who is responsible for maintaining and updating the IaC definitions?,text,None
+User Persona Docs,Persona Name or Label,text,None
+User Persona Docs,What product or service does this persona relate to?,text,None
+User Persona Docs,What best describes this personaâ€™s primary role or user type?,radio,"[End User, Decision Maker, Administrator, Influencer]"
+User Persona Docs,"Describe this personaâ€™s background, job role, or context",text area,None
+User Persona Docs,What is the main goal this persona is trying to achieve with your product?,text area,None
+User Persona Docs,"What are the key challenges, pain points, or frustrations this persona faces?",text area,None
+User Persona Docs,How frequently does this persona interact with the product?,radio,"[Daily, Weekly, Occasionally, Rarely]"
+User Persona Docs,What features or capabilities are most important to this persona?,multi select,"[Ease of use, Speed, Reliability, Customization, Reporting, Security]"
+User Persona Docs,What motivates this persona to choose or continue using your product?,text area,None
+User Persona Docs,"Describe any constraints, limitations, or barriers that affect this personaâ€™s usage",text area,None
+User Persona Docs,"How does this persona typically discover, evaluate, or learn about the product?",multi select,"[Marketing content, Sales outreach, Referrals, Product-led discovery]"
+User Persona Docs,What level of technical knowledge does this persona have?,radio,"[Low, Medium, High]"
+User Persona Docs,"Describe common objections, concerns, or questions this persona may have",text area,None
+User Persona Docs,Describe how this persona makes decisions or influences purchasing decisions,text area,None
+User Persona Docs,"Describe how product, design, or content teams should use this persona in their work",text area,None
+User Persona Docs,Who created or validated this persona?,text,None
+Accessibility Guidelines,Document Title or Accessibility Guide Name,text,None
+Accessibility Guidelines,Which teams should follow these accessibility guidelines?,multi select,"[Design, Engineering, Product, Content, QA]"
+Accessibility Guidelines,Which platforms do these accessibility guidelines apply to?,multi select,"[Web, Mobile Apps, Desktop Applications]"
+Accessibility Guidelines,What is the primary objective of these accessibility guidelines?,radio,"[Improve usability for all users, Meet accessibility standards, Reduce accessibility barriers]"
+Accessibility Guidelines,"Describe any accessibility standards, laws, or principles this guide follows (e.g., WCAG, ADA, Section 508)",text area,None
+Accessibility Guidelines,Which accessibility areas are addressed in this document?,multi select,"[Color contrast, Keyboard navigation, Screen reader support, Text readability, Focus management]"
+Accessibility Guidelines,Describe key design-specific accessibility rules teams must follow,text area,None
+Accessibility Guidelines,Describe key development or implementation accessibility practices teams must follow,text area,None
+Accessibility Guidelines,"Describe content-related accessibility guidelines (e.g., language clarity, headings, alt text, captions)",text area,None
+Accessibility Guidelines,How should accessibility be tested or validated during design and development?,text area,None
+Accessibility Guidelines,"Which tools, checklists, or processes should teams use for accessibility testing?",text area,None
+Accessibility Guidelines,Describe common accessibility issues teams should avoid,text area,None
+Accessibility Guidelines,"Describe any known accessibility limitations, exceptions, or acceptable trade-offs",text area,None
+Accessibility Guidelines,"How should accessibility issues be reported, tracked, and resolved?",text area,None
+Accessibility Guidelines,How often should these accessibility guidelines be reviewed or updated?,radio,"[As standards change, Annually, Bi-annua]()"
+Brand Guidelines,Brand or Organization Name,text,None
+Brand Guidelines,Who should follow these brand guidelines,multi select,"[ Marketing, Design, Content, Sales, External Partners ]"
+Brand Guidelines,What is the primary purpose of these brand guidelines,radio,"[ Ensure brand consistency, Support marketing content, Guide external usage ]"
+Brand Guidelines,How would you describe your brandâ€™s overall personality,multi select,"[ Professional, Friendly, Bold, Innovative, Trustworthy ]"
+Brand Guidelines,"Describe your brand in your own words ( tone, attitude, and feel )",text area,None
+Brand Guidelines,What are the core brand values that should be reflected in communications,text area,None
+Brand Guidelines,Are there defined visual brand elements that must be followed,bol_radio,"[Yes, No]"
+Brand Guidelines,Which visual brand elements are included,multi select,"[ Logo usage, Color palette, Typography, Imagery style, Iconography ]"
+Brand Guidelines,Upload the official brand logo(s) to be used across materials,upload file,None
+Brand Guidelines,Are there specific rules for logo usage,bol_radio,"[Yes, No]"
+Brand Guidelines,Describe the key logo usage rules and restrictions,text area,None
+Brand Guidelines,Is there a defined tone of voice for brand communications,bol_radio,"[Yes, No]"
+Brand Guidelines,Describe how the brand should sound when communicating with audiences,text area,None
+Brand Guidelines,"Are there words, phrases, tones, or styles that should be avoided",bol_radio,"[Yes, No]"
+Brand Guidelines,Describe what should be avoided in brand communication,text area,None
+Brand Guidelines,"How should the brand adapt across different channels ( website, social media, sales, support )",text area,None
+Brand Guidelines,How should external teams or partners use the brand,text area,None
+Brand Guidelines,Are there examples of correct or incorrect brand usage that should be referenced,bol_radio,"[Yes, No]"
+Brand Guidelines,"If applicable, describe examples of correct or incorrect brand usage",text area,None
+Brand Guidelines,Who owns and maintains the brand guidelines,text,None
+Content Style Guide,Organization or Brand Name,text,None
+Content Style Guide,Who should follow this content style guide,multi select,"[ Marketing Writers, Product Content, Technical Writers, Support Teams, External Contributors ]"
+Content Style Guide,What is the primary goal of this content style guide,radio,"[ Consistency across content, Improve clarity, Align content with brand voice ]"
+Content Style Guide,What tone should content generally follow,multi select,"[ Professional, Conversational, Friendly, Authoritative, Neutral ]"
+Content Style Guide,"Describe the desired writing style in your own words ( clarity, warmth, formality, energy )",text area,None
+Content Style Guide,Which types of content does this guide apply to,multi select,"[ Website content, Blogs, Product documentation, Emails, Social media, Help articles ]"
+Content Style Guide,Are there specific writing principles authors should follow,bol_radio,"[Yes, No]"
+Content Style Guide,Describe the key writing principles authors should follow,text area,None
+Content Style Guide,"Are there rules for grammar, punctuation, or spelling preferences",bol_radio,"[Yes, No]"
+Content Style Guide,"Describe important grammar, punctuation, or language rules",text area,None
+Content Style Guide,Should writers follow specific terminology or naming conventions,bol_radio,"[Yes, No]"
+Content Style Guide,List commonly used or preferred terms and how they should be used,table,"[ Preferred Term, Usage Notes ]"
+Content Style Guide,"Are there words, phrases, or tones that should be avoided",bol_radio,"[Yes, No]"
+Content Style Guide,Describe what should be avoided in content and why,text area,None
+Content Style Guide,"How should content differ across channels ( website, email, social, documentation )",text area,None
+Content Style Guide,Should this guide include examples of good vs poor content,bol_radio,"[Yes, No]"
+Content Style Guide,"If applicable, describe what makes content good or poor in your organization",text area,None
+Content Style Guide,Who owns and maintains this content style guide,text,None
+ROI Calculator,Organization or Customer Name,text,None
+ROI Calculator,What product or solution is this ROI calculator evaluating,text,None
+ROI Calculator,Who is the intended audience for this ROI calculation,radio,"[ Prospective Customers, Existing Customers, Internal Sales Team ]"
+ROI Calculator,What decision should this ROI calculation help support,text area,None
+ROI Calculator,What is the primary business outcome this ROI calculation focuses on,radio,"[ Cost savings, Productivity improvement, Revenue impact, Risk reduction ]"
+ROI Calculator,Which business functions are impacted by this solution,multi select,"[ Operations, Sales, Customer Support, Engineering, IT, Finance ]"
+ROI Calculator,Describe the current process or situation before using the product,text area,None
+ROI Calculator,What is the current annual cost associated with this process or area ( currency + value ),text,None
+ROI Calculator,Which cost components are included in the current annual cost,multi select,"[ Labor costs, Tooling costs, Infrastructure costs, Operational overhead, Error or rework costs ]"
+ROI Calculator,How many people or teams are involved in this process today,text,None
+ROI Calculator,"Describe the inefficiencies, pain points, or losses in the current state",text area,None
+ROI Calculator,What measurable improvement is expected after implementing the product,text area,None
+ROI Calculator,"What specific metric is expected to improve ( time saved, cost reduced, revenue increased, risk lowered )",text,None
+ROI Calculator,What percentage improvement or reduction is realistically expected,text,None
+ROI Calculator,What assumptions are used to estimate this improvement,text area,None
+ROI Calculator,What is the estimated annual cost of the product or solution,text,None
+ROI Calculator,"Does the product involve one-time setup, onboarding, or implementation costs",bol_radio,"[Yes, No]"
+ROI Calculator,What are the estimated one-time setup or implementation costs ( if applicable ),text,None
+ROI Calculator,Over what time period should ROI be calculated,radio,"[ 6 months, 12 months, 24 months, 36 months ]"
+ROI Calculator,Does this ROI calculation need to include an assumptions summary,bol_radio,"[Yes, No]"
+ROI Calculator,Does this ROI calculation need to be conservative or aggressive in estimates,radio,"[ Conservative, Balanced, Aggressive ]"
+ROI Calculator,"Who should review, validate, or approve the ROI assumptions and results",text,None
+ROI Calculator,"How should the ROI results be presented ( high-level summary, detailed breakdown, executive-friendly )",text,None
+Press Release Template,Organization or Brand Name,text,None
+Press Release Template,Press Release Headline or Working Title,text,None
+Press Release Template,What type of announcement is this press release for,radio,"[ Product launch, Feature update, Partnership, Company milestone, Funding announcement, Event announcement ]"
+Press Release Template,Who is the primary audience for this press release,multi select,"[ Media, Customers, Partners, Investors, General Public ]"
+Press Release Template,What is the primary goal of this press release,text,None
+Press Release Template,Describe clearly what is being announced,text area,None
+Press Release Template,What is the single most important message readers should take away,text area,None
+Press Release Template,Why is this announcement newsworthy or important right now,text area,None
+Press Release Template,When does this announcement take effect or occur ( date or timeframe ),text,None
+Press Release Template,Where is this announcement relevant ( geography or market ),text,None
+Press Release Template,"What problem, opportunity, or market need does this announcement address",text area,None
+Press Release Template,What key facts or highlights should be included in the press release,multi select,"[ Launch date, Availability, Key benefits, Pricing availability, Customer impact, Strategic relevance ]"
+Press Release Template,What makes this announcement different from competitors or past announcements,text area,None
+Press Release Template,Should the press release include an executive or company quote,bol_radio,"[Yes, No]"
+Press Release Template,Provide an executive quote or guidance on tone and message for the quote,text area,None
+Press Release Template,Is there any sensitive or confidential information that should not be disclosed publicly,bol_radio,"[Yes, No]"
+Press Release Template,Describe any information that must be excluded or carefully worded,text area,None
+Press Release Template,What call to action should readers take after reading the press release,text,None
+Press Release Template,Who should media or journalists contact for follow-up questions,text,None
+Blog Post Template,Blog Post Title or Working Title,text,None
+Blog Post Template,Who is the target audience for this blog post,radio,"[ General audience, Customers, Developers, Decision-makers, Mixed audience ]"
+Blog Post Template,What is the primary goal of this blog post,radio,"[ Educate, Inform, Announce, Explain a concept, Thought leadership ]"
+Blog Post Template,"What problem, question, or idea is this blog post primarily addressing",text area,None
+Blog Post Template,Describe the main topic or theme of the blog post,text area,None
+Blog Post Template,Which key points should the blog post cover,multi select,"[ Problem overview, Background or context, Solution or approach, Benefits, Best practices, Examples ]"
+Blog Post Template,What tone should this blog post follow,multi select,"[ Professional, Conversational, Informative, Authoritative, Friendly ]"
+Blog Post Template,What level of technical depth is appropriate for this blog post,radio,"[ Beginner, Intermediate, Advanced ]"
+Blog Post Template,What prior knowledge ( if any ) should readers have before reading this post,text,None
+Blog Post Template,"Should the blog post include real-world examples, scenarios, or use cases",bol_radio,"[Yes, No]"
+Blog Post Template,"Describe the examples, scenarios, or use cases that should be included",text area,None
+Blog Post Template,"Are there specific facts, data points, statistics, or references that must be included",bol_radio,"[Yes, No]"
+Blog Post Template,"Provide the key facts, data points, or references to include",text area,None
+Blog Post Template,What key takeaway should readers remember after reading this blog post,text area,None
+Blog Post Template,Should the blog post include a call to action ( CTA ),bol_radio,"[Yes, No]"
+Blog Post Template,What type of call to action should be included,radio,"[ Learn more, Contact sales, Try the product, Subscribe, Download resource ]"
+Blog Post Template,"Are there any topics, claims, tones, or language that should be avoided",bol_radio,"[Yes, No]"
+Blog Post Template,Describe what should be avoided and why,text area,None
+Blog Post Template,Who should review or approve this blog post before publishing,text,None
+Email Template Library,Email Template Name or Purpose,text,None
+Email Template Library,Who is the intended recipient of this email,radio,"[ Internal team, Existing customers, Prospective customers, Partners, Vendors ]"
+Email Template Library,What is the primary goal of this email,radio,"[ Inform, Request action, Follow-up, Announce, Confirm, Support communication ]"
+Email Template Library,What type of email is this,radio,"[ Transactional, Informational, Sales outreach, Support, Internal communication ]"
+Email Template Library,Describe the main message this email should communicate,text area,None
+Email Template Library,"What problem, situation, or context prompted sending this email",text area,None
+Email Template Library,What tone should this email follow,multi select,"[ Professional, Friendly, Neutral, Formal, Conversational ]"
+Email Template Library,Should this email be personalized for each recipient,bol_radio,"[Yes, No]"
+Email Template Library,Which personalization elements should be included in the email,multi select,"[ Recipient name, Company name, Role, Contextual reference ]"
+Email Template Library,Is there a specific action the recipient is expected to take,bol_radio,"[Yes, No]"
+Email Template Library,Describe clearly the action the recipient should take,text area,None
+Email Template Library,"Is there any deadline, urgency, or time-sensitive information in this email",bol_radio,"[Yes, No]"
+Email Template Library,"Specify the deadline, timeframe, or urgency details",text,None
+Email Template Library,What key information must not be missed by the reader,text area,None
+Email Template Library,"Are there any phrases, claims, tones, or language that should be avoided",bol_radio,"[Yes, No]"
+Email Template Library,Describe what should be avoided and why,text area,None
+Email Template Library,"Should this email include links, attachments, or references",bol_radio,"[Yes, No]"
+Email Template Library,Describe what links or attachments should be included,text area,None
+Email Template Library,Who should review or approve this email template before use,text,None
+Implementation Plan,Implementation Plan Title,text,None
+Implementation Plan,What is the objective or goal of this implementation plan,text area,None
+Implementation Plan,What is the scope of this implementation ( what is included and excluded ),text area,None
+Implementation Plan,Which department or function does this implementation belong to,radio,"[ Sales & Customer-Facing, Engineering & Operations, Product & Design, Marketing & Content, Finance & Operations ]"
+Implementation Plan,Who are the key stakeholders involved in this implementation and their responsibilities,table,"[ Name, Role, Responsibility, Key Milestone, Target Date ]"
+Implementation Plan,What is the overall approach or strategy for implementing this plan,text area,None
+Implementation Plan,What are the key steps or activities required to complete the implementation,text area,None
+Implementation Plan,What resources are required for this implementation,multi select,"[ People, Tools & Software, Budget, Infrastructure, External Vendors ]"
+Implementation Plan,"What are the main risks, challenges, or dependencies associated with this plan",text area,None
+Implementation Plan,How will the success of this implementation be measured,text area,None
+Implementation Plan,What is the priority level of this implementation plan,radio,"[ High, Medium, Low ]"
+Implementation Plan,"Are there any assumptions, constraints, or additional notes to consider",text area,None
+Implementation Plan,What criteria must be met before implementation can officially begin,text area,None
+Implementation Plan,What approvals or sign-offs are required before and after implementation,text area,None
+Implementation Plan,"How will changes to scope, timeline, or resources be handled if needed",text area,None
+Implementation Plan,What communication plan will be followed during implementation,text area,None
+Implementation Plan,"What happens after implementation is completed ( handover, training, maintenance )",text area,None
+Sales Proposal Template,Sales Proposal Title,text,None
+Sales Proposal Template,Who is this proposal being prepared for ( client or company name ),text,None
+Sales Proposal Template,What business problem or need of the client does this proposal address,text area,None
+Sales Proposal Template,"What product, service, or solution is being proposed",text area,None
+Sales Proposal Template,What is the scope of the proposed solution ( what is included and excluded ),text area,None
+Sales Proposal Template,"What are the key deliverables, timelines, and ownership",table,"[ Deliverable, Description, Timeline, Owner ]"
+Sales Proposal Template,What value or outcomes will the client gain from this solution,text area,None
+Sales Proposal Template,What makes this solution different or better than alternatives,text area,None
+Sales Proposal Template,What pricing or commercial model applies to this proposal,radio,"[ Fixed Price, Time & Materials, Subscription, Usage-Based, Custom ]"
+Sales Proposal Template,"What assumptions, dependencies, or constraints should the client be aware of",text area,None
+Sales Proposal Template,What risks or concerns might affect delivery or outcomes,text area,None
+Sales Proposal Template,"What are the key terms, conditions, or next steps after proposal approval",text area,None
+Sales Proposal Template,What is the expected start date or validity period of this proposal,text,None
+Sales Proposal Template,What level of priority or urgency does this proposal have,radio,"[ High, Medium, Low ]"
+Sales Proposal Template,Who is the primary owner or point of contact for this proposal,text,None
+Sales Proposal Template,What decision criteria or approval process is expected on the client side,text area,None
+Sales Proposal Template,What call to action should the client take after reviewing this proposal,text,None
+Testing Strategy,Testing Strategy Document Title,text,None
+Testing Strategy,What is the primary objective of this testing strategy,text area,None
+Testing Strategy,What is the scope of testing ( what will be tested and what will not be tested ),text area,None
+Testing Strategy,Which type of product or system is this testing strategy for,radio,"[ Web Application, Mobile Application, API, Backend System, Data Pipeline, Other ]"
+Testing Strategy,"What are the key testing phases, responsibilities, and timelines",table,"[ Testing Phase, Description, Owner, Timeline ]"
+Testing Strategy,What testing approach or methodology will be followed,radio,"[ Manual Testing, Automated Testing, Hybrid ]"
+Testing Strategy,Which types of testing will be performed as part of this strategy,multi select,"[ Unit Testing, Integration Testing, System Testing, Regression Testing, Performance Testing, Security Testing, User Acceptance Testing ]"
+Testing Strategy,"What tools, environments, or frameworks will be used for testing",text area,None
+Testing Strategy,What are the entry criteria required before testing can begin,text area,None
+Testing Strategy,What exit criteria must be met for testing to be considered complete,text area,None
+Testing Strategy,"What risks, challenges, or dependencies could impact testing",text area,None
+Testing Strategy,"How will defects be tracked, reported, and prioritized",text area,None
+Testing Strategy,What defines success for this testing strategy,text area,None
+Testing Strategy,Who is responsible for owning and maintaining this testing strategy,text,None
+Testing Strategy,How will test results and quality metrics be communicated to stakeholders,text area,None
+Testing Strategy,What assumptions or constraints could affect test coverage or quality,text area,None
+Testing Strategy,"Is there a plan for test environment stability, data management, or rollback",bol_radio,"[Yes, No]"
+Testing Strategy,Describe any additional notes or considerations related to this testing strategy,text area,None
+Disaster Recovery Plan,Disaster Recovery Plan Title,text,None
+Disaster Recovery Plan,What is the primary objective of this disaster recovery plan,text area,None
+Disaster Recovery Plan,"What systems, services, or business operations are covered under this plan",text area,None
+Disaster Recovery Plan,Which type of organization or system does this disaster recovery plan apply to,radio,"[ IT Infrastructure, Cloud Systems, SaaS Application, Data Systems, Business Operations, Other ]"
+Disaster Recovery Plan,"What are the critical systems, recovery priorities, and responsible owners",table,"[ System, Priority Level, Recovery Objective, Owner ]"
+Disaster Recovery Plan,What types of disasters or incidents does this plan address,multi select,"[ System Failure, Cyberattack, Data Loss, Natural Disaster, Power Outage, Human Error ]"
+Disaster Recovery Plan,What recovery strategy or approach will be followed during a disaster,text area,None
+Disaster Recovery Plan,What are the expected recovery time and recovery point objectives ( RTO and RPO ),text area,None
+Disaster Recovery Plan,"What tools, infrastructure, backups, or redundancy mechanisms support recovery",text area,None
+Disaster Recovery Plan,"What dependencies on third parties, vendors, or external services exist",text area,None
+Disaster Recovery Plan,"What risks, limitations, or known gaps could affect disaster recovery",text area,None
+Disaster Recovery Plan,"How will this disaster recovery plan be tested, reviewed, and updated",text area,None
+Disaster Recovery Plan,What criteria define a successful recovery after a disaster,text area,None
+Disaster Recovery Plan,Who is responsible for declaring a disaster and initiating recovery actions,text,None
+Disaster Recovery Plan,How will communication be handled during and after a disaster event,text area,None
+Disaster Recovery Plan,"Are there regulatory, legal, or compliance requirements tied to disaster recovery",bol_radio,"[Yes, No]"
+Disaster Recovery Plan,"Describe any assumptions, constraints, or additional notes related to this plan",text area,None
+Product Roadmap,Product Roadmap Title,text,None
+Product Roadmap,What product or feature is this roadmap created for,text,None
+Product Roadmap,What is the overall vision or long-term goal of this product roadmap,text area,None
+Product Roadmap,What is the scope of this roadmap including inclusions and exclusions,text area,None
+Product Roadmap,What are the key roadmap initiatives along with timelines and ownership,table,"[ Initiative, Description, Timeframe, Owner ]"
+Product Roadmap,Who is the primary target user or customer for this product,radio,"[ End Users, Business Customers, Internal Teams, Partners, Mixed ]"
+Product Roadmap,What core user problems or needs does this roadmap aim to address,text area,None
+Product Roadmap,What level of detail does this roadmap represent,radio,"[ High-Level Strategic, Mid-Level Planning, Detailed Execution ]"
+Product Roadmap,"What assumptions, dependencies, or constraints may impact roadmap execution",text area,None
+Product Roadmap,How will progress and success of this roadmap be measured,text area,None
+Product Roadmap,How frequently will this roadmap be reviewed or updated,radio,"[ Monthly, Quarterly, Bi-Annually, Annually, As Needed ]"
+Product Roadmap,What business objectives or company goals does this roadmap align with,text area,None
+Product Roadmap,How are roadmap items prioritized,radio,"[ Customer Impact, Revenue Impact, Strategic Alignment, Technical Dependency, Risk Reduction ]"
+Product Roadmap,What cross-functional teams are involved in executing this roadmap,multi select,"[ Product, Engineering, Design, Marketing, Sales, Customer Support, Leadership ]"
+Product Roadmap,How will feedback from users or stakeholders influence roadmap changes,text area,None
+Product Roadmap,Are there risks or uncertainties that could significantly change roadmap direction,bol_radio,"[Yes, No]"
+Product Roadmap,"If yes, briefly describe the key risks or uncertainties",text area,None
+Product Roadmap,Are there any additional notes or context that should be included,text area,None
+SEO Strategy Document,What is the title of this SEO strategy document,text,None
+SEO Strategy Document,What is the primary objective of this SEO strategy,text area,None
+SEO Strategy Document,"What website, product, or brand does this SEO strategy apply to",text,None
+SEO Strategy Document,"What is the scope of this SEO strategy including pages, regions, and languages",text area,None
+SEO Strategy Document,What are the key SEO initiatives along with target areas and timelines,table,"[ SEO Initiative, Description, Target Area, Timeline ]"
+SEO Strategy Document,What is the primary SEO focus for this strategy,radio,"[ Technical SEO, On-Page SEO, Content SEO, Off-Page SEO, Local SEO, Mixed ]"
+SEO Strategy Document,What types of keywords or search intent are being targeted,multi select,"[ Informational, Navigational, Transactional, Branded, Non-Branded ]"
+SEO Strategy Document,What content creation or optimization approach will be followed,text area,None
+SEO Strategy Document,"What tools, platforms, or data sources will be used for SEO execution and tracking",text area,None
+SEO Strategy Document,"What risks, challenges, or constraints could impact SEO performance",text area,None
+SEO Strategy Document,How will SEO success be measured and reported,text area,None
+SEO Strategy Document,How frequently will this SEO strategy be reviewed or updated,radio,"[ Monthly, Quarterly, Bi-Annually, Annually, As Needed ]"
+SEO Strategy Document,What key competitors or benchmarks should be considered in this SEO strategy,text area,None
+SEO Strategy Document,Which teams or roles are responsible for executing and maintaining SEO initiatives,multi select,"[ Content, Marketing, Engineering, Product, External Agency ]"
+SEO Strategy Document,How will SEO priorities be determined and adjusted over time,radio,"[ Traffic Impact, Revenue Impact, Keyword Difficulty, Competitive Gap, Business Priority ]"
+SEO Strategy Document,"Are there any dependencies on product, engineering, or content teams for SEO success",bol_radio,"[Yes, No]"
+SEO Strategy Document,"If yes, briefly describe the key dependencies or coordination required",text area,None
+SEO Strategy Document,"Are there any additional notes, assumptions, or context relevant to this SEO strategy",text area,None
+Go-to-Market Plan,What is the title of this Go-to-Market plan,text,None
+Go-to-Market Plan,What feature or set of features is being launched,text,None
+Go-to-Market Plan,What is the primary objective of this feature launch,text area,None
+Go-to-Market Plan,Which department or function owns this Go-to-Market plan,radio,"[ Marketing & Content, Product & Design, Sales & Customer-Facing, Engineering & Operations, Mixed Ownership ]"
+Go-to-Market Plan,Who is the target audience for this feature launch,radio,"[ Existing Customers, New Customers, Enterprise Users, SMB Users, Mixed Audience ]"
+Go-to-Market Plan,What customer problem or opportunity does this feature launch address,text area,None
+Go-to-Market Plan,"What is the scope of this Go-to-Market plan including regions, channels, and user segments",text area,None
+Go-to-Market Plan,What are the key launch activities along with channels and timelines,table,"[ Launch Activity, Description, Channel, Timeline ]"
+Go-to-Market Plan,What is the core value proposition or primary messaging for this feature,text area,None
+Go-to-Market Plan,Which marketing and distribution channels will be used for this launch,multi select,"[ Email, Website, Blog, Social Media, Paid Ads, PR, Sales Enablement, In-App Messaging ]"
+Go-to-Market Plan,What content or assets are required to support this launch,multi select,"[ Landing Pages, Blog Posts, Email Campaigns, Sales Decks, Demos, Videos, Help Docs ]"
+Go-to-Market Plan,"What pricing, packaging, or access strategy applies to this feature",text area,None
+Go-to-Market Plan,What internal teams are required to support or execute this Go-to-Market plan,multi select,"[ Marketing, Product, Sales, Customer Support, Engineering, Partnerships ]"
+Go-to-Market Plan,"What assumptions, risks, or dependencies could impact the success of this launch",text area,None
+Go-to-Market Plan,How will launch success be measured using metrics or KPIs,text area,None
+Go-to-Market Plan,What is the launch priority or urgency level,radio,"[ High, Medium, Low ]"
+Go-to-Market Plan,Are there any post-launch activities planned such as feedback collection or optimization,text area,None
+Go-to-Market Plan,"Are there any additional notes, constraints, or context relevant to this Go-to-Market plan",text area,None
+Webinar Script Template,What is the title of this webinar,text,None
+Webinar Script Template,What is the primary goal of this webinar,radio,"[ Lead Generation, Product Education, Feature Launch, Thought Leadership, Customer Training, Other ]"
+Webinar Script Template,Who is the target audience for this webinar,radio,"[ Prospects, Existing Customers, Partners, Internal Teams, Mixed Audience ]"
+Webinar Script Template,"What key problem, theme, or topic will this webinar focus on",text area,None
+Webinar Script Template,What is the core message or main takeaway attendees should remember,text area,None
+Webinar Script Template,What is the overall structure and flow of the webinar,table,"[ Section, Purpose, Key Talking Points, Duration ]"
+Webinar Script Template,Who are the speakers or presenters for this webinar,text,None
+Webinar Script Template,What level of content depth should the webinar have,radio,"[ Beginner, Intermediate, Advanced, Mixed ]"
+Webinar Script Template,Which interactive elements will be included in the webinar,multi select,"[ Live Q&A, Polls, Demos, Chat Interaction, None ]"
+Webinar Script Template,What call-to-action should be presented to attendees at the end of the webinar,text area,None
+Webinar Script Template,What tone or presentation style should the webinar script follow,radio,"[ Formal, Conversational, Educational, Promotional, Story-Driven ]"
+Webinar Script Template,"Are there any constraints, assumptions, or special instructions for creating this webinar script",text area,None
+Webinar Script Template,What supporting materials or assets are required for this webinar,multi select,"[ Slides, Demo Environment, Case Studies, Product Videos, Handouts, Follow-up Emails ]"
+Webinar Script Template,How will the success of this webinar be measured,text area,None
+Webinar Script Template,Are there any post-webinar activities planned such as follow-ups or recordings,text area,None
+Capital Allocation Framework,What is the title of this capital allocation framework,text,None
+Capital Allocation Framework,What is the primary objective of this capital allocation framework,text area,None
+Capital Allocation Framework,"What organization, business unit, or initiative does this framework apply to",text,None
+Capital Allocation Framework,What is the scope of capital allocation covered by this framework,text area,None
+Capital Allocation Framework,What are the key investment categories along with allocation priorities and ownership,table,"[ Investment Category, Description, Priority Level, Owner ]"
+Capital Allocation Framework,What types of capital decisions does this framework support,multi select,"[ Operational Expenses, Capital Expenditures, Growth Investments, R&D, M&A, Cost Optimization ]"
+Capital Allocation Framework,What criteria will be used to evaluate and prioritize capital allocation decisions,text area,None
+Capital Allocation Framework,"What budget constraints, financial assumptions, or spending limits should be considered",text area,None
+Capital Allocation Framework,"What risks, trade-offs, or uncertainties could impact capital allocation outcomes",text area,None
+Capital Allocation Framework,How are capital allocation decisions governed and approved,text area,None
+Capital Allocation Framework,How will the effectiveness of capital allocation be measured over time,text area,None
+Capital Allocation Framework,How frequently will this capital allocation framework be reviewed or updated,radio,"[ Quarterly, Bi-Annually, Annually, As Needed ]"
+Capital Allocation Framework,Who are the key stakeholders involved in capital allocation decisions,multi select,"[ Finance, Executive Leadership, Business Unit Heads, Strategy Team, Board ]"
+Capital Allocation Framework,"Are there any dependencies on revenue forecasts, market conditions, or strategic initiatives",bol_radio,"[Yes, No]"
+Capital Allocation Framework,"If yes, briefly describe the key dependencies that may influence capital allocation",text area,None
+Capital Allocation Framework,"Are there any additional notes, assumptions, or context relevant to this capital allocation framework",text area,None
+Budget Planning Template,What is the title of this budget planning document,text,None
+Budget Planning Template,What time period does this budget cover,radio,"[ Monthly, Quarterly, Annual, Project-Based, Custom ]"
+Budget Planning Template,What is the primary objective of this budget,text area,None
+Budget Planning Template,"Which team, department, or project is this budget created for",text,None
+Budget Planning Template,What type of budget is this,radio,"[ Operational, Capital, Project, Departmental, Mixed ]"
+Budget Planning Template,What are the planned budget allocations along with ownership,table,"[ Budget Category, Description, Planned Amount, Owner ]"
+Budget Planning Template,What key assumptions were used while creating this budget,text area,None
+Budget Planning Template,"What constraints, limits, or policies should be considered when managing this budget",text area,None
+Budget Planning Template,What risks or uncertainties could impact this budget,text area,None
+Budget Planning Template,"How will budget performance be tracked, monitored, and reviewed",text area,None
+Budget Planning Template,What variance thresholds or conditions require corrective action,text area,None
+Budget Planning Template,What actions should be taken if spending deviates from the approved plan,text area,None
+Budget Planning Template,Who is responsible for approving budget changes or reallocations,multi select,"[ Finance, Department Head, Executive Leadership, Project Owner ]"
+Budget Planning Template,What tools or systems will be used for budget tracking and reporting,text area,None
+Budget Planning Template,How frequently will this budget be reviewed or updated,radio,"[ Monthly, Quarterly, As Needed ]"
+Budget Planning Template,"Are there any dependencies on revenue forecasts, headcount plans, or external factors",bol_radio,"[Yes, No]"
+Budget Planning Template,"If yes, briefly describe the key dependencies affecting this budget",text area,None
+Budget Planning Template,"Are there any additional notes, approvals, or context relevant to this budget planning document",text area,None
+Terms of Service,Your company name,text,None
+Terms of Service,Your company website or app URL,text,None
+Terms of Service,Country where your company operates,text,None
+Terms of Service,Other party / customer / user company name (if applicable),text,None
+Terms of Service,Other party website (if applicable),text,None
+Terms of Service,Country where the other party operates,text,None
+Terms of Service,Effective date of the services,calendar,None
+Terms of Service,Name of the service you are providing,text,None
+Terms of Service,Briefly describe what your service does,text area,None
+Terms of Service,"Who is allowed to use the service, including age, registration, and business/individual eligibility",text area,None
+Terms of Service,How is the pricing of the service defined,radio,"[ Free, One-time payment, Subscription, Usage-based, Mixed ]"
+Terms of Service,"Are refunds offered, and if so, under what conditions",text area,None
+Terms of Service,Do users need to create an account to use the service,bol_radio,"[Yes, No]"
+Terms of Service,"Do users upload, share, or generate content on the platform",bol_radio,"[Yes, No]"
+Terms of Service,What types of user actions are strictly prohibited,text area,None
+Terms of Service,"Can you suspend or terminate user access or accounts, and under what conditions",text area,None
+Terms of Service,Do you want to limit your legal liability,bol_radio,"[Yes, No]"
+Terms of Service,Which governing law applies to this agreement and what is the legal contact email,text area,None
+Terms of Service,"Are there any additional terms, disclaimers, or special conditions you want included",text area,None
+Data Processing Agreement (DPA),Your company name,text,None
+Data Processing Agreement (DPA),Your company website,text,None
+Data Processing Agreement (DPA),Country where your company operates,text,None
+Data Processing Agreement (DPA),Other party company name,text,None
+Data Processing Agreement (DPA),Other party website,text,None
+Data Processing Agreement (DPA),Country where the other party operates,text,None
+Data Processing Agreement (DPA),Effective date of data processing,calendar,None
+Data Processing Agreement (DPA),Your role in data processing,radio,"[ Data Controller, Data Processor, Sub-Processor ]"
+Data Processing Agreement (DPA),Brief description of the service or relationship involving data processing,text area,None
+Data Processing Agreement (DPA),Types of personal data processed,multi select,"[ Name & contact details, Account/login data, Payment data, Usage/analytics data, Employee data, Sensitive data, Other ]"
+Data Processing Agreement (DPA),Categories of data subjects,multi select,"[ End users, Customers, Employees, Contractors, Children, Other ]"
+Data Processing Agreement (DPA),Purpose of processing personal data,text area,None
+Data Processing Agreement (DPA),Duration of data processing,radio,"[ For agreement term, Until service completion, Fixed period, As required by law ]"
+Data Processing Agreement (DPA),"Is personal data transferred outside the original country/region, and if yes, describe how",text area,None
+Data Processing Agreement (DPA),Security measures implemented for personal data protection,multi select,"[ Encryption, Access controls, Security audits, Data minimization, Incident response, Other ]"
+Data Processing Agreement (DPA),"Are sub-processors used, and if yes, describe their role",text area,None
+Data Processing Agreement (DPA),Data breach notification timeline,radio,"[ Immediately, Within defined time (e.g. 72 hours), As required by law ]"
+Data Processing Agreement (DPA),Governing law and legal contact email,text area,None
+Data Processing Agreement (DPA),"Any additional notes, exceptions, or special conditions regarding data processing",text area,None
+SLA (Service Level Agreement),Service provider company name,text,None
+SLA (Service Level Agreement),Service provider website,text,None
+SLA (Service Level Agreement),Country where the service provider operates,text,None
+SLA (Service Level Agreement),Customer / client company name,text,None
+SLA (Service Level Agreement),Customer website (if applicable),text,None
+SLA (Service Level Agreement),Country where the customer operates,text,None
+SLA (Service Level Agreement),Effective date of the SLA,calendar,None
+SLA (Service Level Agreement),Name of the service covered under the SLA,text,None
+SLA (Service Level Agreement),Brief description of the service,text area,None
+SLA (Service Level Agreement),Service availability / uptime commitment,radio,"[ 99.9%, 99.95%, 99.99%, Best effort, No guarantee ]"
+SLA (Service Level Agreement),Measurement period for service availability,radio,"[ Monthly, Quarterly, Yearly ]"
+SLA (Service Level Agreement),Planned maintenance notification period,radio,"[ 24 hours, 48 hours, 72 hours, As needed ]"
+SLA (Service Level Agreement),Support availability,radio,"[ Business hours, 24/7, Email only, Ticket-based ]"
+SLA (Service Level Agreement),Incident severity levels supported,multi select,"[ Critical, High, Medium, Low ]"
+SLA (Service Level Agreement),Initial response time by severity,text area,None
+SLA (Service Level Agreement),Resolution time commitments by severity,text area,None
+SLA (Service Level Agreement),"Service credits or penalties for SLA breach, and terms if applicable",text area,None
+SLA (Service Level Agreement),"Exclusions from SLA (e.g., force majeure, customer fault, maintenance)",text area,None
+SLA (Service Level Agreement),"SLA termination, renewal, or review rights",radio,"[ Automatic renewal, Termination for breach, Periodic review ]"
+SLA (Service Level Agreement),Governing law and SLA contact email,text area,None
+SLA (Service Level Agreement),Escalation contacts and process for unresolved incidents,text area,None
+SLA (Service Level Agreement),"Monitoring, reporting, and review process for SLA compliance",text area,None
+SLA (Service Level Agreement),"Additional notes, assumptions, or special conditions related to the SLA",text area,None
+Master Services Agreement (MSA),Service provider company name,text,None
+Master Services Agreement (MSA),Service provider website,text,None
+Master Services Agreement (MSA),Country where the service provider operates,text,None
+Master Services Agreement (MSA),Client company name,text,None
+Master Services Agreement (MSA),Client website (if applicable),text,None
+Master Services Agreement (MSA),Country where the client operates,text,None
+Master Services Agreement (MSA),Effective date of the agreement,calendar,None
+Master Services Agreement (MSA),Brief description of services covered under this agreement,text area,None
+Master Services Agreement (MSA),How will specific services be defined,radio,"[ Statement of Work (SOW), Work orders, Both ]"
+Master Services Agreement (MSA),Pricing and payment structure,radio,"[ Fixed fee, Time & materials, Subscription, Usage-based, As per SOW ]"
+Master Services Agreement (MSA),Payment terms,radio,"[ Prepaid, Net 15, Net 30, Net 45 ]"
+Master Services Agreement (MSA),Ownership of work product and intellectual property,radio,"[ Client owns, Service provider owns, Shared, Defined per SOW ]"
+Master Services Agreement (MSA),"Confidentiality obligations apply, and scope of confidentiality",text area,None
+Master Services Agreement (MSA),"Use of subcontractors or third parties allowed, and conditions if any",text area,None
+Master Services Agreement (MSA),"Limitation of liability included, and scope",text area,None
+Master Services Agreement (MSA),"Indemnification obligations included, and scope",text area,None
+Master Services Agreement (MSA),"Term and termination rights, including notice periods",text area,None
+Master Services Agreement (MSA),Dispute resolution method,radio,"[ Courts, Arbitration, Mediation ]"
+Master Services Agreement (MSA),Governing law and legal contact email,text area,None
+Master Services Agreement (MSA),"Additional notes, assumptions, or special conditions related to this MSA",text area,None
+Non-Disclosure Agreement (NDA),Disclosing party company name,text,None
+Non-Disclosure Agreement (NDA),Disclosing party website,text,None
+Non-Disclosure Agreement (NDA),Country where the disclosing party operates,text,None
+Non-Disclosure Agreement (NDA),Receiving party company name,text,None
+Non-Disclosure Agreement (NDA),Receiving party website (if applicable),text,None
+Non-Disclosure Agreement (NDA),Country where the receiving party operates,text,None
+Non-Disclosure Agreement (NDA),Effective date of the NDA,calendar,None
+Non-Disclosure Agreement (NDA),Type of NDA,radio,"[ One-way, Mutual ]"
+Non-Disclosure Agreement (NDA),Purpose for sharing confidential information,text area,None
+Non-Disclosure Agreement (NDA),What information should be considered confidential,multi select,"[ Business information, Technical data, Financial data, Customer data, Trade secrets, Other ]"
+Non-Disclosure Agreement (NDA),What information is excluded from confidentiality,multi select,"[ Public information, Independently developed, Lawfully received from third party, Required by law, Other ]"
+Non-Disclosure Agreement (NDA),Duration of confidentiality obligations,radio,"[ During agreement only, 1 year, 2 years, 5 years, Indefinite ]"
+Non-Disclosure Agreement (NDA),Permitted use of confidential information,text area,None
+Non-Disclosure Agreement (NDA),"Is disclosure to employees, advisors, or contractors allowed, and under what conditions",text area,None
+Non-Disclosure Agreement (NDA),"Return or destruction of confidential information required, and process",text area,None
+Non-Disclosure Agreement (NDA),"Is injunctive relief allowed for breach, and scope",text area,None
+Non-Disclosure Agreement (NDA),Governing law and legal contact email,text area,None
+Non-Disclosure Agreement (NDA),"Additional notes, assumptions, or special considerations for this NDA",text area,None
+Statement of Work (SOW),Service provider company name,text,None
+Statement of Work (SOW),Service provider website,text,None
+Statement of Work (SOW),Country where the service provider operates,text,None
+Statement of Work (SOW),Client company name,text,None
+Statement of Work (SOW),Client website (if applicable),text,None
+Statement of Work (SOW),Country where the client operates,text,None
+Statement of Work (SOW),Effective date of the SOW,calendar,None
+Statement of Work (SOW),Reference agreement (if any),radio,"[ Master Services Agreement (MSA), Standalone SOW, Other ]"
+Statement of Work (SOW),Description of services or work to be performed,text area,None
+Statement of Work (SOW),Project deliverables,text area,None
+Statement of Work (SOW),Project timeline or milestones,radio,"[ Fixed timeline, Milestone-based, Ongoing ]"
+Statement of Work (SOW),Pricing model for this SOW,radio,"[ Fixed fee, Time & materials, Usage-based, As per MSA ]"
+Statement of Work (SOW),Total fees or rate details,text area,None
+Statement of Work (SOW),Payment schedule,radio,"[ Upfront, Milestone-based, Monthly, On completion ]"
+Statement of Work (SOW),Acceptance criteria for deliverables,text area,None
+Statement of Work (SOW),Change management process for scope or pricing,radio,"[ Written amendment, Change order, Email approval ]"
+Statement of Work (SOW),Ownership of deliverables and intellectual property,radio,"[ Client owns, Service provider owns, As defined in MSA ]"
+Statement of Work (SOW),Termination rights for this SOW,radio,"[ Termination for convenience, Termination for breach, No early termination ]"
+Statement of Work (SOW),Governing law and SOW contact email,text area,None
+Statement of Work (SOW),"Additional notes, assumptions, or special considerations for this SOW",text area,None
+Vendor Agreement Template,Your company name (Purchasing company),text,None
+Vendor Agreement Template,Your company website,text,None
+Vendor Agreement Template,Country where your company operates,text,None
+Vendor Agreement Template,Vendor company name,text,None
+Vendor Agreement Template,Vendor website,text,None
+Vendor Agreement Template,Country where the vendor operates,text,None
+Vendor Agreement Template,Effective date of the agreement,calendar,None
+Vendor Agreement Template,Description of goods or services provided by the vendor,text area,None
+Vendor Agreement Template,Pricing model,radio,"[ Fixed price, Time & materials, Per unit, Subscription, As per purchase order ]"
+Vendor Agreement Template,Payment terms,radio,"[ Prepaid, Net 15, Net 30, Net 45 ]"
+Vendor Agreement Template,Delivery method and timeline,radio,"[ One-time delivery, Recurring delivery, On-demand, As agreed ]"
+Vendor Agreement Template,Quality standards or service levels required,text area,None
+Vendor Agreement Template,Confidentiality obligations apply,bol_radio,"[Yes, No]"
+Vendor Agreement Template,Use of subcontractors allowed,bol_radio,"[Yes, No]"
+Vendor Agreement Template,Compliance requirements for the vendor,multi select,"[ Applicable laws, Data protection, Industry standards, Company policies, Other ]"
+Vendor Agreement Template,Limitation of liability included,bol_radio,"[Yes, No]"
+Vendor Agreement Template,Indemnification obligations included,bol_radio,"[Yes, No]"
+Vendor Agreement Template,Termination rights,radio,"[ Termination for convenience, Termination for breach, Fixed term only ]"
+Vendor Agreement Template,Governing law and legal contact email,text area,None
+Vendor Agreement Template,"Additional notes, assumptions, or special considerations for this vendor agreement",text area,None
+Subprocessor List,Company Name,text,None
+Subprocessor List,Document Version,text,None
+Subprocessor List,Effective Date,calendar,None
+Subprocessor List,What is the purpose of this Subprocessor List?,radio,"[Regulatory compliance, Customer transparency, Internal record]"
+Subprocessor List,Which product or service does this Subprocessor List apply to?,text,None
+Subprocessor List,Does this Subprocessor List apply globally or to specific regions?,radio,"[Global, Region-specific]"
+Subprocessor List,"If region-specific, list the applicable regions or countries",text,None
+Subprocessor List,List the subprocessors that process personal or customer data,table,"[Subprocessor Name, Service Provided, Type of Data Processed, Processing Location (Country/Region), Safeguards (DPA/SCCs/Certifications)]"
+Subprocessor List,Are Data Processing Agreements (DPAs) in place with all subprocessors?,bol_radio,"[Yes, No]"
+Subprocessor List,How are customers notified when a new subprocessor is added?,multi select,"[Website update, Email notification, Customer portal]"
+Subprocessor List,Who owns and maintains this Subprocessor List?,multi select,"[Legal Team, Compliance Team, Security Team, Operations Team]"
+Subprocessor List,How often is this Subprocessor List reviewed or updated?,radio,"[As changes occur, Quarterly, Annually]"
+Subprocessor List,"Are there any additional notes, limitations, or disclosures customers should be aware of?",text area,None
+Subprocessor List,What categories of personal data are processed by subprocessors overall?,text area,None
+Subprocessor List,What is the legal basis for sharing personal data with subprocessors?,multi select,"[Contractual necessity, Legal obligation, Legitimate interest, Consent]"
+Subprocessor List,Are subprocessors allowed to engage further subprocessors (sub-subprocessors)?,bol_radio,"[Yes, No]"
+Subprocessor List,"If yes, how are sub-subprocessors assessed and approved?",text area,None
+GDPR Compliance Docs,Company Name,text,None
+GDPR Compliance Docs,Document Version,text,None
+GDPR Compliance Docs,Effective Date,calendar,None
+GDPR Compliance Docs,What is the purpose of this GDPR Compliance document?,radio,"[Regulatory compliance, Customer assurance, Internal governance]"
+GDPR Compliance Docs,Which products or services are covered under this GDPR Compliance?,text,None
+GDPR Compliance Docs,Which type of organization best describes your role under GDPR?,radio,"[Data Controller, Data Processor, Both]"
+GDPR Compliance Docs,Which regions does this GDPR Compliance apply to?,radio,"[EU only, EU & UK, Global]"
+GDPR Compliance Docs,What categories of personal data do you process?,multi select,"[Identifiers, Contact data, Usage data, Payment data, Employee data]"
+GDPR Compliance Docs,What are the primary purposes for processing personal data?,multi select,"[Service delivery, Customer support, Analytics, Marketing, Legal obligations]"
+GDPR Compliance Docs,What legal bases are used for processing personal data?,multi select,"[Consent, Contractual necessity, Legal obligation, Legitimate interest]"
+GDPR Compliance Docs,Which data subject rights are supported by your organization?,multi select,"[Access, Rectification, Erasure, Restriction, Portability, Objection]"
+GDPR Compliance Docs,How can users submit GDPR-related requests?,multi select,"[Email, Support ticket, Web form]"
+GDPR Compliance Docs,What security measures are in place to protect personal data?,multi select,"[Access controls, Encryption, Monitoring & logging, Security training]"
+GDPR Compliance Docs,Do you use subprocessors to process personal data?,bol_radio,"[Yes, No]"
+GDPR Compliance Docs,"If yes, where can users find the Subprocessor List?",radio,"[Public website, Customer portal, Available on request]"
+GDPR Compliance Docs,Who is responsible for GDPR compliance within the organization?,radio,"[Legal Team, Compliance Team, Security Team, Data Protection Officer (DPO)]"
+GDPR Compliance Docs,How often is this GDPR Compliance document reviewed or updated?,radio,"[As changes occur, Annually]"
+GDPR Compliance Docs,Are there any additional GDPR-related notes or limitations users should be aware of?,text area,None
+GDPR Compliance Docs,"How long is personal data retained, or how is retention determined?",text area,None
+GDPR Compliance Docs,Is personal data transferred outside the EU/UK?,bol_radio,"[Yes, No]"
+GDPR Compliance Docs,"If yes, what safeguards are used for international data transfers?",multi select,"[Standard Contractual Clauses (SCCs), Adequacy decision, Binding Corporate Rules (BCRs), Other]"
+GDPR Compliance Docs,How does the organization handle personal data breaches?,text area,None
+CCPA Compliance Docs,Company Name,text,None
+CCPA Compliance Docs,Document Version,text,None
+CCPA Compliance Docs,Effective Date,calendar,None
+CCPA Compliance Docs,What is the purpose of this CCPA Compliance document?,radio,"[Regulatory compliance, Consumer transparency, Internal governance]"
+CCPA Compliance Docs,Which products or services are covered under this CCPA Compliance?,text,None
+CCPA Compliance Docs,Does your organization qualify as a “Business” under CCPA?,radio,"[Yes, No, Unsure]"
+CCPA Compliance Docs,Which regions does this CCPA Compliance apply to?,radio,"[California only, United States, Global]"
+CCPA Compliance Docs,What categories of personal information do you collect or process?,multi select,"[Identifiers, Commercial information, Internet activity, Geolocation, Employee data]"
+CCPA Compliance Docs,For what primary purposes is personal information used?,multi select,"[Service delivery, Customer support, Analytics, Marketing, Legal obligations]"
+CCPA Compliance Docs,Is personal information sold or shared under CCPA definitions?,radio,"[Sold, Shared, Not sold or shared]"
+CCPA Compliance Docs,Which CCPA consumer rights do you support?,multi select,"[Right to know, Right to delete, Right to opt-out, Right to correct, Right to limit]"
+CCPA Compliance Docs,How can consumers submit CCPA-related requests?,multi select,"[Email, Toll-free number, Web form]"
+CCPA Compliance Docs,What reasonable security measures are in place to protect personal information?,multi select,"[Access controls, Encryption, Monitoring & logging, Security policies]"
+CCPA Compliance Docs,Do you share personal information with service providers or contractors?,bol_radio,"[Yes, No]"
+CCPA Compliance Docs,"If yes, where can consumers find information about these third parties?",radio,"[Privacy policy, Subprocessor list, Available on request]"
+CCPA Compliance Docs,Who is responsible for CCPA compliance within the organization?,radio,"[Legal Team, Compliance Team, Privacy Team, Security Team]"
+CCPA Compliance Docs,How often is this CCPA Compliance document reviewed or updated?,radio,"[As changes occur, Annually]"
+CCPA Compliance Docs,Are there any additional CCPA-related disclosures or limitations consumers should be aware of?,text area,None
+CCPA Compliance Docs,How does the organization verify consumer identity before fulfilling CCPA requests?,text area,None
+CCPA Compliance Docs,What is the standard response timeline for CCPA consumer requests?,text,None
+CCPA Compliance Docs,"How long is personal information retained, or how is retention determined?",text area,None
+CCPA Compliance Docs,How does the organization handle CCPA-related complaints or disputes?,text area,None
+Accessibility Statement,Company Name,text,None
+Accessibility Statement,Document Version,text,None
+Accessibility Statement,Effective Date,calendar,None
+Accessibility Statement,What is the purpose of this Accessibility Statement?,radio,"[Regulatory compliance, Public commitment, Customer transparency]"
+Accessibility Statement,"Which product(s), website(s), or application(s) does this Accessibility Statement apply to?",text,None
+Accessibility Statement,Which accessibility standards or guidelines do you aim to follow?,multi select,"[WCAG 2.1 AA, WCAG 2.2 AA, Section 508, EN 301 549]"
+Accessibility Statement,Which regions does this Accessibility Statement apply to?,radio,"[Global, Region-specific]"
+Accessibility Statement,What is the current accessibility compliance status of your product(s)?,radio,"[Fully compliant, Partially compliant, Not yet compliant]"
+Accessibility Statement,"If partially or not compliant, how are accessibility issues being addressed?",text area,None
+Accessibility Statement,How can users report accessibility issues or request assistance?,multi select,"[Email, Support ticket, Contact form, Phone]"
+Accessibility Statement,What information should users include when reporting an accessibility issue?,multi select,"[Page or feature name, Description of issue, Assistive technology used, Contact details]"
+Accessibility Statement,Who is responsible for accessibility within the organization?,radio,"[Product Team, Engineering Team, Compliance Team, Design Team]"
+Accessibility Statement,How often is this Accessibility Statement reviewed or updated?,radio,"[As changes occur, Annually]"
+Accessibility Statement,Are there any known accessibility limitations or exceptions at this time?,text area,None
+Accessibility Statement,What assistive technologies or user agents have been considered or tested for accessibility?,text area,None
+Accessibility Statement,How does the organization validate or test accessibility compliance?,text area,None
+Accessibility Statement,Are there any additional accessibility-related notes or limitations users should be aware of?,text area,None
+Trademark Guidelines,Company Name,text,None
+Trademark Guidelines,Document Version,text,None
+Trademark Guidelines,Effective Date,calendar,None
+Trademark Guidelines,What is the purpose of these Trademark Guidelines?,radio,"[Brand protection, Third-party usage guidance, Legal compliance]"
+Trademark Guidelines,Which trademarks are covered by these guidelines?,multi select,"[Company name, Logo, Product names, Taglines, Domain names]"
+Trademark Guidelines,Who are these Trademark Guidelines intended for?,multi select,"[Partners, Customers, Developers, Media, General public]"
+Trademark Guidelines,What types of trademark use are generally permitted without prior approval?,multi select,"[Referential use, Marketing mentions, Press references, Educational use]"
+Trademark Guidelines,What types of trademark use require prior written approval?,multi select,"[Logo usage, Co-branding, Merchandise, Advertising campaigns]"
+Trademark Guidelines,What types of trademark use are strictly prohibited?,multi select,"[Misleading use, Altered logos, Use implying endorsement, Competitive use]"
+Trademark Guidelines,Are there specific rules for how trademarks must be displayed?,bol_radio,"[Yes, No]"
+Trademark Guidelines,"If yes, what display rules should be followed (e.g., colors, spacing, attribution)?",text,None
+Trademark Guidelines,How can third parties request permission to use your trademarks?,multi select,"[Email, Web form, Legal request process]"
+Trademark Guidelines,Who is responsible for trademark enforcement and inquiries?,radio,"[Legal Team, Brand Team, Marketing Team]"
+Trademark Guidelines,How often are these Trademark Guidelines reviewed or updated?,radio,"[As changes occur, Annually]"
+Trademark Guidelines,Describe the correct trademark attribution or notice that must be included when trademarks are used.,text area,None
+Trademark Guidelines,What actions may the company take in case of trademark misuse or violation?,text area,None
+Trademark Guidelines,Are there any geographic or jurisdiction-specific trademark considerations?,text area,None
+Trademark Guidelines,"Are there any additional notes, disclaimers, or limitations related to trademark usage?",text area,None
+Open Source Licenses,Company Name,text,None
+Open Source Licenses,Document Version,text,None
+Open Source Licenses,Effective Date,calendar,None
+Open Source Licenses,What is the purpose of this Open Source Licenses document?,radio,"[Compliance, Internal governance, Legal transparency]"
+Open Source Licenses,"Which products, projects, or software does this document apply to?",text,None
+Open Source Licenses,Which types of open source software are included?,multi select,"[Libraries, Frameworks, Tools, Scripts, Components]"
+Open Source Licenses,List all open source components used in the organization,table,"[Component Name, Version, License Type, Source, Repository, Purpose / Usage]"
+Open Source Licenses,Are any license obligations required for redistribution or modification?,bol_radio,"[Yes, No]"
+Open Source Licenses,"If yes, briefly describe the obligations (e.g., attribution, source disclosure)",text,None
+Open Source Licenses,Who is responsible for managing open source license compliance?,radio,"[Legal Team, Engineering Team, Product Team, Compliance Team]"
+Open Source Licenses,How are updates to open source components monitored?,radio,"[Automated tools, Manual review, Both]"
+Open Source Licenses,How often is this Open Source Licenses document reviewed or updated?,radio,"[As changes occur, Quarterly, Annually]"
+Open Source Licenses,Describe how license compliance is verified before software release or deployment.,text area,None
+Open Source Licenses,What process is followed if an open source license conflict or violation is identified?,text area,None
+Open Source Licenses,"Are there any restrictions on using certain open source licenses (e.g., copyleft licenses)?",text area,None
+Open Source Licenses,"Are there any additional notes, restrictions, or disclaimers regarding open source usage?",text area,None
+Compliance Certifications,Company Name,text,None
+Compliance Certifications,Document Version,text,None
+Compliance Certifications,Effective Date,calendar,None
+Compliance Certifications,What is the purpose of this Compliance Certifications document?,radio,"[Customer assurance, Sales enablement, Regulatory compliance]"
+Compliance Certifications,"Which products, services, or business units does this document apply to?",text,None
+Compliance Certifications,Which regions or markets are covered by these certifications?,radio,"[Global, Region-specific]"
+Compliance Certifications,"If region-specific, list the applicable regions or countries",text,None
+Compliance Certifications,List all compliance certifications obtained,table,"[Certification Name, Issuing Authority, Certification Date, Expiry Date, Scope / Applicability]"
+Compliance Certifications,Are there certifications currently in progress or pending?,bol_radio,"[Yes, No]"
+Compliance Certifications,"If yes, provide details of pending certifications",text,None
+Compliance Certifications,Who owns and maintains the Compliance Certifications document?,radio,"[Legal Team, Compliance Team, Sales Team, Marketing Team]"
+Compliance Certifications,How often is this Compliance Certifications document reviewed or updated?,radio,"[As changes occur, Quarterly, Annually]"
+Compliance Certifications,Describe how certification status is verified and kept up to date,text area,None
+Compliance Certifications,"Describe any limitations on how these certifications can be referenced or used externally (e.g., marketing, sales materials)",text area,None
+Compliance Certifications,"What actions are taken if a certification expires, is suspended, or is revoked?",text area,None
+Compliance Certifications,"Are there any additional notes, limitations, or disclaimers related to these certifications?",text area,None
+Case Study Template,Company Name,text,None
+Case Study Template,Document Version,text,None
+Case Study Template,Effective Date,calendar,None
+Case Study Template,What is the primary purpose of this case study?,radio,"[Customer success story, Marketing collateral, Sales enablement]"
+Case Study Template,"Which product, service, or solution is highlighted in this case study?",text,None
+Case Study Template,Which customer or client is featured?,text,None
+Case Study Template,Which industry or market does this customer belong to?,text,None
+Case Study Template,What business challenge or problem did the customer face?,text area,None
+Case Study Template,Describe the solution implemented to address the challenge,text area,None
+Case Study Template,What measurable results or outcomes were achieved?,text area,None
+Case Study Template,What lessons were learned during implementation?,text area,None
+Case Study Template,Are there any quotes or testimonials from the customer?,bol_radio,"[Yes, No]"
+Case Study Template,"If yes, provide customer quotes or testimonials",text area,None
+Case Study Template,What differentiators made your solution successful for the customer?,text,None
+Case Study Template,What challenges were overcome during the project?,text,None
+Case Study Template,Who owns and maintains this case study template?,radio,"[Sales Team, Marketing Team, Customer Success Team]"
+Case Study Template,How often is this case study reviewed or updated?,radio,"[As changes occur, Quarterly, Annually]"
+Case Study Template,"Are there any additional notes, disclaimers, or references for this case study?",text area,None
+Product Requirements Doc (PRD),Company Name,text,None
+Product Requirements Doc (PRD),Document Version,text,None
+Product Requirements Doc (PRD),Effective Date,calendar,None
+Product Requirements Doc (PRD),What is the primary purpose of this PRD?,radio,"[Define new product, Update existing product, Internal alignment]"
+Product Requirements Doc (PRD),"Which product, feature, or initiative does this PRD cover?",text,None
+Product Requirements Doc (PRD),Who are the primary stakeholders for this PRD?,multi select,"[Product Team, Engineering Team, Design Team, Marketing Team, Sales Team]"
+Product Requirements Doc (PRD),What is the target audience or user segment for this product or feature?,text,None
+Product Requirements Doc (PRD),What is the high-level goal or success metric for this product or feature?,text area,None
+Product Requirements Doc (PRD),Describe the key features or functionality required,text area,None
+Product Requirements Doc (PRD),Are there any constraints or limitations to consider?,multi select,"[Technical, Budget, Timeline, Regulatory/Compliance, Resource availability]"
+Product Requirements Doc (PRD),"Are there dependencies on other systems, teams, or features?",bol_radio,"[Yes, No]"
+Product Requirements Doc (PRD),"If yes, describe the dependencies",text,None
+Product Requirements Doc (PRD),Are there any assumptions or risks associated with this product or feature?,text area,None
+Product Requirements Doc (PRD),Are there any UX or design considerations?,text,None
+Product Requirements Doc (PRD),"Are there reference designs, wireframes, or mockups available?",bol_radio,"[Yes, No]"
+Product Requirements Doc (PRD),"If yes, provide links or references",text,None
+Product Requirements Doc (PRD),Who owns and maintains this PRD?,radio,"[Product Manager, Product Team, Engineering Team]"
+Product Requirements Doc (PRD),How often is this PRD reviewed or updated?,radio,"[As changes occur, Quarterly, Annually]"
+Product Requirements Doc (PRD),"Are there any additional notes, references, or clarifications for this PRD?",text area,None
+Feature Spec,Company Name,text,None
+Feature Spec,Document Version,text,None
+Feature Spec,Effective Date,calendar,None
+Feature Spec,What is the primary purpose of this Feature Spec,radio,"[Define new feature, Update existing feature, Clarify implementation details]"
+Feature Spec,Which product or module does this feature belong to,text,None
+Feature Spec,Who are the primary stakeholders for this feature,multi select,"[Product Team, Engineering Team, Design Team, QA Team, Marketing Team]"
+Feature Spec,What is the target user or audience for this feature,text,None
+Feature Spec,What is the key goal or success metric for this feature,text area,None
+Feature Spec,Describe the feature functionality and behavior,text area,None
+Feature Spec,Are there any constraints or limitations for this feature?,multi select,"[Technical, Budget, Timeline, Regulatory/Compliance, Resource availability]"
+Feature Spec,Are there assumptions or known risks for this feature?,text area,None
+Feature Spec,Are there UX or UI requirements for this feature?,text,None
+Feature Spec,"Are mockups, wireframes, or design references available?",bol_radio,"[Yes, No]"
+Feature Spec,"If mockups, wireframes, or design references are available, provide links or references",text,None
+Feature Spec,What are the acceptance criteria for this feature?,text area,None
+Feature Spec,"Are there test cases, QA notes, or validation steps available?",bol_radio,"[Yes, No]"
+Feature Spec,"If available, provide test cases, QA notes, or validation steps",text,None
+Feature Spec,Who owns and maintains this Feature Spec?,radio,"[Product Manager, Engineering Team, Product Team]"
+Feature Spec,How often is this Feature Spec reviewed or updated?,radio,"[As changes occur, Quarterly, Annually]"
+Feature Spec,"Any additional notes, clarifications, or references for this feature?",text area,None
+User Research Report,Company Name,text,None
+User Research Report,Document Version,text,None
+User Research Report,Effective Date,calendar,None
+User Research Report,What is the primary purpose of this User Research Report,radio,"[Understand user needs, Improve product design, Validate hypotheses, Other]"
+User Research Report,"Which product, feature, or service is this research focused on",text,None
+User Research Report,Who are the intended stakeholders of this report,multi select,"[Product Team, Design Team, Engineering Team, Marketing Team, Leadership]"
+User Research Report,What user segments or personas were included in this research,text,None
+User Research Report,Which research methods were used,multi select,"[Interviews, Surveys, Usability tests, Analytics, Field studies, Other]"
+User Research Report,How many participants were involved in the study,text,None
+User Research Report,Over what time period was this research conducted,text,None
+User Research Report,What were the key objectives or research questions,text area,None
+User Research Report,Summarize the main findings from the research,text area,None
+User Research Report,"What patterns, trends, or behaviors were observed",text area,None
+User Research Report,What pain points or unmet needs were identified,text area,None
+User Research Report,What recommendations are derived from the research,text area,None
+User Research Report,Are there proposed next steps or actions for the product team,text,None
+User Research Report,Who owns and maintains this User Research Report,radio,"[Product Team, Design Team, Research Team]"
+User Research Report,How often is this research report reviewed or updated,radio,"[As changes occur, Quarterly, Annually]"
+User Research Report,"Any additional notes, references, or clarifications for this research",text area,None
+Usability Test Report,Company Name,text,None
+Usability Test Report,Document Version,text,None
+Usability Test Report,Effective Date,calendar,None
+Usability Test Report,What is the primary purpose of this Usability Test Report,radio,"[Identify usability issues, Improve user experience, Validate design decisions, Other]"
+Usability Test Report,"Which product, feature, or service was tested",text,None
+Usability Test Report,Who are the intended stakeholders of this report,multi select,"[Product Team, Design Team, Engineering Team, Marketing Team, Leadership]"
+Usability Test Report,Which user segments or personas were included in the usability testing,text,None
+Usability Test Report,Which usability testing methods were used,multi select,"[Moderated testing, Unmoderated testing, A/B testing, Remote testing, In-person testing]"
+Usability Test Report,How many participants were involved in the usability test,text,None
+Usability Test Report,Over what time period was the usability test conducted,text,None
+Usability Test Report,What were the key objectives or hypotheses of the test,text area,None
+Usability Test Report,Summarize the key findings from the usability test,text area,None
+Usability Test Report,What usability issues or pain points were identified,text area,None
+Usability Test Report,What design or product recommendations arise from the usability test,text area,None
+Usability Test Report,What next steps should the team take based on these findings,text,None
+Usability Test Report,Who owns and maintains this Usability Test Report,radio,"[Product Team, Design Team, Research Team]"
+Usability Test Report,"Any additional notes, references, or clarifications regarding the usability test",text area,None
+Release Notes Template,Company Name,text,None
+Release Notes Template,Release Version / Document Version,text,None
+Release Notes Template,Release Date,calendar,None
+Release Notes Template,Briefly describe the purpose of this release,text area,None
+Release Notes Template,"Which product, module, or service does this release cover",text,None
+Release Notes Template,Who is the intended audience for these release notes,multi select,"[End users, Internal teams, Customers, Partners]"
+Release Notes Template,What are the main objectives of this release,text area,None
+Release Notes Template,List the new features or enhancements included in this release,text area,None
+Release Notes Template,List the issues or bugs that have been fixed in this release,text area,None
+Release Notes Template,Are there any known limitations or issues that users should be aware of,bol_radio,"[Yes, No]"
+Release Notes Template,"If yes, provide details of the known limitations or issues",text area,None
+Release Notes Template,Are there any security updates or critical patches in this release,text,None
+Release Notes Template,Are there any special instructions for using or updating this release,text area,None
+Release Notes Template,Are there compatibility considerations or prerequisites,text,None
+Release Notes Template,Are there references or links for further information,text,None
+Release Notes Template,Who is responsible for publishing and maintaining these release notes,radio,"[Product Team, Engineering Team, Documentation Team, Support Team]"
+Release Notes Template,How frequently are release notes reviewed or updated,radio,"[After each release, Quarterly, Annually]"
+Release Notes Template,"Any extra notes, disclaimers, or remarks about this release",text area,None
+A/B Test Analysis Template,Company Name,text,None
+A/B Test Analysis Template,Document Version,text,None
+A/B Test Analysis Template,Test Name / Identifier,text,None
+A/B Test Analysis Template,Test Start Date,calendar,None
+A/B Test Analysis Template,Test End Date,calendar,None
+A/B Test Analysis Template,What is the primary goal of this A/B test,text area,None
+A/B Test Analysis Template,"Which feature, product, or page is being tested",text,None
+A/B Test Analysis Template,Which user segment or audience is included in this test,text,None
+A/B Test Analysis Template,What hypothesis is being tested,text area,None
+A/B Test Analysis Template,Which variants were included in the test,multi select,"[Variant A, Variant B, Variant C, Control]"
+A/B Test Analysis Template,What metrics or KPIs are being tracked to measure success,multi select,"[Click-through rate, Conversion rate, Engagement time, Bounce rate, Other]"
+A/B Test Analysis Template,What tools or platforms were used to run the A/B test,text,None
+A/B Test Analysis Template,Were there any constraints or limitations during the test,text,None
+A/B Test Analysis Template,Summarize the results of the A/B test,text area,None
+A/B Test Analysis Template,Which variant performed best and why,text area,None
+A/B Test Analysis Template,What patterns or user behaviors were observed,text,None
+A/B Test Analysis Template,Were there any unexpected outcomes or anomalies,text area,None
+A/B Test Analysis Template,"Based on the results, what recommendations can be made",text area,None
+A/B Test Analysis Template,Are there suggested follow-up tests or experiments,text,None
+A/B Test Analysis Template,Who owns and maintains this A/B Test Analysis,radio,"[Product Team, Design Team, Analytics Team, Marketing Team]"
+A/B Test Analysis Template,"Any additional notes, references, or insights regarding this test",text area,None
+Competitive Analysis,Company Name,text,None
+Competitive Analysis,Document Version,text,None
+Competitive Analysis,Effective Date,calendar,None
+Competitive Analysis,What is the primary purpose of this competitive analysis,radio,"[Market positioning, Product comparison, Feature benchmarking, Strategic planning]"
+Competitive Analysis,"Which product, service, or business unit does this analysis focus on",text,None
+Competitive Analysis,Who are the intended stakeholders for this analysis,multi select,"[Marketing Team, Product Team, Sales Team, Leadership, Strategy Team]"
+Competitive Analysis,What is the key objective or question this analysis aims to answer,text area,None
+Competitive Analysis,List the main competitors included in this analysis,text area,None
+Competitive Analysis,"For each competitor, describe key products, services, or features",text area,None
+Competitive Analysis,What differentiators or unique value propositions do competitors have,text area,None
+Competitive Analysis,What pricing strategies or models do competitors use,text,None
+Competitive Analysis,What are competitors’ strengths and weaknesses,text area,None
+Competitive Analysis,What trends or patterns have been identified in the competitive landscape,text area,None
+Competitive Analysis,"Based on this analysis, what opportunities or gaps exist for your product/service",text area,None
+Competitive Analysis,Are there strategic recommendations or actions suggested from this analysis,text,None
+Competitive Analysis,Who is responsible for maintaining this competitive analysis,radio,"[Marketing Team, Product Team, Strategy Team]"
+Competitive Analysis,How often is this analysis reviewed or updated,radio,"[Quarterly, Annually, As changes occur]"
+Competitive Analysis,"Any additional notes, references, or disclaimers related to this analysis",text area,None
+Invoice Template,Company Name,text,None
+Invoice Template,Document Version / Template Version,text,None
+Invoice Template,Invoice Date,calendar,None
+Invoice Template,Invoice Number / Identifier,text,None
+Invoice Template,Bill To (Customer/Client Name),text,None
+Invoice Template,Billing Address,text,None
+Invoice Template,Contact Person / Email,text,None
+Invoice Template,List the products or services provided,table,"[Item/Service, Description, Quantity, Unit Price, Total Price]"
+Invoice Template,"Are there any discounts, promotions, or adjustments applied",bol_radio,"[Yes, No]"
+Invoice Template,"If yes, describe the discounts or adjustments",text,None
+Invoice Template,"Subtotal, taxes, and total amount due",text,None
+Invoice Template,What are the payment terms,radio,"[Due on receipt, Net 15, Net 30, Other]"
+Invoice Template,"If other, specify payment terms",text,None
+Invoice Template,"Include references such as purchase order numbers, project codes, or contract numbers",text,None
+Invoice Template,Who is responsible for creating and maintaining the invoice template,radio,"[Finance Team, Accounting Team, Operations Team]"
+Invoice Template,How often is this template reviewed or updated,radio,"[As changes occur, Quarterly, Annually]"
+Board Meeting Template,Company Name,text,None
+Board Meeting Template,Document Version,text,None
+Board Meeting Template,Meeting Date,calendar,None
+Board Meeting Template,Meeting Time & Duration,text,None
+Board Meeting Template,Meeting Location / Platform,text,None
+Board Meeting Template,List the attendees of the board meeting,table,"[Name, Role, Department, Attendance Status]"
+Board Meeting Template,Who is the meeting chairperson or facilitator,text,None
+Board Meeting Template,List the agenda items for this meeting,table,"[Agenda Item, Presenter, Time Allocated, Notes]"
+Board Meeting Template,Were there any additional discussion points raised during the meeting,bol_radio,"[Yes, No]"
+Board Meeting Template,"If yes, provide details of additional discussion points",text area,None
+Board Meeting Template,What decisions were made during the meeting,text area,None
+Board Meeting Template,"List action items, owners, and deadlines",table,"[Action Item, Owner, Due Date, Status / Notes]"
+Board Meeting Template,Were there any follow-up items or pending topics,bol_radio,"[Yes, No]"
+Board Meeting Template,"If yes, provide details of follow-up items",text area,None
+Board Meeting Template,Who is responsible for maintaining the board meeting records,radio,"[Company Secretary, Executive Assistant, Operations Team, Leadership Team]"
+Board Meeting Template,How often are board meeting records reviewed or updated,radio,"[After each meeting, Quarterly, Annually]"
+Board Meeting Template,"Any additional notes, references, or disclaimers for this board meeting",text area,None

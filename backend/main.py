@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Any
 from database import get_connection
+from schema import DocumentRequest
+from prompt_builder import build_prompt
 
 app = FastAPI()
 
@@ -23,7 +25,7 @@ def get_categories():
 def get_document_types():
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
-    cursor.execute("SELECT id, document_type_name FROM document_type")
+    cursor.execute("SELECT * FROM document_type")
     data = cursor.fetchall()
     conn.close()
     return data
@@ -58,3 +60,10 @@ def get_question(document_id: int):
     conn.close()
     return data
 
+
+@app.post("/genrate-document")
+def genrate_document(data: DocumentRequest):
+    prompt = build_prompt(data)
+    return {
+        "prompt": prompt
+    }

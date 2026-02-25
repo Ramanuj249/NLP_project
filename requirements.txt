@@ -3,3 +3,5 @@ uvicorn
 mysql-connector-python
 requests
 streamlit
+python-dotenv
+langchain-openai

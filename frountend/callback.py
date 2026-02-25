@@ -161,3 +161,20 @@ def render_questions(questions):
 
     # Persist answers for submit button
     st.session_state.answers = answers
+
+def build_request_json():
+    cleaned_answer = []
+
+    for item in st.session_state.get("answers", []):
+        cleaned_answer.append({
+            "questions": item.get("question"),
+            "answer": item.get("answer")
+        })
+
+    return {
+        "category": st.session_state.get("selected_category"),
+        "document_type": st.session_state.get("selected_doc_type"),
+        "document_name": st.session_state.get("selected_doc_title"),
+        "answers": cleaned_answer,
+        "components": st.session_state.components
+    }

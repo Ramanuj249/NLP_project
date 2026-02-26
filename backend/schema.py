@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Literal
+from typing import List, Literal, Union, Dict, Any
 
 
 DocumentType = Literal[
@@ -24,7 +24,7 @@ DocumentCategory = Literal[
 
 class Answer(BaseModel):
     question: str
-    answer: str
+    answer: str | list[Any] | dict[Any, Any]
 
 class DocumentRequest(BaseModel):
     category: DocumentCategory

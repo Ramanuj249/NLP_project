@@ -4,6 +4,7 @@ from typing import List, Any
 from database import get_connection
 from schema import DocumentRequest
 from prompt_builder import build_prompt
+from llm import generate_llm_response
 
 app = FastAPI()
 
@@ -61,9 +62,10 @@ def get_question(document_id: int):
     return data
 
 
-@app.post("/genrate-document")
-def genrate_document(data: DocumentRequest):
+@app.post("/generate-document")
+def generate_document(data: DocumentRequest):
     prompt = build_prompt(data)
+    response = generate_llm_response(prompt)
     return {
-        "prompt": prompt
+        "response": response
     }

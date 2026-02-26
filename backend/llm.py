@@ -16,3 +16,7 @@ model = AzureChatOpenAI(
 
 prompt = "how many Moons do earth have?"
 print(model.invoke(prompt))
+
+def generate_llm_response(prompt: str) -> str:
+    response = model.invoke(prompt)
+    return response.content

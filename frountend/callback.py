@@ -113,14 +113,14 @@ def render_questions(questions):
 
         # ---------- BOOLEAN RADIO ----------
         elif q_type == "bol_radio":
-            choice = st.radio(
+            value = st.radio(
                 "",
                 ["Yes", "No"],
                 key=key,
                 horizontal=True,
                 label_visibility="collapsed"
             )
-            value = choice == "Yes"
+            # value = choice == "Yes"
 
         # ---------- CALENDAR ----------
         elif q_type == "calendar":
@@ -162,19 +162,50 @@ def render_questions(questions):
     # Persist answers for submit button
     st.session_state.answers = answers
 
-def build_request_json():
-    cleaned_answer = []
+# def build_request_json():
+#     cleaned_answer = []
+#
+#     for item in st.session_state.get("answers", []):
+#         cleaned_answer.append({
+#             "questions": item.get("question"),
+#             "answer": item.get("answer")
+#         })
+#
+#     return {
+#         "category": st.session_state.get("selected_category"),
+#         "document_type": st.session_state.get("selected_doc_type"),
+#         "document_name": st.session_state.get("selected_doc_title"),
+#         "answers": cleaned_answer,
+#         "components": st.session_state.components
+#     }
 
-    for item in st.session_state.get("answers", []):
-        cleaned_answer.append({
-            "questions": item.get("question"),
-            "answer": item.get("answer")
-        })
+def normalize_answer(answer):
+    if isinstance(answer, (list, dict)):
+        return str(answer)
+    if answer is None:
+        return ""
+    return str(answer)
+
+def build_request_json():
+    raw_answers = st.session_state.get("answers", [])
+    # print(raw_answers)
+    # Normalize answers to a list
+    if isinstance(raw_answers, dict):
+        raw_answers = list(raw_answers.values())
+
+    formatted_answers = [
+        {
+            "question": item["question"],
+            "answer": normalize_answer(item["answer"])
+        }
+        for item in raw_answers
+    ]
 
     return {
         "category": st.session_state.get("selected_category"),
-        "document_type": st.session_state.get("selected_doc_type"),
+        "document_type": st.session_state.get("selected_doc_type").upper(),
         "document_name": st.session_state.get("selected_doc_title"),
-        "answers": cleaned_answer,
-        "components": st.session_state.components
+        "components": st.session_state.get("components", []),
+        "answers": formatted_answers
     }
+

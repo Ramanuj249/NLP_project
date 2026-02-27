@@ -24,6 +24,19 @@ if "questions" not in st.session_state:
 if "last_doc_id" not in st.session_state:
     st.session_state.last_doc_id = None
 
+# --- Section review state ---
+if "sections" not in st.session_state:
+    st.session_state.sections = []        # List of split chunks
+
+if "instructions" not in st.session_state:
+    st.session_state.instructions = []
+
+if "current_section_index" not in st.session_state:
+    st.session_state.current_section_index = 0
+
+if "review_mode" not in st.session_state:
+    st.session_state.review_mode = False
+
 # if "components" not in st.session_state:
 #     st.session_state.components = []
 
@@ -44,6 +57,22 @@ if "selected_doc_type" not in st.session_state:
 
 if "components" not in st.session_state or not st.session_state.components:
     update_components()
+
+def split_by_divider(text: str) -> list[str]:
+    """
+    Split the document by '---' horizontal rules.
+    Each chunk is stripped of extra whitespace and empty chunks are removed.
+    """
+    raw_chunks = text.split("\n---\n")
+    cleaned = [chunk.strip() for chunk in raw_chunks]
+    return [c for c in cleaned if c]  # remove empty
+
+
+def reset_review():
+    st.session_state.sections = []
+    st.session_state.instructions = []
+    st.session_state.current_section_index = 0
+    st.session_state.review_mode = False
 
 # --- Dropdowns for categories ---
 selected_category = st.selectbox(
@@ -76,7 +105,6 @@ documents = st.session_state.documents
 
 if documents:
     doc_map = {doc["title"]: doc for doc in documents}
-
     st.session_state.doc_map = doc_map
 
     placeholder = "-- Select a document --"
@@ -94,26 +122,93 @@ if documents:
         key="selected_doc_title",
         on_change=fetch_questions_for_document
     )
-    # st.write(st.session_state)
+
+    # ## Questions and answers showing code
+    # # st.write(st.session_state)
+    # if st.session_state.questions:
+    #     st.subheader("Questions")
+    #     # for q in st.session_state.questions:
+    #     #     st.write(f"• {q['question']}")
+    #     if st.session_state.questions:
+    #         render_questions(st.session_state.questions)
+    #
+    #         # if st.button("Submit Responses"):
+    #         #     st.json(st.session_state.answers)
+    #
+    #
+    #         if st.button("Preview JSON"):
+    #             st.json(build_request_json())
+    #         # st.write(st.session_state)
+    #         if st.button("Generate Document"):
+    #             payload = build_request_json()
+    #
+    #             res = requests.post(f"{BACKEND_URL}/generate-document", json=payload)
+    #             st.header("this is the prompt sent to the Model.")
+    #             st.text_area("hello", res.json()["response"], height=500)
+    #             # data = res.json()
+    #             # st.markdown(data["response"])
+
     if st.session_state.questions:
         st.subheader("Questions")
-        # for q in st.session_state.questions:
-        #     st.write(f"• {q['question']}")
-        if st.session_state.questions:
-            render_questions(st.session_state.questions)
+        render_questions(st.session_state.questions)
 
-            # if st.button("Submit Responses"):
-            #     st.json(st.session_state.answers)
+        if st.button("Generate Document"):
+            payload = build_request_json()
+            res = requests.post(f"{BACKEND_URL}/generate-document", json=payload)
+            data = res.json()
+            raw_text = data["response"]
 
+            # Split and enter review mode
+            reset_review()
+            st.session_state.sections = split_by_divider(raw_text)
+            st.session_state.instructions = [""] * len(st.session_state.sections)
+            st.session_state.review_mode = True
+            st.rerun()
 
-            if st.button("Preview JSON"):
-                st.json(build_request_json())
-            st.write(st.session_state)
-            if st.button("Generate Document"):
-                payload = build_request_json()
+    # ─────────────────────────────────────────────
+    # Section Navigation (Review Mode)
+    # ─────────────────────────────────────────────
+    if st.session_state.review_mode and st.session_state.sections:
+        sections = st.session_state.sections
+        idx = st.session_state.current_section_index
+        total = len(sections)
 
-                res = requests.post(f"{BACKEND_URL}/generate-document", json=payload)
-                # st.header("this is the prompt sent to the Model.")
-                # st.text_area("hello", res.json()["response"], height=500)
-                data = res.json()
-                st.markdown(data["response"])
+        st.divider()
+        st.subheader(f"Section {idx + 1} of {total}")
+        st.progress((idx + 1) / total)
+
+        # Render current section as markdown
+        st.markdown(sections[idx])
+
+        st.divider()
+
+        # --- Instruction box ---
+        instruction = st.text_area(
+            label="📝 Instructions for this section",
+            value=st.session_state.instructions[idx],
+            placeholder="Describe the changes you want in this section... e.g. 'Make this more formal' or 'Add a point about data privacy'",
+            height=120,
+            key=f"instruction_{idx}"
+        )
+        # Save instruction into session state as user types
+        st.session_state.instructions[idx] = instruction
+
+        st.divider()
+
+        # --- Navigation buttons ---
+        col1, col2, col3 = st.columns([1, 2, 1])
+
+        with col1:
+            if idx > 0:
+                if st.button("⬅️ Previous"):
+                    st.session_state.current_section_index -= 1
+                    st.rerun()
+
+        with col3:
+            if idx < total - 1:
+                if st.button("Finalize & Next ➡️"):
+                    st.session_state.current_section_index += 1
+                    st.rerun()
+            else:
+                if st.button("✅ Finalize Document"):
+                    st.success("All sections finalized! Ready for the next step.")

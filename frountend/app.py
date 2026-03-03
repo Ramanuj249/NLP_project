@@ -40,6 +40,9 @@ if "review_mode" not in st.session_state:
 if "final_doc_ready" not in st.session_state:
     st.session_state.final_doc_ready = False
 
+if "document_saved" not in st.session_state:
+    st.session_state.document_saved = False
+
 # if "components" not in st.session_state:
 #     st.session_state.components = []
 
@@ -77,6 +80,7 @@ def reset_review():
     st.session_state.current_section_index = 0
     st.session_state.review_mode = False
     st.session_state.final_doc_ready = False
+    st.session_state.document_saved = False
 
 # --- Dropdowns for categories ---
 selected_category = st.selectbox(
@@ -198,7 +202,7 @@ if st.session_state.review_mode and st.session_state.sections and not st.session
     # Save instruction into session state as user types
     st.session_state.instructions[idx] = instruction
 
-    if st.button("✨ Rewrite with AI"):
+    if st.button("Rewrite with AI"):
         if instruction.strip() == "":
             st.warning("Please write an instruction before requesting a rewrite.")
         else:
@@ -247,14 +251,57 @@ if st.session_state.final_doc_ready:
     final_doc = "\n\n---\n\n".join(st.session_state.sections)
     st.markdown(final_doc)
 
-    st.download_button(
-        label="⬇️ Download as .txt",
-        data=final_doc,
-        file_name="final_document.txt",
-        mime="text/plain"
-    )
+    st.divider()
 
-    if st.button("🔄 Start Over"):
-        reset_review()
-        st.session_state.questions = []
-        st.rerun()
+    # --- Save & Download row ---
+    col1, col2, col3 = st.columns([1, 1, 1])
+
+    with col1:
+        if st.button("💾 Save Document", use_container_width=True):
+            if not st.session_state.document_saved:
+                with st.spinner("Saving document..."):
+                    payload = {
+                        "document_id": st.session_state.last_doc_id,
+                        "document_name": st.session_state.selected_doc_title,
+                        "category": st.session_state.selected_category,
+                        "document_type": st.session_state.selected_doc_type.upper(),
+                        "document_content": final_doc,
+                        "version": "1.0",
+                        "author": "Unknown"
+                    }
+                    res = requests.post(f"{BACKEND_URL}/save-document", json=payload)
+                    data = res.json()
+                    if res.status_code == 200:
+                        st.session_state.document_saved = True
+                        st.success(f"Document saved! ID: {data['generated_document_id']}")
+                    else:
+                        st.error("Something went wrong while saving. Please try again.")
+            else:
+                st.info("Document already saved.")
+
+    with col2:
+        st.download_button(
+            label="⬇️ Download as .txt",
+            data=final_doc,
+            file_name="final_document.txt",
+            mime="text/plain",
+            use_container_width=True
+        )
+
+    with col3:
+        if st.button("🔄 Start Over", use_container_width=True):
+            reset_review()
+            st.session_state.questions = []
+            st.rerun()
+
+    # st.download_button(
+    #     label="⬇️ Download as .txt",
+    #     data=final_doc,
+    #     file_name="final_document.txt",
+    #     mime="text/plain"
+    # )
+    #
+    # if st.button("🔄 Start Over"):
+    #     reset_review()
+    #     st.session_state.questions = []
+    #     st.rerun()

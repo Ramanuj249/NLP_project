@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Any
 from database import get_connection
-from schema import DocumentRequest, RefineSectionRequest
+from schema import DocumentRequest, RefineSectionRequest, SaveDocumentRequest
 from prompt_builder import build_prompt, build_refine_section_prompt
 from llm import generate_llm_response
 
@@ -77,4 +77,26 @@ def refine_section(data: RefineSectionRequest):
     response = generate_llm_response(prompt)
     return {
         "refined_section": response
+    }
+
+@app.post("/save-document")
+def save_document(data: SaveDocumentRequest):
+    conn = get_connection()
+    cursor = conn.cursor()
+    query = """
+    INSERT INTO generated_documents (
+        document_id, document_name, category, document_type,
+        document_content, version, author
+    ) VALUES (%s, %s, %s, %s, %s, %s, %s)
+    """
+    cursor.execute(query, (
+        data.document_id, data.document_name, data.category, data.document_type,
+        data.document_content, data.version, data.author
+    ))
+    conn.commit()
+    inserted_id = cursor.lastrowid
+    conn.close()
+    return {
+        "message": "Document saved successfully",
+        "generated_document_id": inserted_id
     }

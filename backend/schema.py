@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Literal, Any
+from typing import List, Literal, Any, Optional
 
 
 DocumentType = Literal[
@@ -36,3 +36,12 @@ class DocumentRequest(BaseModel):
 class RefineSectionRequest(BaseModel):
     section_text: str
     instruction: str
+
+class SaveDocumentRequest(BaseModel):
+    document_id: int
+    document_name: str
+    category: DocumentCategory
+    document_type: DocumentType
+    document_content: str
+    version: Optional[str] = "1.0"
+    author: Optional[str] = "Unknown"

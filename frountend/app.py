@@ -37,6 +37,9 @@ if "current_section_index" not in st.session_state:
 if "review_mode" not in st.session_state:
     st.session_state.review_mode = False
 
+if "final_doc_ready" not in st.session_state:
+    st.session_state.final_doc_ready = False
+
 # if "components" not in st.session_state:
 #     st.session_state.components = []
 
@@ -73,6 +76,7 @@ def reset_review():
     st.session_state.instructions = []
     st.session_state.current_section_index = 0
     st.session_state.review_mode = False
+    st.session_state.final_doc_ready = False
 
 # --- Dropdowns for categories ---
 selected_category = st.selectbox(
@@ -99,6 +103,7 @@ if st.button("Get Documents"):
     }
     res = requests.get(f"{BACKEND_URL}/documents", params=params)
     st.session_state.documents = res.json()
+    reset_review()
 
 # --- Show documents if available ---
 documents = st.session_state.documents
@@ -165,50 +170,91 @@ if documents:
             st.session_state.review_mode = True
             st.rerun()
 
-    # ─────────────────────────────────────────────
-    # Section Navigation (Review Mode)
-    # ─────────────────────────────────────────────
-    if st.session_state.review_mode and st.session_state.sections:
-        sections = st.session_state.sections
-        idx = st.session_state.current_section_index
-        total = len(sections)
+# ─────────────────────────────────────────────
+# Section Navigation (Review Mode)
+# ─────────────────────────────────────────────
+if st.session_state.review_mode and st.session_state.sections and not st.session_state.final_doc_ready:
+    sections = st.session_state.sections
+    idx = st.session_state.current_section_index
+    total = len(sections)
 
-        st.divider()
-        st.subheader(f"Section {idx + 1} of {total}")
-        st.progress((idx + 1) / total)
+    st.divider()
+    st.subheader(f"Section {idx + 1} of {total}")
+    st.progress((idx + 1) / total)
 
-        # Render current section as markdown
-        st.markdown(sections[idx])
+    # Render current section as markdown
+    st.markdown(sections[idx])
 
-        st.divider()
+    st.divider()
 
-        # --- Instruction box ---
-        instruction = st.text_area(
-            label="📝 Instructions for this section",
-            value=st.session_state.instructions[idx],
-            placeholder="Describe the changes you want in this section... e.g. 'Make this more formal' or 'Add a point about data privacy'",
-            height=120,
-            key=f"instruction_{idx}"
-        )
-        # Save instruction into session state as user types
-        st.session_state.instructions[idx] = instruction
+    # --- Instruction box ---
+    instruction = st.text_area(
+        label="📝 Instructions for this section",
+        value=st.session_state.instructions[idx],
+        placeholder="Describe the changes you want in this section... e.g. 'Make this more formal' or 'Add a point about data privacy'",
+        height=120,
+        key=f"instruction_{idx}"
+    )
+    # Save instruction into session state as user types
+    st.session_state.instructions[idx] = instruction
 
-        st.divider()
-
-        # --- Navigation buttons ---
-        col1, col2, col3 = st.columns([1, 2, 1])
-
-        with col1:
-            if idx > 0:
-                if st.button("⬅️ Previous"):
-                    st.session_state.current_section_index -= 1
+    if st.button("✨ Rewrite with AI"):
+        if instruction.strip() == "":
+            st.warning("Please write an instruction before requesting a rewrite.")
+        else:
+            with st.spinner("Rewriting section..."):
+                payload = {
+                    "section_text": sections[idx],
+                    "instruction": instruction
+                }
+                res = requests.post(f"{BACKEND_URL}/refine-section", json=payload)
+                refined = res.json().get("refined_section", "")
+                if refined:
+                    st.session_state.sections[idx] = refined
+                    st.session_state.instructions[idx] = ""  # clear instruction after rewrite
                     st.rerun()
 
-        with col3:
-            if idx < total - 1:
-                if st.button("Finalize & Next ➡️"):
-                    st.session_state.current_section_index += 1
-                    st.rerun()
-            else:
-                if st.button("✅ Finalize Document"):
-                    st.success("All sections finalized! Ready for the next step.")
+    st.divider()
+
+    # --- Navigation buttons ---
+    col1, col2, col3 = st.columns([1, 2, 1])
+
+    with col1:
+        if idx > 0:
+            if st.button("⬅️ Previous"):
+                st.session_state.current_section_index -= 1
+                st.rerun()
+
+    with col3:
+        if idx < total - 1:
+            if st.button("Finalize & Next ➡️"):
+                st.session_state.current_section_index += 1
+                st.rerun()
+        else:
+            if st.button("✅ Finalize Document"):
+                st.session_state.final_doc_ready = True
+                st.session_state.review_mode = False
+                st.rerun()
+
+# ─────────────────────────────────────────────
+# Final Document
+# ─────────────────────────────────────────────
+if st.session_state.final_doc_ready:
+    st.divider()
+    st.subheader("📄 Final Document")
+    st.success("Your document is ready!")
+
+    final_doc = "\n\n---\n\n".join(st.session_state.sections)
+    st.markdown(final_doc)
+
+    st.download_button(
+        label="⬇️ Download as .txt",
+        data=final_doc,
+        file_name="final_document.txt",
+        mime="text/plain"
+    )
+
+    if st.button("🔄 Start Over"):
+        reset_review()
+        st.session_state.questions = []
+        st.rerun()

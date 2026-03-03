@@ -2,8 +2,8 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Any
 from database import get_connection
-from schema import DocumentRequest
-from prompt_builder import build_prompt
+from schema import DocumentRequest, RefineSectionRequest
+from prompt_builder import build_prompt, build_refine_section_prompt
 from llm import generate_llm_response
 
 app = FastAPI()
@@ -65,7 +65,16 @@ def get_question(document_id: int):
 @app.post("/generate-document")
 def generate_document(data: DocumentRequest):
     prompt = build_prompt(data)
+    print(prompt)
     response = generate_llm_response(prompt)
     return {
         "response": response
+    }
+
+@app.post("/refine-section")
+def refine_section(data: RefineSectionRequest):
+    prompt = build_refine_section_prompt(data)
+    response = generate_llm_response(prompt)
+    return {
+        "refined_section": response
     }

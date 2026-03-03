@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Literal, Union, Dict, Any
+from typing import List, Literal, Any
 
 
 DocumentType = Literal[
@@ -32,3 +32,7 @@ class DocumentRequest(BaseModel):
     document_name: str
     components: str
     answers: List[Answer]
+
+class RefineSectionRequest(BaseModel):
+    section_text: str
+    instruction: str

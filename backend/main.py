@@ -2,9 +2,11 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Any
 from database import get_connection
-from schema import DocumentRequest, RefineSectionRequest, SaveDocumentRequest
+from schema import DocumentRequest, RefineSectionRequest, SaveDocumentRequest, PushToNotionRequest
 from prompt_builder import build_prompt, build_refine_section_prompt
 from llm import generate_llm_response
+from notion_service import push_document
+from datetime import date
 
 app = FastAPI()
 
@@ -65,7 +67,7 @@ def get_question(document_id: int):
 @app.post("/generate-document")
 def generate_document(data: DocumentRequest):
     prompt = build_prompt(data)
-    print(prompt)
+    # print(prompt)
     response = generate_llm_response(prompt)
     return {
         "response": response
@@ -99,4 +101,13 @@ def save_document(data: SaveDocumentRequest):
     return {
         "message": "Document saved successfully",
         "generated_document_id": inserted_id
+    }
+
+@app.post("/push-to-notion")
+def push_to_notion(data: PushToNotionRequest):
+    result = push_document(data)
+    return {
+        "message": "Document pushed to Notion successfully",
+        "page_id": result["page_id"],
+        "url": result["url"]
     }

@@ -1,5 +1,6 @@
 import requests
 from callback import fetch_questions_for_document, render_questions, build_request_json
+from datetime import date
 # from callback import update_components
 
 import streamlit as st
@@ -43,6 +44,9 @@ if "final_doc_ready" not in st.session_state:
 if "document_saved" not in st.session_state:
     st.session_state.document_saved = False
 
+if "notion_pushed" not in st.session_state:
+    st.session_state.notion_pushed = False
+
 # if "components" not in st.session_state:
 #     st.session_state.components = []
 
@@ -81,6 +85,7 @@ def reset_review():
     st.session_state.review_mode = False
     st.session_state.final_doc_ready = False
     st.session_state.document_saved = False
+    st.session_state.notion_pushed = False
 
 # --- Dropdowns for categories ---
 selected_category = st.selectbox(
@@ -221,7 +226,7 @@ if st.session_state.review_mode and st.session_state.sections and not st.session
     st.divider()
 
     # --- Navigation buttons ---
-    col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
     with col1:
         if idx > 0:
@@ -254,7 +259,7 @@ if st.session_state.final_doc_ready:
     st.divider()
 
     # --- Save & Download row ---
-    col1, col2, col3 = st.columns([1, 1, 1])
+    col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
     with col1:
         if st.button("💾 Save Document", use_container_width=True):
@@ -289,6 +294,35 @@ if st.session_state.final_doc_ready:
         )
 
     with col3:
+        if st.button("Push to Notion", use_container_width=True):
+            if not st.session_state.notion_pushed:
+                with st.spinner("Pushing to Notion..."):
+                    payload = {
+                        "document_id": st.session_state.last_doc_id,
+                        "document_name": st.session_state.selected_doc_title,
+                        "category": st.session_state.selected_category,
+                        "document_type": st.session_state.selected_doc_type.upper(),
+                        "version": "1.0",
+                        "author": "Unknown",
+                        "industry": st.session_state.selected_category,
+                        "content": final_doc,
+                        "created_date": date.today().isoformat(),
+                    }
+                    res = requests.post(f"{BACKEND_URL}/push-to-notion", json=payload)
+                    try:
+                        data = res.json()
+                        if res.status_code == 200:
+                            st.session_state.notion_pushed = True
+                            st.success(f"Pushed to Notion! [Open in Notion]({data['url']})")
+                        else:
+                            st.error(f"Error: {data}")
+                    except Exception as e:
+                        st.error(f"Backend error: {res.text}")
+
+            else:
+                st.info("Already pushed to Notion.")
+
+    with col4:
         if st.button("🔄 Start Over", use_container_width=True):
             reset_review()
             st.session_state.questions = []

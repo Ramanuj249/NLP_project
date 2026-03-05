@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List, Literal, Any, Optional
-
+from datetime import date
 
 DocumentType = Literal[
     "POLICY",
@@ -45,3 +45,14 @@ class SaveDocumentRequest(BaseModel):
     document_content: str
     version: Optional[str] = "1.0"
     author: Optional[str] = "Unknown"
+
+class PushToNotionRequest(BaseModel):
+    document_id: int
+    document_name: str
+    category: str
+    document_type: str
+    version: Optional[str] = "1.0"
+    author: Optional[str] = "Unknown"
+    industry: Optional[str] = ""
+    content: str
+    created_date: Optional[str] = date.today().isoformat()

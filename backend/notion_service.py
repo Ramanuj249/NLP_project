@@ -232,3 +232,66 @@ def push_document(data: PushToNotionRequest):
         notion.blocks.children.append(block_id=page_id, children=chunk)
 
     return {"page_id": page_id, "url": response["url"]}
+
+
+def get_all_documents() -> list:
+    response = notion.databases.query(database_id=DATABASE_ID)
+    documents = []
+    for page in response["results"]:
+        props = page["properties"]
+        def get_text(prop):
+            try:
+                return prop["rich_text"][0]["text"]["content"]
+            except:
+                return ""
+        def get_title(prop):
+            try:
+                return prop["title"][0]["text"]["content"]
+            except:
+                return ""
+        def get_date(prop):
+            try:
+                return prop["date"]["start"]
+            except:
+                return ""
+
+        documents.append({
+            "page_id": page["id"],
+            "name": get_title(props.get("name", {})),
+            "category": get_text(props.get("category", {})),
+            "type": get_text(props.get("type", {})),
+            "version": get_text(props.get("version", {})),
+            "created_by": get_text(props.get("created_by", {})),
+            "created_date": get_date(props.get("created_date", {})),
+        })
+    return documents
+
+
+def get_document_content(page_id: str) -> str:
+    response = notion.blocks.children.list(block_id=page_id)
+    lines = []
+    for block in response["results"]:
+        block_type = block["type"]
+        def extract_text(rich_text_list):
+            return "".join([t["text"]["content"] for t in rich_text_list])
+        if block_type == "heading_1":
+            text = extract_text(block["heading_1"]["rich_text"])
+            lines.append(f"# {text}")
+        elif block_type == "heading_2":
+            text = extract_text(block["heading_2"]["rich_text"])
+            lines.append(f"## {text}")
+        elif block_type == "heading_3":
+            text = extract_text(block["heading_3"]["rich_text"])
+            lines.append(f"### {text}")
+        elif block_type == "bulleted_list_item":
+            text = extract_text(block["bulleted_list_item"]["rich_text"])
+            lines.append(f"- {text}")
+        elif block_type == "numbered_list_item":
+            text = extract_text(block["numbered_list_item"]["rich_text"])
+            lines.append(f"1. {text}")
+        elif block_type == "paragraph":
+            text = extract_text(block["paragraph"]["rich_text"])
+            lines.append(text)
+        elif block_type == "divider":
+            lines.append("---")
+    return "\n\n".join(lines)

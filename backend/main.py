@@ -5,8 +5,8 @@ from database import get_connection
 from schema import DocumentRequest, RefineSectionRequest, SaveDocumentRequest, PushToNotionRequest
 from prompt_builder import build_prompt, build_refine_section_prompt
 from llm import generate_llm_response
-from notion_service import push_document
-from datetime import date
+from notion_service import push_document, get_all_documents, get_document_content
+from cache import get_cache, set_cache
 
 app = FastAPI()
 
@@ -17,25 +17,39 @@ def root():
 
 @app.get("/categories")
 def get_categories():
+    cached = get_cache("categories")
+    if cached:
+        print("Categories served from cache")
+        return cached
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT id, category_name FROM categories")
     data = cursor.fetchall()
     conn.close()
+    set_cache("categories", data)
     return data
 
 @app.get("/document-types")
 def get_document_types():
+    cached = get_cache("document_types")
+    if cached:
+        print("Document types served from cache")
+        return cached
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM document_type")
     data = cursor.fetchall()
     conn.close()
+    set_cache("document_types", data)
     return data
-
 
 @app.get("/documents")
 def get_documents(category_id: int, document_type_id: int):
+    cache_key = f"documents_{category_id}_{document_type_id}"
+    cached = get_cache(cache_key)
+    if cached:
+        print(f"Documents served from cache for key: {cache_key}")
+        return cached
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
     query = """
@@ -47,10 +61,16 @@ def get_documents(category_id: int, document_type_id: int):
     cursor.execute(query, (category_id, document_type_id))
     data = cursor.fetchall()
     conn.close()
+    set_cache(cache_key, data)
     return data
 
 @app.get("/questions")
 def get_question(document_id: int):
+    cache_key = f"questions_{document_id}"
+    cached = get_cache(cache_key)
+    if cached:
+        print(f"Questions served from cache for key: {cache_key}")
+        return cached
     conn = get_connection()
     cursor = conn.cursor(dictionary=True)
     query = """
@@ -61,6 +81,7 @@ def get_question(document_id: int):
     cursor.execute(query, (document_id,))
     data = cursor.fetchall()
     conn.close()
+    set_cache(cache_key, data)
     return data
 
 
@@ -111,3 +132,14 @@ def push_to_notion(data: PushToNotionRequest):
         "page_id": result["page_id"],
         "url": result["url"]
     }
+
+@app.get("/notion-documents")
+def notion_documents():
+    documents = get_all_documents()
+    return documents
+
+
+@app.get("/notion-document/{page_id}")
+def notion_document(page_id: str):
+    content = get_document_content(page_id)
+    return {"content": content}

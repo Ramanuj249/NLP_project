@@ -43,7 +43,7 @@ class SaveDocumentRequest(BaseModel):
     category: DocumentCategory
     document_type: DocumentType
     document_content: str
-    version: Optional[str] = "1.0"
+    # version: Optional[str] = "1.0"
     author: Optional[str] = "Unknown"
 
 class PushToNotionRequest(BaseModel):
@@ -51,7 +51,7 @@ class PushToNotionRequest(BaseModel):
     document_name: str
     category: str
     document_type: str
-    version: Optional[str] = "1.0"
+    version: Optional[str] = None
     author: Optional[str] = "Unknown"
     industry: Optional[str] = ""
     content: str

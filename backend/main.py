@@ -106,6 +106,16 @@ def refine_section(data: RefineSectionRequest):
 def save_document(data: SaveDocumentRequest):
     conn = get_connection()
     cursor = conn.cursor()
+
+    # Count existing versions for this document
+    cursor.execute(
+        "SELECT COUNT(*) FROM generated_documents WHERE document_id = %s",
+        (data.document_id,)
+    )
+    count = cursor.fetchone()[0]
+    version = float(count + 1)
+    version_str = f"{int(version)}.0"
+
     query = """
     INSERT INTO generated_documents (
         document_id, document_name, category, document_type,
@@ -114,14 +124,15 @@ def save_document(data: SaveDocumentRequest):
     """
     cursor.execute(query, (
         data.document_id, data.document_name, data.category, data.document_type,
-        data.document_content, data.version, data.author
+        data.document_content, version_str, data.author
     ))
     conn.commit()
     inserted_id = cursor.lastrowid
     conn.close()
     return {
         "message": "Document saved successfully",
-        "generated_document_id": inserted_id
+        "generated_document_id": inserted_id,
+        "version": version_str
     }
 
 @app.post("/push-to-notion")

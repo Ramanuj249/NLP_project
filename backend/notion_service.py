@@ -220,7 +220,7 @@ def push_document(data: PushToNotionRequest):
             "type": {"rich_text": [{"type": "text", "text": {"content": data.document_type}}]},
             "created_by": {"rich_text": [{"type": "text", "text": {"content": data.author}}]},
             "industry": {"rich_text": [{"type": "text", "text": {"content": data.industry}}]},
-            "version": {"number": 1.0},
+            "version": {"number": float(data.version)},
             "created_date": {"date": {"start": data.created_date}},
         },
         children=chunks[0] if chunks else []

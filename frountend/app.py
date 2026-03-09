@@ -47,6 +47,12 @@ if "document_saved" not in st.session_state:
 if "notion_pushed" not in st.session_state:
     st.session_state.notion_pushed = False
 
+if "doc_version" not in st.session_state:
+    st.session_state.doc_version = None
+
+if "author_name" not in st.session_state:
+    st.session_state.author_name = None
+
 # if "components" not in st.session_state:
 #     st.session_state.components = []
 
@@ -86,6 +92,7 @@ def reset_review():
     st.session_state.final_doc_ready = False
     st.session_state.document_saved = False
     st.session_state.notion_pushed = False
+    st.session_state.author_name = None
 
 # --- Dropdowns for categories ---
 selected_category = st.selectbox(
@@ -262,27 +269,36 @@ if st.session_state.final_doc_ready:
     col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
 
     with col1:
-        if st.button("💾 Save Document", use_container_width=True):
-            if not st.session_state.document_saved:
-                with st.spinner("Saving document..."):
-                    payload = {
-                        "document_id": st.session_state.last_doc_id,
-                        "document_name": st.session_state.selected_doc_title,
-                        "category": st.session_state.selected_category,
-                        "document_type": st.session_state.selected_doc_type.upper(),
-                        "document_content": final_doc,
-                        "version": "1.0",
-                        "author": "Unknown"
-                    }
-                    res = requests.post(f"{BACKEND_URL}/save-document", json=payload)
-                    data = res.json()
-                    if res.status_code == 200:
-                        st.session_state.document_saved = True
-                        st.success(f"Document saved! ID: {data['generated_document_id']}")
-                    else:
-                        st.error("Something went wrong while saving. Please try again.")
-            else:
-                st.info("Document already saved.")
+        if not st.session_state.document_saved:
+            author_input = st.text_input(
+                "Enter your name to save",
+                placeholder="Your name...",
+                key="author_input"
+            )
+            if st.button("💾 Save Document", use_container_width=True):
+                if not author_input.strip():
+                    st.warning("Please enter your name before saving.")
+                else:
+                    with st.spinner("Saving document..."):
+                        payload = {
+                            "document_id": st.session_state.last_doc_id,
+                            "document_name": st.session_state.selected_doc_title,
+                            "category": st.session_state.selected_category,
+                            "document_type": st.session_state.selected_doc_type.upper(),
+                            "document_content": final_doc,
+                            "author": author_input.strip()
+                        }
+                        res = requests.post(f"{BACKEND_URL}/save-document", json=payload)
+                        data = res.json()
+                        if res.status_code == 200:
+                            st.session_state.document_saved = True
+                            st.session_state.author_name = author_input.strip()
+                            st.session_state.doc_version = data["version"]
+                            st.success(f"Document saved! Version: {data['version']} | Author: {author_input.strip()}")
+                        else:
+                            st.error("Something went wrong while saving. Please try again.")
+        else:
+            st.success(f"✅ Saved | Version: {st.session_state.doc_version} | Author: {st.session_state.author_name}")
 
     with col2:
         st.download_button(
@@ -296,28 +312,31 @@ if st.session_state.final_doc_ready:
     with col3:
         if st.button("Push to Notion", use_container_width=True):
             if not st.session_state.notion_pushed:
-                with st.spinner("Pushing to Notion..."):
-                    payload = {
-                        "document_id": st.session_state.last_doc_id,
-                        "document_name": st.session_state.selected_doc_title,
-                        "category": st.session_state.selected_category,
-                        "document_type": st.session_state.selected_doc_type.upper(),
-                        "version": "1.0",
-                        "author": "Unknown",
-                        "industry": st.session_state.selected_category,
-                        "content": final_doc,
-                        "created_date": date.today().isoformat(),
-                    }
-                    res = requests.post(f"{BACKEND_URL}/push-to-notion", json=payload)
-                    try:
-                        data = res.json()
-                        if res.status_code == 200:
-                            st.session_state.notion_pushed = True
-                            st.success(f"Pushed to Notion! [Open in Notion]({data['url']})")
-                        else:
-                            st.error(f"Error: {data}")
-                    except Exception as e:
-                        st.error(f"Backend error: {res.text}")
+                if not st.session_state.document_saved:
+                    st.warning("Please save the document first before pushing to Notion.")
+                else:
+                    with st.spinner("Pushing to Notion..."):
+                        payload = {
+                            "document_id": st.session_state.last_doc_id,
+                            "document_name": st.session_state.selected_doc_title,
+                            "category": st.session_state.selected_category,
+                            "document_type": st.session_state.selected_doc_type.upper(),
+                            "version": st.session_state.doc_version,
+                            "author": st.session_state.author_name or "Unknown",
+                            "industry": st.session_state.selected_category,
+                            "content": final_doc,
+                            "created_date": date.today().isoformat(),
+                        }
+                        res = requests.post(f"{BACKEND_URL}/push-to-notion", json=payload)
+                        try:
+                            data = res.json()
+                            if res.status_code == 200:
+                                st.session_state.notion_pushed = True
+                                st.success(f"Pushed to Notion! [Open in Notion]({data['url']})")
+                            else:
+                                st.error(f"Error: {data}")
+                        except Exception as e:
+                            st.error(f"Backend error: {res.text}")
 
             else:
                 st.info("Already pushed to Notion.")

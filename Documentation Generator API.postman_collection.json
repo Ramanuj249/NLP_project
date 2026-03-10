@@ -1,0 +1,283 @@
+{
+	"info": {
+		"_postman_id": "86e7ab0c-da8e-4bc1-ae37-5c769f89aaff",
+		"name": "Documentation Generator API",
+		"description": "Documentation Generator API Collection\n\nThis collection contains all APIs for the Documentation Generator platform —  \nan AI-powered tool for generating professional UCaaS industry documents.\n\nBase URL: [http://localhost:8000](http://localhost:8000)\n\nAPIs are organized into 4 groups:\n\n- Master Data: Fetch categories, document types, documents and questions\n    \n- Document Generation: Generate and refine documents using AI\n    \n- Storage: Save documents to MySQL database\n    \n- Notion: Push and retrieve documents from Notion",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "53059884",
+		"_collection_link": "https://shivam-turabit-6867649.postman.co/workspace/c15f45b5-7905-49a9-b763-7417f7adcb1a/collection/53059884-86e7ab0c-da8e-4bc1-ae37-5c769f89aaff?action=share&source=collection_link&creator=53059884"
+	},
+	"item": [
+		{
+			"name": "Master Data",
+			"item": [
+				{
+					"name": "Get Categories",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/categories\n",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"categories\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Document Types",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/document-types",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"document-types"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Documents",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/documents?category_id=1&document_type_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"documents"
+							],
+							"query": [
+								{
+									"key": "category_id",
+									"value": "1"
+								},
+								{
+									"key": "document_type_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Questions",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/questions?document_id=1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"questions"
+							],
+							"query": [
+								{
+									"key": "document_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Document Generation",
+			"item": [
+				{
+					"name": "Generate Document",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"category\": \"HR & People Operations\",\n    \"document_type\": \"POLICY\",\n    \"document_name\": \"Remote Work Policy\",\n    \"components\": \"[Purpose, Scope, Policy Statement, Roles & Responsibilities]\",\n    \"answers\": [\n        {\n            \"question\": \"What is the company name?\",\n            \"answer\": \"Software Integrated Solutions LLC\"\n        },\n        {\n            \"question\": \"What is the effective date?\",\n            \"answer\": \"2026-04-01\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/generate-document",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"generate-document"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refine Section",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"section_text\": \"## Purpose\\n\\nThis policy defines the remote work guidelines.\",\n    \"instruction\": \"Make this more formal and add a point about data security\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/refine-section",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"refine-section"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Storage",
+			"item": [
+				{
+					"name": "Save Document",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"document_id\": 1,\n    \"document_name\": \"Remote Work Policy\",\n    \"category\": \"HR & People Operations\",\n    \"document_type\": \"POLICY\",\n    \"document_content\": \"## Purpose\\n\\nThis is the full document content.\",\n    \"author\": \"John Doe\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/save-document",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"save-document"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Notion",
+			"item": [
+				{
+					"name": "Push to Notion",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"document_id\": 1,\n    \"document_name\": \"Remote Work Policy\",\n    \"category\": \"HR & People Operations\",\n    \"document_type\": \"POLICY\",\n    \"version\": \"1.0\",\n    \"author\": \"John Doe\",\n    \"industry\": \"UCaaS\",\n    \"content\": \"## Purpose\\n\\nThis policy defines remote work guidelines.\\n\\n---\\n\\n## Scope\\n\\nThis applies to all employees.\",\n    \"created_date\": \"2026-04-01\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8000/push-to-notion",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"push-to-notion"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Notion Document Content",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8000/notion-document/31ff97c2-3308-8193-a860-d63e38d639ce",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8000",
+							"path": [
+								"notion-document",
+								"31ff97c2-3308-8193-a860-d63e38d639ce"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Notion Documents",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Root Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

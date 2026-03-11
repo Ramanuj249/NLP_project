@@ -166,24 +166,30 @@ COMPONENT_DEPTH_MAP = {
 
 
 # UCaaS Industry Context
-UCAAS_CONTEXT = """
-## Industry Context — UCaaS (Unified Communications as a Service)
+SAAS_CONTEXT = """
+## Industry Context — SaaS (Software as a Service)
 
-This document is being created for the **UCaaS industry**. UCaaS refers to cloud-delivered 
-communication and collaboration services including voice, video, messaging, and contact center solutions.
+This document is being created for the **SaaS industry**. SaaS refers to cloud-based software
+delivery where applications are hosted and maintained by the provider and accessed by customers
+over the internet on a subscription basis.
 
 When writing this document you MUST apply the following industry context:
 
-- **Regulatory awareness**: UCaaS operates under telecom regulations, data privacy laws (GDPR, CCPA),
-  and cloud security frameworks (SOC 2, ISO 27001). Reference these where relevant.
-- **Technology context**: UCaaS platforms include solutions like Microsoft Teams, Zoom, RingCentral,
-  Cisco Webex, and similar. Reference relevant platforms and integrations where appropriate.
-- **Customer focus**: UCaaS businesses serve enterprise customers with SLAs, uptime guarantees,
-  and strict support requirements. Reflect this in tone and content.
-- **Key UCaaS roles**: Account Managers, Solution Engineers, Customer Success Managers, 
-  NOC Teams, Implementation Specialists, Support Agents. Use these roles where relevant.
-- **Industry standards**: Reference UCaaS best practices, telecom industry standards,
-  and cloud service delivery frameworks where applicable.
+- **Regulatory awareness**: SaaS operates under data privacy laws (GDPR, CCPA, HIPAA),
+  cloud security frameworks (SOC 2 Type II, ISO 27001, ISO 27017), and industry specific
+  compliance standards. Reference these where relevant.
+- **Technology context**: SaaS products are built on cloud infrastructure like AWS, Azure,
+  and GCP. They integrate with tools like Salesforce, HubSpot, Slack, Jira, and similar
+  enterprise platforms. Reference relevant integrations where appropriate.
+- **Customer focus**: SaaS businesses serve customers through subscription models with
+  strict SLAs, uptime guarantees, onboarding processes, and customer success programs.
+  Reflect this in tone and content.
+- **Key SaaS roles**: Product Managers, Customer Success Managers, Account Executives,
+  Solution Engineers, DevOps Engineers, Support Specialists, Onboarding Specialists,
+  and Implementation Consultants. Use these roles where relevant.
+- **Industry standards**: Reference SaaS best practices including subscription management,
+  customer lifecycle management, churn reduction, product led growth, and cloud service
+  delivery frameworks where applicable.
 """
 
 
@@ -218,7 +224,7 @@ def build_prompt(data: DocumentRequest) -> str:
     
     ---
     
-    {UCAAS_CONTEXT}
+    {SAAS_CONTEXT}
     
     ---
     

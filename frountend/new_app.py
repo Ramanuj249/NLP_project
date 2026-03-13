@@ -378,7 +378,7 @@ if st.session_state.final_doc_ready:
                                 "document_type": st.session_state.selected_doc_type.upper(),
                                 "version": st.session_state.doc_version,
                                 "author": st.session_state.author_name or "Unknown",
-                                "industry": "UCaaS",
+                                "industry": "SaaS",
                                 "content": final_doc,
                                 "created_date": date.today().isoformat()
                             }

@@ -1,11 +1,13 @@
 from fastapi import FastAPI, HTTPException
 from database import get_connection
-from schema import DocumentRequest, RefineSectionRequest, SaveDocumentRequest, PushToNotionRequest
+from schema import DocumentRequest, RefineSectionRequest, SaveDocumentRequest, PushToNotionRequest, RAGQueryRequest
 from prompt_builder import build_prompt, build_refine_section_prompt
 from llm import generate_llm_response
 from notion_service import push_document, get_all_documents, get_document_content
 from cache import get_cache, set_cache
-from logger import logger
+from rag.logger import logger
+from rag.rag_pipeline import ingest_documents
+from rag.agent import run_agent
 
 
 app = FastAPI()
@@ -211,3 +213,34 @@ def notion_document(page_id: str):
     except Exception as e:
         logger.error(f"Error in Fetching Document Content — {str(e)}")
         raise HTTPException(status_code=500, detail=f"Error in Fetching Document Content: {str(e)}")
+
+
+@app.post("/rag/ingest")
+def rag_ingest():
+    try:
+        logger.info("RAG ingestion started via API")
+        result = ingest_documents()
+        logger.info(f"RAG ingestion complete — {result['documents']} documents, {result['chunks']} chunks")
+        return {
+            "message": "Ingestion complete",
+            "documents": result["documents"],
+            "chunks": result["chunks"]
+        }
+    except Exception as e:
+        logger.error(f"RAG ingestion failed — {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Ingestion failed: {str(e)}")
+
+
+@app.post("/rag/chat")
+def rag_chat(data: RAGQueryRequest):
+    try:
+        logger.info(f"RAG chat query received: {data.query}")
+        result = run_agent(
+            user_query=data.query,
+            filters=data.filters
+        )
+        logger.info(f"RAG chat complete — tool used: {result['tool_used']}")
+        return result
+    except Exception as e:
+        logger.error(f"RAG chat failed — {str(e)}")
+        raise HTTPException(status_code=500, detail=f"RAG chat failed: {str(e)}")

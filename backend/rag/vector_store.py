@@ -2,7 +2,7 @@ import os
 os.environ["GRPC_VERBOSITY"] = "NONE"
 os.environ["GLOG_minloglevel"] = "3"
 
-from pymilvus import MilvusClient
+from pymilvus import MilvusClient, DataType
 
 MILVUS_DB = "./rag_documents.db"
 COLLECTION_NAME = "document_chunks"
@@ -16,12 +16,35 @@ def create_collection():
     if client.has_collection(COLLECTION_NAME):
         print(f"Collection '{COLLECTION_NAME}' already exists.")
         return
-    client.create_collection(
-        collection_name=COLLECTION_NAME,
-        dimension=VECTOR_DIM,
+
+    schema = MilvusClient.create_schema(auto_id=True, enable_dynamic_field=True)
+    schema.add_field(field_name="id", datatype=DataType.INT64, is_primary=True)
+    schema.add_field(field_name="vector", datatype=DataType.FLOAT_VECTOR, dim=VECTOR_DIM)
+    schema.add_field(field_name="text", datatype=DataType.VARCHAR, max_length=65535)
+    schema.add_field(field_name="page_id", datatype=DataType.VARCHAR, max_length=256)
+    schema.add_field(field_name="document_name", datatype=DataType.VARCHAR, max_length=512)
+    schema.add_field(field_name="document_type", datatype=DataType.VARCHAR, max_length=100)
+    schema.add_field(field_name="category", datatype=DataType.VARCHAR, max_length=256)
+    schema.add_field(field_name="industry", datatype=DataType.VARCHAR, max_length=256)
+    schema.add_field(field_name="author", datatype=DataType.VARCHAR, max_length=256)
+    schema.add_field(field_name="created_date", datatype=DataType.VARCHAR, max_length=100)
+    schema.add_field(field_name="chunk_index", datatype=DataType.INT64)
+    schema.add_field(field_name="total_chunks", datatype=DataType.INT64)
+
+    index_params = MilvusClient.prepare_index_params()
+    index_params.add_index(
+        field_name="vector",
+        index_type="AUTOINDEX",
         metric_type="COSINE"
     )
+
+    client.create_collection(
+        collection_name=COLLECTION_NAME,
+        schema=schema,
+        index_params=index_params
+    )
     print(f"Collection '{COLLECTION_NAME}' created successfully.")
+
 
 def insert_chunks(embedded_chunks: list):
     client = get_client()
@@ -37,8 +60,8 @@ def insert_chunks(embedded_chunks: list):
             "industry": chunk["metadata"].get("industry", ""),
             "author": chunk["metadata"].get("author", ""),
             "created_date": chunk["metadata"].get("created_date", ""),
-            "chunk_index": chunk["metadata"].get("chunk_index", 0),
-            "total_chunks": chunk["metadata"].get("total_chunks", 0)
+            "chunk_index": int(chunk["metadata"].get("chunk_index", 0)),
+            "total_chunks": int(chunk["metadata"].get("total_chunks", 0))
         })
     client.insert(collection_name=COLLECTION_NAME, data=data)
     print(f"Inserted {len(data)} chunks into Milvus.")

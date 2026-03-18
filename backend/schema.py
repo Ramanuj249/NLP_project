@@ -56,3 +56,19 @@ class PushToNotionRequest(BaseModel):
     industry: Optional[str] = ""
     content: str
     created_date: Optional[str] = date.today().isoformat()
+
+## RAG Models
+class IngestResponse(BaseModel):
+    message: str
+    documents: int
+    chunks: int
+
+class RAGQueryRequest(BaseModel):
+    query: str
+    filters: Optional[dict] = None
+
+class RAGQueryResponse(BaseModel):
+    answer: str
+    citations: list
+    tool_used: str
+    refined_query: str

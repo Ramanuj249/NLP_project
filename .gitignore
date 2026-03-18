@@ -4,3 +4,10 @@ __pycache__/
 .idea/
 .vscode/
 *.log
+
+backend/rag/*.db
+backend/rag/*.db-shm
+backend/rag/*.db-wal
+backend/app.log
+__pycache__/
+*.pyc

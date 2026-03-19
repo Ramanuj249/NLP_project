@@ -71,23 +71,37 @@ def extract_content(page_id: str) -> str:
     return "\n\n".join(lines)
 
 def load_all_documents() -> list:
-    response = notion.databases.query(database_id=DATABASE_ID)
     documents = []
+    start_cursor = None
 
-    for page in response["results"]:
-        try:
-            metadata = extract_metadata(page)
-            content = extract_content(metadata["page_id"])
+    while True:
+        if start_cursor:
+            response = notion.databases.query(
+                database_id=DATABASE_ID,
+                start_cursor=start_cursor
+            )
+        else:
+            response = notion.databases.query(database_id=DATABASE_ID)
 
-            if content.strip():
-                documents.append({
-                    "metadata": metadata,
-                    "content": content
-                })
-        except Exception as e:
-            print(f"Error loading page {page['id']}: {e}")
-            continue
-    documents = documents[:2]
+        for page in response["results"]:
+            try:
+                metadata = extract_metadata(page)
+                content = extract_content(metadata["page_id"])
+
+                if content.strip():
+                    documents.append({
+                        "metadata": metadata,
+                        "content": content
+                    })
+            except Exception as e:
+                print(f"Error loading page {page['id']}: {e}")
+                continue
+
+        if response.get("has_more"):
+            start_cursor = response["next_cursor"]
+        else:
+            break
+
     return documents
 
 if __name__ == "__main__":

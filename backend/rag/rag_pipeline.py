@@ -19,11 +19,8 @@ client = AzureOpenAI(
 DEPLOYMENT_NAME = os.getenv("DEPLOYMENT_NAME")
 
 
-
-
-
 ###### Ingestion Functions ######
-def ingest_documents():
+def ingest_documents(limit: int=None):
     try:
         logger.info("Ingestion started")
 
@@ -32,6 +29,12 @@ def ingest_documents():
 
         logger.info("Step 2 — Loading documents from Notion...")
         documents = load_all_documents()
+        print(f"DEBUG — Documents loaded before limit: {len(documents)}")
+
+        if limit:
+            documents = documents[:limit]
+            logger.info(f"Limited to {limit} documents for testing")
+
         logger.info(f"Loaded {len(documents)} documents")
 
         logger.info("Step 3 — Chunking documents...")

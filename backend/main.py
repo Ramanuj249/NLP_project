@@ -216,10 +216,10 @@ def notion_document(page_id: str):
 
 
 @app.post("/rag/ingest")
-def rag_ingest():
+def rag_ingest(limit: int = None):
     try:
         logger.info("RAG ingestion started via API")
-        result = ingest_documents()
+        result = ingest_documents(limit=limit)
         logger.info(f"RAG ingestion complete — {result['documents']} documents, {result['chunks']} chunks")
         return {
             "message": "Ingestion complete",

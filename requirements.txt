@@ -6,3 +6,11 @@ streamlit
 python-dotenv
 langchain-openai
 notion-client
+pymilvus
+milvus-lite
+tiktoken
+ragas
+
+langgraph
+langchain
+langchain-openai

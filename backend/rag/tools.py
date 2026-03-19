@@ -95,9 +95,13 @@ def search_tool(query: str, filters: dict = None) -> dict:
     query_vector = embed_text(query)
     chunks = search_chunk(
         query_vector=query_vector,
-        top_k=5,
+        top_k=10,
         filters=filters
     )
+    for i, chunk in enumerate(chunks):
+        print(f"Chunk {i + 1}: {chunk['metadata']['document_name']} — score: {chunk['score']}")
+        print(f"Text preview: {chunk['text'][:200]}")
+        print("─" * 30)
 
     if not chunks:
         return {

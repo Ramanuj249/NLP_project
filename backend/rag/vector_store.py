@@ -4,7 +4,7 @@ os.environ["GLOG_minloglevel"] = "3"
 
 from pymilvus import MilvusClient, DataType
 
-MILVUS_DB = "./rag_documents.db"
+MILVUS_DB = os.path.join(os.path.dirname(os.path.abspath(__file__)), "rag_documents.db")
 COLLECTION_NAME = "document_chunks"
 VECTOR_DIM = 3072
 
@@ -13,11 +13,12 @@ def get_client():
 
 def create_collection():
     client = get_client()
+    print(f"CREATE COLLECTION — DB Path: {MILVUS_DB}")
     if client.has_collection(COLLECTION_NAME):
         print(f"Collection '{COLLECTION_NAME}' already exists.")
         return
 
-    schema = MilvusClient.create_schema(auto_id=True, enable_dynamic_field=True)
+    schema = MilvusClient.create_schema(auto_id=False, enable_dynamic_field=True)
     schema.add_field(field_name="id", datatype=DataType.INT64, is_primary=True)
     schema.add_field(field_name="vector", datatype=DataType.FLOAT_VECTOR, dim=VECTOR_DIM)
     schema.add_field(field_name="text", datatype=DataType.VARCHAR, max_length=65535)
@@ -48,9 +49,11 @@ def create_collection():
 
 def insert_chunks(embedded_chunks: list):
     client = get_client()
+    print(f"INSERT CHUNKS — DB Path: {MILVUS_DB}")
     data = []
-    for chunk in embedded_chunks:
+    for i, chunk in enumerate(embedded_chunks):
         data.append({
+            "id": i + 1,
             "vector": chunk["vector"],
             "text": chunk["text"],
             "page_id": chunk["metadata"].get("page_id", ""),
@@ -63,6 +66,7 @@ def insert_chunks(embedded_chunks: list):
             "chunk_index": int(chunk["metadata"].get("chunk_index", 0)),
             "total_chunks": int(chunk["metadata"].get("total_chunks", 0))
         })
+    print(f"Sample chunk keys: {list(data[0].keys())}")
     client.insert(collection_name=COLLECTION_NAME, data=data)
     print(f"Inserted {len(data)} chunks into Milvus.")
 
@@ -116,11 +120,47 @@ def drop_collection():
     else:
         print(f"Collection '{COLLECTION_NAME}' does not exist.")
 
+
+def inspect_collection():
+    client = get_client()
+    print(f"DB Path: {MILVUS_DB}")
+    print(f"Collections available: {client.list_collections()}")
+
+    if not client.has_collection(COLLECTION_NAME):
+        print("Collection does not exist.")
+        return
+
+    # Get total count
+    stats = client.get_collection_stats(COLLECTION_NAME)
+    print(f"Total chunks stored: {stats['row_count']}")
+    print("─" * 50)
+
+    # Get sample records
+    results = client.query(
+        collection_name=COLLECTION_NAME,
+        filter="chunk_index >= 0",
+        output_fields=[
+            "id", "text", "document_name",
+            "document_type", "category",
+            "chunk_index", "total_chunks",
+            "vector"
+        ],
+        limit=5
+    )
+
+    print(f"Sample chunks (showing first 5):")
+    print("─" * 50)
+    for r in results:
+        print(f"ID: {r['id']}")
+        print(f"Document: {r['document_name']}")
+        print(f"Type: {r['document_type']}")
+        print(f"Category: {r['category']}")
+        print(f"Chunk: {r['chunk_index']} of {r['total_chunks']}")
+        print(f"Text preview: {r['text'][:150]}")
+        print(f"Vector exists: {r['vector'] is not None}")
+        print(f"Vector dimensions: {len(r['vector'])}")
+        print("─" * 50)
+
+
 if __name__ == "__main__":
-    try:
-        create_collection()
-        print("Collection ready!")
-        client = get_client()
-        print("Collections in DB:", client.list_collections())
-    except Exception as e:
-        print(f"Error: {e}")
+    inspect_collection()

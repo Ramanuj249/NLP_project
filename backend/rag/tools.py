@@ -66,9 +66,17 @@ Query: {query}"""
 
 #### Extract the Document for the comparing part.
 def extract_document_names(query: str) -> list:
-    prompt = f"""Extract the document names that the user wants to compare from the query below.
-    Return ONLY a Python list of document names like: ["Document A", "Document B"]
-    If no specific document names are mentioned return an empty list: []
+    prompt = f"""Extract the two document names the user wants to compare.
+    Return ONLY a Python list: ["Document A", "Document B"]
+    Rules:
+    - Extract core name only — remove words like "policy", "document", "the"
+    - Keep names short — 2 to 4 words maximum
+    - Return ONLY the Python list — nothing else
+    
+    Examples:
+    "Compare Code of Conduct and Work from Home" → ["Code of Conduct", "Work from Home"]
+    "Compare testing strategy and A/B testing" → ["testing strategy", "A/B testing"]
+    "Compare Remote Work Policy and Leave Policy" → ["Remote Work", "Leave"]
 
     Query: {query}"""
 
@@ -166,50 +174,82 @@ def compare_tool(doc_name_1: str, doc_name_2: str) -> dict:
 
     milvus_client = get_client()
 
-    # Fetch chunks from document 1
-    results_1 = milvus_client.query(
+    # Step 1 — find exact document names in Milvus
+    match_1 = milvus_client.query(
         collection_name=COLLECTION_NAME,
-        filter=f'document_name == "{doc_name_1}"',
-        output_fields=["text", "document_name", "document_type", "category", "page_id"]
+        filter=f'document_name like "%{doc_name_1}%"',
+        output_fields=["document_name", "document_type", "category", "page_id"],
+        limit=1
     )
 
-    # Fetch chunks from document 2
-    results_2 = milvus_client.query(
+    match_2 = milvus_client.query(
         collection_name=COLLECTION_NAME,
-        filter=f'document_name == "{doc_name_2}"',
-        output_fields=["text", "document_name", "document_type", "category", "page_id"]
+        filter=f'document_name like "%{doc_name_2}%"',
+        output_fields=["document_name", "document_type", "category", "page_id"],
+        limit=1
     )
 
-    if not results_1 and not results_2:
+    if not match_1:
         return {
-            "answer": f"Could not find documents: {doc_name_1} and {doc_name_2}",
+            "answer": f"Could not find document matching: {doc_name_1}",
             "citations": []
         }
 
-    # Build context for doc 1
-    context_1 = f"--- Document 1: {doc_name_1} ---\n"
-    for r in results_1[:5]:
-        context_1 += r["text"] + "\n"
+    if not match_2:
+        return {
+            "answer": f"Could not find document matching: {doc_name_2}",
+            "citations": []
+        }
 
-    # Build context for doc 2
-    context_2 = f"--- Document 2: {doc_name_2} ---\n"
-    for r in results_2[:5]:
-        context_2 += r["text"] + "\n"
+    exact_name_1 = match_1[0]["document_name"]
+    exact_name_2 = match_2[0]["document_name"]
+    logger.info(f"Exact names — Doc1: {exact_name_1} | Doc2: {exact_name_2}")
 
+    # Step 2 — use document name as search query
+    # embed the name and search within that specific document
+    query_vector_1 = embed_text(doc_name_1)
+    query_vector_2 = embed_text(doc_name_2)
+
+    # Step 3 — search Milvus with vector + document name filter
+    chunks_1 = search_chunk(
+        query_vector=query_vector_1,
+        top_k=10,
+        filters={"document_name_exact": exact_name_1}
+    )
+
+    chunks_2 = search_chunk(
+        query_vector=query_vector_2,
+        top_k=10,
+        filters={"document_name_exact": exact_name_2}
+    )
+
+    logger.info(f"Retrieved {len(chunks_1)} chunks for {exact_name_1}")
+    logger.info(f"Retrieved {len(chunks_2)} chunks for {exact_name_2}")
+
+    # Step 4 — build context
+    context_1 = f"=== Document 1: {exact_name_1} ===\n"
+    for chunk in chunks_1:
+        context_1 += chunk["text"] + "\n\n"
+
+    context_2 = f"=== Document 2: {exact_name_2} ===\n"
+    for chunk in chunks_2:
+        context_2 += chunk["text"] + "\n\n"
+
+    # Step 5 — LLM compares
     prompt = f"""You are a helpful assistant for a SaaS company.
-    Compare the following two documents clearly and professionally.
-    Highlight key similarities and differences.
-    Structure your comparison with clear sections.
+    Compare the following two documents in detail based on their content.
     
     {context_1}
     
     {context_2}
     
-    Provide a structured comparison covering:
-    1. Purpose and scope
-    2. Key similarities
-    3. Key differences
-    4. Summary"""
+    Provide a comprehensive structured comparison covering:
+    1. **Purpose & Scope** — What is each document about?
+    2. **Key Similarities** — What do both documents have in common?
+    3. **Key Differences** — How are they different?
+    4. **Summary** — Key takeaways
+    
+    Be specific and reference actual content from both documents."""
 
     response = client.chat.completions.create(
         model=DEPLOYMENT_NAME,
@@ -223,7 +263,17 @@ def compare_tool(doc_name_1: str, doc_name_2: str) -> dict:
     return {
         "answer": answer,
         "citations": [
-            {"document_name": doc_name_1},
-            {"document_name": doc_name_2}
+            {
+                "document_name": exact_name_1,
+                "document_type": match_1[0].get("document_type", ""),
+                "category": match_1[0].get("category", ""),
+                "page_id": match_1[0].get("page_id", "")
+            },
+            {
+                "document_name": exact_name_2,
+                "document_type": match_2[0].get("document_type", ""),
+                "category": match_2[0].get("category", ""),
+                "page_id": match_2[0].get("page_id", "")
+            }
         ]
     }

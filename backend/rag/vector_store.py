@@ -81,6 +81,8 @@ def search_chunk(query_vector: list, top_k: int = 5, filters: dict = None) -> li
             conditions.append(f'category == "{filters["category"]}"')
         if filters.get("industry"):
             conditions.append(f'industry == "{filters["industry"]}"')
+        if filters.get("document_name_exact"):
+            conditions.append(f'document_name == "{filters["document_name_exact"]}"')
         if conditions:
             filter_expr = " && ".join(conditions)
     results = client.search(

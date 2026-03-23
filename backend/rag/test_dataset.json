@@ -1,0 +1,54 @@
+
+[
+  {
+    "question": "What is the approval process required for employees to start or modify a remote work arrangement at Turabit LLC?",
+    "ground_truth": "Employees must submit a formal remote work request to their direct manager including the proposed duration and location, and it must be approved by both the direct manager and the department head. Any changes to the remote work location also require prior approval.",
+    "document_name": "Remote Work Policy"
+  },
+  {
+    "question": "What happens when a user exceeds the API rate limit at Turabit LLC?",
+    "ground_truth": "When a user exceeds the API rate limit, additional requests are automatically rejected and an HTTP 429 error response is returned. Repeated violations may result in temporary throttling, restricted access, or suspension of the API key.",
+    "document_name": "API Rate Limiting Policy"
+  },
+  {
+    "question": "What are the requirements for employees when expressing personal opinions about the company on social media?",
+    "ground_truth": "Employees must clearly distinguish personal opinions from official company positions and include a disclaimer such as 'The views expressed are my own and do not represent the views of my employer' when discussing company-related topics.",
+    "document_name": "Social Media Policy"
+  },
+  {
+    "question": "What are the key components included in the scope of the Turabit Cloud Security Platform implementation for NovaTech Solutions Inc.?",
+    "ground_truth": "The scope includes deployment and configuration of the Turabit platform, integration with existing systems and cloud infrastructure, security monitoring setup and policy configuration, user access setup with role-based permissions, and initial onboarding and training for client teams.",
+    "document_name": "Sales Proposal Template"
+  },
+  {
+    "question": "What are the obligations of the receiving party regarding the use and handling of confidential information under the NDA?",
+    "ground_truth": "The receiving party must use the confidential information solely for evaluating the potential partnership, ensure confidentiality is maintained by employees and advisors, implement appropriate security measures, and return or destroy the information within 30 days upon request.",
+    "document_name": "Non-Disclosure Agreement (NDA)"
+  },
+  {
+    "question": "What are the key development practices required to ensure accessibility in Turbait products?",
+    "ground_truth": "Developers must use semantic HTML, ensure full keyboard navigation, implement ARIA attributes where appropriate, maintain proper focus management, and test for compatibility with screen readers such as JAWS and NVDA.",
+    "document_name": "Turbait Product Accessibility Guidelines"
+  },
+  {
+    "question": "What is the primary purpose of the AI-Powered Workflow Recommendation Engine in the Turbait AI Data Automation Platform?",
+    "ground_truth": "The primary purpose is to enhance user experience by providing AI-driven workflow recommendations based on historical data and usage patterns, reducing manual configuration time and optimizing automation processes.",
+    "document_name": "Product Requirements Document (PRD) for AI-Powered Workflow Recommendation Engine"
+  },
+  {
+    "question": "What were the main user challenges identified in the User Research Report for the Turbait AI Data Automation Platform?",
+    "ground_truth": "Users struggled with configuring complex workflows, faced limited customization options in the analytics dashboard, and experienced inconsistent integration reliability with external systems.",
+    "document_name": "User Research Report"
+  },
+  {
+    "question": "What are the eligibility requirements for employees to access benefits at Turbait Technologies Pvt. Ltd?",
+    "ground_truth": "Employees must complete their probation period to be eligible for benefits and must access the HR portal for enrollment and management.",
+    "document_name": "Benefits Guide"
+  },
+  {
+    "question": "What are the key preconditions required before executing a database migration at DataCore Technologies Pvt. Ltd.?",
+    "ground_truth": "Key preconditions include completing and verifying a full database backup, reviewing and approving migration scripts, conducting testing in a staging environment, validating data integrity and constraints, informing stakeholders of the migration schedule, and ensuring monitoring tools are configured.",
+    "document_name": "Database Migration SOP"
+  }
+]
+

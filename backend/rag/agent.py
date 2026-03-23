@@ -12,7 +12,7 @@ from .tools import (
     compare_tool
 )
 from rag.logger import logger
-
+from .tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool
 
 class AgentState(TypedDict):
     user_query: str
@@ -90,19 +90,52 @@ def compare_node(state: AgentState) -> AgentState:
     return state
 
 
+def general_node(state: AgentState) -> AgentState:
+    logger.info("Running general node...")
+    is_general, response = handle_general_query(state["user_query"])
+
+    if is_general:
+        state["answer"] = response
+        state["citations"] = []
+        state["tool_used"] = "general"
+        state["refined_query"] = state["user_query"]
+
+    return state
+
+def check_general(state: AgentState) -> str:
+    is_general, response = handle_general_query(state["user_query"])
+    if is_general:
+        state["answer"] = response
+        state["citations"] = []
+        state["tool_used"] = "general"
+        state["refined_query"] = state["user_query"]
+        return "general"
+    return "refine"
+
 def build_agent():
     graph = StateGraph(AgentState)
 
     # Add nodes
+    graph.add_node("general", general_node)
     graph.add_node("refine", refine_node)
     graph.add_node("router", router_node)
     graph.add_node("search", search_node)
     graph.add_node("compare", compare_node)
 
     # Set entry point
-    graph.set_entry_point("refine")
+    graph.set_entry_point("check_general")
+    graph.add_node("check_general", lambda state: state)
 
     # Add edges
+    graph.add_conditional_edges(
+        "check_general",
+        check_general,
+        {
+            "general": "general",
+            "refine": "refine"
+        }
+    )
+    graph.add_edge("general", END)
     graph.add_edge("refine", "router")
     graph.add_conditional_edges(
         "router",
@@ -143,7 +176,6 @@ def run_agent(user_query: str, filters: dict = None) -> dict:
         "tool_used": final_state["tool_used"],
         "refined_query": final_state["refined_query"]
     }
-
 
 if __name__ == "__main__":
     # Test search

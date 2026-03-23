@@ -244,3 +244,30 @@ def rag_chat(data: RAGQueryRequest):
     except Exception as e:
         logger.error(f"RAG chat failed — {str(e)}")
         raise HTTPException(status_code=500, detail=f"RAG chat failed: {str(e)}")
+
+@app.get("/rag/documents")
+def rag_documents():
+    try:
+        from rag.vector_store import get_client, COLLECTION_NAME
+        client = get_client()
+        results = client.query(
+            collection_name=COLLECTION_NAME,
+            filter="chunk_index == 0",
+            output_fields=["document_name", "document_type", "category"],
+            limit=200
+        )
+        documents = []
+        seen = set()
+        for r in results:
+            if r["document_name"] not in seen:
+                seen.add(r["document_name"])
+                documents.append({
+                    "document_name": r["document_name"],
+                    "document_type": r["document_type"],
+                    "category": r["category"]
+                })
+        logger.info(f"RAG documents list returned — {len(documents)} documents")
+        return documents
+    except Exception as e:
+        logger.error(f"Error fetching RAG documents — {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))

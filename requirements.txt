@@ -14,3 +14,6 @@ ragas
 langgraph
 langchain
 langchain-openai
+
+ragas
+datasets

@@ -106,10 +106,10 @@ def search_tool(query: str, filters: dict = None) -> dict:
         top_k=10,
         filters=filters
     )
-    for i, chunk in enumerate(chunks):
-        print(f"Chunk {i + 1}: {chunk['metadata']['document_name']} — score: {chunk['score']}")
-        print(f"Text preview: {chunk['text'][:200]}")
-        print("─" * 30)
+    # for i, chunk in enumerate(chunks):
+    #     print(f"Chunk {i + 1}: {chunk['metadata']['document_name']} — score: {chunk['score']}")
+    #     print(f"Text preview: {chunk['text'][:200]}")
+    #     print("─" * 30)
 
     if not chunks:
         return {
@@ -260,6 +260,9 @@ def compare_tool(doc_name_1: str, doc_name_2: str) -> dict:
     answer = response.choices[0].message.content
     logger.info("Comparison generated successfully")
 
+    score_1 = round(chunks_1[0]["score"], 4) if chunks_1 else 1.0
+    score_2 = round(chunks_2[0]["score"], 4) if chunks_2 else 1.0
+
     return {
         "answer": answer,
         "citations": [
@@ -267,13 +270,49 @@ def compare_tool(doc_name_1: str, doc_name_2: str) -> dict:
                 "document_name": exact_name_1,
                 "document_type": match_1[0].get("document_type", ""),
                 "category": match_1[0].get("category", ""),
-                "page_id": match_1[0].get("page_id", "")
+                "page_id": match_1[0].get("page_id", ""),
+                "score": score_1
             },
             {
                 "document_name": exact_name_2,
                 "document_type": match_2[0].get("document_type", ""),
                 "category": match_2[0].get("category", ""),
-                "page_id": match_2[0].get("page_id", "")
+                "page_id": match_2[0].get("page_id", ""),
+                "score": score_2
             }
         ]
     }
+
+def handle_general_query(query: str) -> tuple[bool, str]:
+    prompt = f"""You are an AI document assistant for a SaaS company.
+You have access to 92 company documents including Policies, Procedures, Guides, Plans, Agreements and Records.
+
+The user sent this message: "{query}"
+
+First decide — is this a general greeting or conversation message OR is it a question about company documents?
+
+If it is a general greeting or conversation — respond naturally and helpfully. Tell the user what you can help with.
+If it is a document question — respond with exactly: DOCUMENT_QUERY
+
+Rules for general response:
+- Be friendly and professional
+- Mention you can search company documents
+- Mention you can compare two documents
+- Keep response concise — 2 to 3 sentences maximum
+- Never say you are an AI language model
+- Say you are a document assistant
+
+Respond with either DOCUMENT_QUERY or your friendly response."""
+
+    response = client.chat.completions.create(
+        model=DEPLOYMENT_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7
+    )
+
+    answer = response.choices[0].message.content.strip()
+
+    if answer == "DOCUMENT_QUERY":
+        return False, ""
+    else:
+        return True, answer

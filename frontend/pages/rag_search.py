@@ -12,6 +12,12 @@ if "chat_history" not in st.session_state:
 if "rag_documents" not in st.session_state:
     st.session_state.rag_documents = []
 
+if "default_scores" not in st.session_state:
+    st.session_state.default_scores = None
+
+if "default_scores_loaded" not in st.session_state:
+    st.session_state.default_scores_loaded = False
+
 # Load document list for compare
 if not st.session_state.rag_documents:
     try:
@@ -20,6 +26,21 @@ if not st.session_state.rag_documents:
             st.session_state.rag_documents = res.json()
     except:
         pass
+
+# Load default scores from MySQL once per session
+# This is instant — just a DB fetch, no evaluation running
+if not st.session_state.default_scores_loaded:
+    try:
+        res = requests.get(
+            f"{BACKEND_URL}/rag/evaluate/default",
+            timeout=900
+        )
+        if res.status_code == 200:
+            data = res.json()
+            st.session_state.default_scores = data["scores"]
+        st.session_state.default_scores_loaded = True
+    except:
+        st.session_state.default_scores_loaded = True
 
 # ─────────────────────────────────────────────
 # Header with Retrain button
@@ -47,71 +68,96 @@ with col2:
 st.divider()
 
 # ─────────────────────────────────────────────
-# Chat History
+# Main Layout — Chat (75%) | Evaluation (25%)
 # ─────────────────────────────────────────────
-for chat in st.session_state.chat_history:
-    # User message
-    with st.chat_message("user"):
-        st.write(chat["question"])
-
-    # Assistant response
-    with st.chat_message("assistant"):
-        result = chat["result"]
-        st.markdown(result.get("answer", ""))
-
-        # Tool used
-        col1, col2 = st.columns(2)
-        with col1:
-            st.caption(f"🛠️ Tool: {result.get('tool_used', '').upper()}")
-        with col2:
-            st.caption(f"🔎 Refined: {result.get('refined_query', '')[:60]}")
-
-        # Citations
-        citations = result.get("citations", [])
-        if citations:
-            with st.expander("📚 Citations"):
-                for cite in citations:
-                    doc_name = cite.get("document_name", "")
-                    doc_type = cite.get("document_type", "")
-                    page_id = cite.get("page_id", "")
-                    score = cite.get("score", "")
-
-                    # Build Notion URL
-                    if page_id:
-                        notion_url = f"https://notion.so/{page_id.replace('-', '')}"
-                        st.markdown(f"📄 [{doc_name}]({notion_url}) — {doc_type}")
-                    else:
-                        st.markdown(f"📄 {doc_name} — {doc_type}")
-
-                    if score:
-                        st.progress(float(score), text=f"Relevance: {score}")
-
-st.divider()
+chat_col, eval_col = st.columns([3, 1])
 
 # ─────────────────────────────────────────────
-# Input at bottom
+# LEFT — CHAT SECTION (75%)
 # ─────────────────────────────────────────────
-query = st.chat_input("Ask anything about your documents...")
+with chat_col:
 
-if query:
-    with st.spinner("Thinking..."):
-        payload = {
-            "query": query,
-            "filters": None
-        }
+    for chat in st.session_state.chat_history:
+        with st.chat_message("user"):
+            st.write(chat["question"])
 
-        res = requests.post(
-            f"{BACKEND_URL}/rag/chat",
-            json=payload,
-            timeout=60
-        )
+        with st.chat_message("assistant"):
+            result = chat["result"]
+            st.markdown(result.get("answer", ""))
 
-        if res.status_code == 200:
-            result = res.json()
-            st.session_state.chat_history.append({
-                "question": query,
-                "result": result
-            })
-            st.rerun()
-        else:
-            st.error("Search failed. Please try again.")
+            col1, col2 = st.columns(2)
+            with col1:
+                st.caption(f"🛠️ Tool: {result.get('tool_used', '').upper()}")
+            with col2:
+                st.caption(f"🔎 Refined: {result.get('refined_query', '')[:60]}")
+
+            citations = result.get("citations", [])
+            if citations:
+                with st.expander("📚 Citations"):
+                    for cite in citations:
+                        doc_name = cite.get("document_name", "")
+                        doc_type = cite.get("document_type", "")
+                        page_id = cite.get("page_id", "")
+                        score = cite.get("score", "")
+
+                        if page_id:
+                            notion_url = f"https://notion.so/{page_id.replace('-', '')}"
+                            st.markdown(f"📄 [{doc_name}]({notion_url}) — {doc_type}")
+                        else:
+                            st.markdown(f"📄 {doc_name} — {doc_type}")
+
+                        if score:
+                            st.progress(float(score), text=f"Relevance: {score}")
+
+    st.divider()
+
+    # Chat Input
+    query = st.chat_input("Ask anything about your documents...")
+
+    if query:
+        with st.spinner("Thinking..."):
+            payload = {
+                "query": query,
+                "filters": None
+            }
+            res = requests.post(
+                f"{BACKEND_URL}/rag/chat",
+                json=payload,
+                timeout=60
+            )
+            if res.status_code == 200:
+                result = res.json()
+                st.session_state.chat_history.append({
+                    "question": query,
+                    "result": result
+                })
+                st.rerun()
+            else:
+                st.error("Search failed. Please try again.")
+
+# ─────────────────────────────────────────────
+# RIGHT — DEFAULT EVALUATION SCORES (25%)
+# Fetched from MySQL instantly — no eval runs here
+# ─────────────────────────────────────────────
+with eval_col:
+    st.subheader("📊 RAG Evaluation")
+    st.caption("Default evaluation scores")
+    st.divider()
+
+    if st.session_state.default_scores:
+        scores = st.session_state.default_scores
+        st.metric("Faithfulness", f"{scores['faithfulness']:.2f}")
+        st.metric("Answer Relevancy", f"{scores['answer_relevancy']:.2f}")
+        st.metric("Context Precision", f"{scores['context_precision']:.2f}")
+        st.metric("Context Recall", f"{scores['context_recall']:.2f}")
+        st.caption(f"Based on {scores.get('num_questions', 10)} questions")
+    else:
+        st.info("No evaluation scores yet.")
+
+    st.divider()
+    st.caption("Want to run a custom evaluation?")
+    st.page_link(
+        "pages/rag_evaluate.py",
+        label="🧪 Custom Evaluation",
+        use_container_width=True
+    )

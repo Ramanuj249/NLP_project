@@ -1,11 +1,11 @@
-import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import os
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from dotenv import load_dotenv
 from openai import AzureOpenAI
-from .embedder import embed_text
-from .vector_store import search_chunk, get_client, COLLECTION_NAME
+from rag.embedder import embed_text
+from rag.vector_store import search_chunk, get_client, COLLECTION_NAME
 from rag.logger import logger
 
 load_dotenv()

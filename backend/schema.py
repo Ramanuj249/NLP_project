@@ -72,3 +72,29 @@ class RAGQueryResponse(BaseModel):
     citations: list
     tool_used: str
     refined_query: str
+
+
+## RAGAS Evaluation Models
+class EvaluationQuestion(BaseModel):
+    question: str
+    ground_truth: str
+    document_name: Optional[str] = None
+
+
+class EvaluationRequest(BaseModel):
+    questions: List[EvaluationQuestion]
+    evaluation_type: Literal["default", "custom"] = "custom"
+
+
+class EvaluationScores(BaseModel):
+    faithfulness: float
+    answer_relevancy: float
+    context_precision: float
+    context_recall: float
+    num_questions: int
+
+
+class EvaluationResponse(BaseModel):
+    scores: EvaluationScores
+    evaluation_type: Literal["default", "custom"]
+    message: str

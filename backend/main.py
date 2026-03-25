@@ -1,6 +1,7 @@
 from fastapi import FastAPI, HTTPException
 from database import get_connection
-from schema import DocumentRequest, RefineSectionRequest, SaveDocumentRequest, PushToNotionRequest, RAGQueryRequest
+from schema import DocumentRequest, RefineSectionRequest, SaveDocumentRequest, PushToNotionRequest, RAGQueryRequest, EvaluationRequest, EvaluationResponse, EvaluationScores
+
 from prompt_builder import build_prompt, build_refine_section_prompt
 from llm import generate_llm_response
 from notion_service import push_document, get_all_documents, get_document_content
@@ -271,3 +272,99 @@ def rag_documents():
     except Exception as e:
         logger.error(f"Error fetching RAG documents — {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
+
+
+@app.get("/rag/evaluate/default")
+def get_default_evaluation():
+    """
+    Called on page load.
+    Checks MySQL for latest default evaluation scores.
+    If no data exists → runs default evaluation automatically.
+    Returns latest scores.
+    """
+    try:
+        from rag.ragas_eval import get_latest_scores, run_default_evaluation
+
+        logger.info("Fetching default evaluation scores")
+
+        # Check if default scores exist in MySQL
+        scores = get_latest_scores("default")
+
+        if scores is None:
+            # No data yet — run default evaluation automatically
+            logger.info("No default evaluation found — running default evaluation automatically")
+            scores = run_default_evaluation()
+
+        logger.info(f"Default evaluation scores returned: {scores}")
+        return EvaluationResponse(
+            scores=EvaluationScores(
+                faithfulness=scores["faithfulness"],
+                answer_relevancy=scores["answer_relevancy"],
+                context_precision=scores["context_precision"],
+                context_recall=scores["context_recall"],
+                num_questions=scores.get("num_questions", 10)
+            ),
+            evaluation_type="default",
+            message="Default evaluation scores fetched successfully"
+        )
+    except Exception as e:
+        logger.error(f"Default evaluation failed — {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Default evaluation failed: {str(e)}")
+
+
+@app.post("/rag/evaluate")
+def run_custom_evaluation_endpoint(data: EvaluationRequest):
+    """
+    Called when user clicks Run Evaluation in UI with custom questions.
+    Validates 5-10 questions.
+    Runs RAGAS evaluation on user provided questions.
+    Saves to MySQL and returns scores.
+    """
+    try:
+        from rag.ragas_eval import run_custom_evaluation
+
+        # Validate question count
+        if len(data.questions) < 5:
+            raise HTTPException(
+                status_code=400,
+                detail="Minimum 5 questions required for custom evaluation"
+            )
+        if len(data.questions) > 10:
+            raise HTTPException(
+                status_code=400,
+                detail="Maximum 10 questions allowed for custom evaluation"
+            )
+
+        logger.info(f"Custom evaluation started with {len(data.questions)} questions")
+
+        # Convert Pydantic models to plain dicts for ragas_eval
+        questions = [
+            {
+                "question": q.question,
+                "ground_truth": q.ground_truth,
+                "document_name": q.document_name
+            }
+            for q in data.questions
+        ]
+
+        # Run evaluation
+        scores = run_custom_evaluation(questions)
+
+        logger.info(f"Custom evaluation complete — scores: {scores}")
+        return EvaluationResponse(
+            scores=EvaluationScores(
+                faithfulness=scores["faithfulness"],
+                answer_relevancy=scores["answer_relevancy"],
+                context_precision=scores["context_precision"],
+                context_recall=scores["context_recall"],
+                num_questions=scores["num_questions"]
+            ),
+            evaluation_type="custom",
+            message=f"Custom evaluation complete on {scores['num_questions']} questions"
+        )
+
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Custom evaluation failed — {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Custom evaluation failed: {str(e)}")

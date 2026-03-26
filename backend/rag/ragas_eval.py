@@ -341,10 +341,25 @@ def get_latest_scores(evaluation_type: str) -> dict:
         from database import get_connection
         conn = get_connection()
         cursor = conn.cursor(dictionary=True)
+        # First check if any rows exist for this evaluation_type
+        cursor.execute("""
+            SELECT COUNT(*) as total
+            FROM ragas_evaluations
+            WHERE evaluation_type = %s
+        """, (evaluation_type,))
+        count_row = cursor.fetchone()
+
+        # If no rows exist → return None so default eval runs once
+        if not count_row or count_row["total"] == 0:
+            cursor.close()
+            conn.close()
+            return None
+
+        # Rows exist → fetch latest scores only
         cursor.execute("""
             SELECT faithfulness, answer_relevancy,
                    context_precision, context_recall,
-                   COUNT(*) as num_questions, evaluated_at
+                   evaluated_at
             FROM ragas_evaluations
             WHERE evaluation_type = %s
             ORDER BY evaluated_at DESC
@@ -362,6 +377,7 @@ def get_latest_scores(evaluation_type: str) -> dict:
             "answer_relevancy": row["answer_relevancy"],
             "context_precision": row["context_precision"],
             "context_recall": row["context_recall"],
+            "num_questions": count_row["total"],
             "evaluated_at": str(row["evaluated_at"])
         }
     except Exception as e:

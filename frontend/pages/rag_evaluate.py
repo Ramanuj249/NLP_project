@@ -116,9 +116,11 @@ with form_col:
                     )
                     if res.status_code == 200:
                         data = res.json()
+                        # Save scores FIRST before clearing questions
                         st.session_state.eval_scores = data["scores"]
-                        st.session_state.eval_questions = []
                         st.session_state.eval_running = False
+                        # Clear questions AFTER scores are saved
+                        st.session_state.eval_questions = []
                         st.rerun()
                     else:
                         detail = res.json().get("detail", "Unknown error")

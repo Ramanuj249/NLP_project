@@ -2,6 +2,7 @@ import requests
 from datetime import date
 from callback import fetch_questions_for_document, render_questions, build_request_json
 import streamlit as st
+from sidebar_style import apply_sidebar_style
 
 BACKEND_URL = "http://localhost:8000"
 
@@ -13,6 +14,8 @@ st.set_page_config(
     page_icon="📄",
     layout="wide"
 )
+
+apply_sidebar_style()
 
 # ─────────────────────────────────────────────
 # Header
@@ -209,7 +212,6 @@ if st.session_state.review_mode and st.session_state.sections and not st.session
         st.subheader("✏️ Step 3 — Review & Edit Sections")
         st.caption("Review each section, request AI rewrites, and finalize before saving.")
 
-        # Progress
         col1, col2, col3 = st.columns(3)
         with col1:
             st.metric("Current Section", f"{idx + 1} of {total}")
@@ -221,13 +223,11 @@ if st.session_state.review_mode and st.session_state.sections and not st.session
         st.progress((idx + 1) / total)
         st.divider()
 
-        # Current section content
         with st.container(border=True):
             st.markdown(sections[idx])
 
         st.divider()
 
-        # Instruction box
         instruction = st.text_area(
             label="✏️ Describe the changes you want for this section",
             value=st.session_state.instructions[idx],
@@ -237,7 +237,6 @@ if st.session_state.review_mode and st.session_state.sections and not st.session
         )
         st.session_state.instructions[idx] = instruction
 
-        # Rewrite button
         if st.button("✨ Rewrite with AI", use_container_width=True):
             if instruction.strip() == "":
                 st.warning("Please write an instruction before requesting a rewrite.")
@@ -258,7 +257,6 @@ if st.session_state.review_mode and st.session_state.sections and not st.session
 
         st.divider()
 
-        # Navigation
         col1, col2, col3 = st.columns([1, 2, 1])
         with col1:
             if idx > 0:
@@ -286,7 +284,6 @@ if st.session_state.final_doc_ready:
     with st.container(border=True):
         st.subheader("🎉 Step 4 — Your Document is Ready!")
 
-        # Document info
         col1, col2, col3 = st.columns(3)
         with col1:
             st.metric("📄 Document", st.session_state.selected_doc_title[:30])
@@ -299,13 +296,11 @@ if st.session_state.final_doc_ready:
 
         final_doc = "\n\n---\n\n".join(st.session_state.sections)
 
-        # Document preview
         with st.expander("👁️ Preview Full Document", expanded=False):
             st.markdown(final_doc)
 
         st.divider()
 
-        # Save section
         if not st.session_state.document_saved:
             with st.container(border=True):
                 st.subheader("💾 Save Document")
@@ -351,7 +346,6 @@ if st.session_state.final_doc_ready:
 
         st.divider()
 
-        # Action buttons
         col1, col2, col3 = st.columns([1, 1, 1])
 
         with col1:

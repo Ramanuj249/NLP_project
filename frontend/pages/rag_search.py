@@ -1,7 +1,11 @@
 import requests
 import streamlit as st
+from sidebar_style import apply_sidebar_style
 
 BACKEND_URL = "http://localhost:8000"
+
+st.set_page_config(page_title="Ask Your Documents", page_icon="💬", layout="wide")
+apply_sidebar_style()
 
 # ─────────────────────────────────────────────
 # Session State
@@ -18,7 +22,6 @@ if "default_scores" not in st.session_state:
 if "default_scores_loaded" not in st.session_state:
     st.session_state.default_scores_loaded = False
 
-# Load document list for compare
 if not st.session_state.rag_documents:
     try:
         res = requests.get(f"{BACKEND_URL}/rag/documents", timeout=5)
@@ -27,14 +30,9 @@ if not st.session_state.rag_documents:
     except:
         pass
 
-# Load default scores from MySQL once per session
-# This is instant — just a DB fetch, no evaluation running
 if not st.session_state.default_scores_loaded:
     try:
-        res = requests.get(
-            f"{BACKEND_URL}/rag/evaluate/default",
-            timeout=900
-        )
+        res = requests.get(f"{BACKEND_URL}/rag/evaluate/default", timeout=900)
         if res.status_code == 200:
             data = res.json()
             st.session_state.default_scores = data["scores"]
@@ -43,21 +41,18 @@ if not st.session_state.default_scores_loaded:
         st.session_state.default_scores_loaded = True
 
 # ─────────────────────────────────────────────
-# Header with Retrain button
+# Header
 # ─────────────────────────────────────────────
 col1, col2 = st.columns([5, 1])
 with col1:
-    st.title("🔍 RAG Document Search")
-    st.caption("Ask anything about your documents.")
+    st.title("💬 Ask Your Documents")
+    st.caption("Ask anything about your documents — powered by RAG.")
 with col2:
     st.write("")
     st.write("")
     if st.button("🔄 Retrain", use_container_width=True):
         with st.spinner("Retraining..."):
-            res = requests.post(
-                f"{BACKEND_URL}/rag/ingest",
-                timeout=900
-            )
+            res = requests.post(f"{BACKEND_URL}/rag/ingest", timeout=900)
             if res.status_code == 200:
                 data = res.json()
                 st.toast(f"Retrained on {data['documents']} documents!", icon="✅")
@@ -73,7 +68,7 @@ st.divider()
 chat_col, eval_col = st.columns([3, 1])
 
 # ─────────────────────────────────────────────
-# LEFT — CHAT SECTION (75%)
+# LEFT — CHAT SECTION
 # ─────────────────────────────────────────────
 with chat_col:
 
@@ -111,37 +106,25 @@ with chat_col:
 
     st.divider()
 
-    # Chat Input
     query = st.chat_input("Ask anything about your documents...")
 
     if query:
         with st.spinner("Thinking..."):
-            payload = {
-                "query": query,
-                "filters": None
-            }
-            res = requests.post(
-                f"{BACKEND_URL}/rag/chat",
-                json=payload,
-                timeout=60
-            )
+            payload = {"query": query, "filters": None}
+            res = requests.post(f"{BACKEND_URL}/rag/chat", json=payload, timeout=60)
             if res.status_code == 200:
                 result = res.json()
-                st.session_state.chat_history.append({
-                    "question": query,
-                    "result": result
-                })
+                st.session_state.chat_history.append({"question": query, "result": result})
                 st.rerun()
             else:
                 st.error("Search failed. Please try again.")
 
 # ─────────────────────────────────────────────
-# RIGHT — DEFAULT EVALUATION SCORES (25%)
-# Fetched from MySQL instantly — no eval runs here
+# RIGHT — EVALUATION SCORES SIDEBAR PANEL
 # ─────────────────────────────────────────────
 with eval_col:
-    st.subheader("📊 RAG Evaluation")
-    st.caption("Default evaluation scores")
+    st.subheader("📊 RAG Health")
+    st.caption("Live evaluation scores")
     st.divider()
 
     if st.session_state.default_scores:
@@ -155,9 +138,9 @@ with eval_col:
         st.info("No evaluation scores yet.")
 
     st.divider()
-    st.caption("Want to run a custom evaluation?")
+    st.caption("Run a custom evaluation:")
     st.page_link(
         "pages/rag_evaluate.py",
-        label="🧪 Custom Evaluation",
+        label="📊 Evaluate RAG Quality",
         use_container_width=True
     )

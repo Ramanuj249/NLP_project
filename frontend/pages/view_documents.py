@@ -1,10 +1,14 @@
 import requests
 import streamlit as st
+from sidebar_style import apply_sidebar_style
 
 BACKEND_URL = "http://localhost:8000"
 
-st.title("📚 Notion Documents")
-st.caption("Click on any document to view its content.")
+st.set_page_config(page_title="View Notion Documents", page_icon="📁", layout="wide")
+apply_sidebar_style()
+
+st.title("📁 View Notion Documents")
+st.caption("Browse all documents that have been pushed to Notion.")
 st.divider()
 
 # ─────────────────────────────────────────────
@@ -45,7 +49,6 @@ st.divider()
 for doc in documents:
     with st.expander(f"📄 {doc['name']}  |  {doc.get('type', '-')}  |  {doc.get('created_date', '-')}"):
 
-        # Metadata row
         col1, col2, col3, col4 = st.columns([3, 2, 2, 2])
         with col1:
             st.caption(f"**Name:** {doc['name']}")
@@ -58,7 +61,6 @@ for doc in documents:
 
         st.divider()
 
-        # Load content button
         key = f"load_{doc['page_id']}"
         if key not in st.session_state:
             st.session_state[key] = None

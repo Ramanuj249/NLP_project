@@ -1,7 +1,11 @@
 import requests
 import streamlit as st
+from sidebar_style import apply_sidebar_style
 
 BACKEND_URL = "http://localhost:8000"
+
+st.set_page_config(page_title="Evaluate RAG Quality", page_icon="📊", layout="wide")
+apply_sidebar_style()
 
 # ─────────────────────────────────────────────
 # Session State
@@ -18,8 +22,8 @@ if "eval_running" not in st.session_state:
 # ─────────────────────────────────────────────
 # Header
 # ─────────────────────────────────────────────
-st.title("🧪 Custom RAG Evaluation")
-st.caption("Add 5 to 10 questions with ground truth answers to evaluate your RAG pipeline.")
+st.title("📊 Evaluate RAG Quality")
+st.caption("Add 5 to 10 questions with ground truth answers to evaluate your RAG pipeline using RAGAS.")
 st.divider()
 
 # ─────────────────────────────────────────────
@@ -34,7 +38,6 @@ with form_col:
     st.markdown("### ➕ Add Questions")
     st.caption(f"Questions added: **{len(st.session_state.eval_questions)}** / 10")
 
-    # ── Input form for new question ──
     if len(st.session_state.eval_questions) < 10:
         with st.form(key="add_question_form", clear_on_submit=True):
             new_question = st.text_area(
@@ -63,13 +66,11 @@ with form_col:
                     st.rerun()
                 else:
                     st.warning("⚠️ Please fill in both Question and Ground Truth before adding.")
-
     else:
         st.info("✅ Maximum of 10 questions reached.")
 
     st.divider()
 
-    # ── Added Questions List ──
     if st.session_state.eval_questions:
         st.markdown("### 📋 Added Questions")
 
@@ -88,7 +89,6 @@ with form_col:
 
     st.divider()
 
-    # ── Run Evaluation Button ──
     questions_count = len(st.session_state.eval_questions)
 
     if questions_count >= 5:
@@ -116,10 +116,8 @@ with form_col:
                     )
                     if res.status_code == 200:
                         data = res.json()
-                        # Save scores FIRST before clearing questions
                         st.session_state.eval_scores = data["scores"]
                         st.session_state.eval_running = False
-                        # Clear questions AFTER scores are saved
                         st.session_state.eval_questions = []
                         st.rerun()
                     else:
@@ -146,31 +144,14 @@ with score_col:
         scores = st.session_state.eval_scores
 
         st.success("✅ Evaluation Complete!")
-        st.metric(
-            label="Faithfulness",
-            value=f"{scores['faithfulness']:.2f}",
-            help="How factually consistent the answer is with the retrieved context"
-        )
-        st.metric(
-            label="Answer Relevancy",
-            value=f"{scores['answer_relevancy']:.2f}",
-            help="How relevant the answer is to the question asked"
-        )
-        st.metric(
-            label="Context Precision",
-            value=f"{scores['context_precision']:.2f}",
-            help="Whether the retrieved chunks are useful for answering"
-        )
-        st.metric(
-            label="Context Recall",
-            value=f"{scores['context_recall']:.2f}",
-            help="Whether all needed information was retrieved"
-        )
+        st.metric(label="Faithfulness", value=f"{scores['faithfulness']:.2f}", help="How factually consistent the answer is with the retrieved context")
+        st.metric(label="Answer Relevancy", value=f"{scores['answer_relevancy']:.2f}", help="How relevant the answer is to the question asked")
+        st.metric(label="Context Precision", value=f"{scores['context_precision']:.2f}", help="Whether the retrieved chunks are useful for answering")
+        st.metric(label="Context Recall", value=f"{scores['context_recall']:.2f}", help="Whether all needed information was retrieved")
         st.divider()
         st.caption(f"Evaluated on {scores['num_questions']} questions")
         st.caption("Results saved to database ✅")
 
-        # Reset button to run another evaluation
         if st.button("🔄 Run Another Evaluation", use_container_width=True):
             st.session_state.eval_scores = None
             st.session_state.eval_questions = []

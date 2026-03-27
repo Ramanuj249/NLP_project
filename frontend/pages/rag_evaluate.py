@@ -118,7 +118,7 @@ with form_col:
                         data = res.json()
                         st.session_state.eval_scores = data["scores"]
                         st.session_state.eval_running = False
-                        st.session_state.eval_questions = []
+                        # Don't clear questions here — keep them visible with results
                         st.rerun()
                     else:
                         detail = res.json().get("detail", "Unknown error")

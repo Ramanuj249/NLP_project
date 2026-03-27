@@ -77,61 +77,82 @@ chat_col, eval_col = st.columns([3, 1])
 # LEFT — CHAT SECTION
 # ─────────────────────────────────────────────
 with chat_col:
-
     for chat in st.session_state.chat_history:
         with st.chat_message("user"):
             st.write(chat["question"])
 
-        with st.chat_message("assistant"):
-            result = chat["result"]
-            st.markdown(result.get("answer", ""))
+        if chat["result"] is None:
+            with st.chat_message("assistant"):
+                st.markdown("⏳ Searching your documents...")
+        else:
+            with st.chat_message("assistant"):
+                result = chat["result"]
+                st.markdown(result.get("answer", ""))
 
-            col1, col2 = st.columns(2)
-            with col1:
-                st.caption(f"🛠️ Tool: {result.get('tool_used', '').upper()}")
-            with col2:
-                st.caption(f"🔎 Refined: {result.get('refined_query', '')[:60]}")
+                col1, col2 = st.columns(2)
+                with col1:
+                    st.caption(f"🛠️ Tool: {result.get('tool_used', '').upper()}")
+                with col2:
+                    st.caption(f"🔎 Refined: {result.get('refined_query', '')[:60]}")
 
-            citations = result.get("citations", [])
-            if citations:
-                with st.expander("📚 Citations"):
-                    for cite in citations:
-                        doc_name = cite.get("document_name", "")
-                        doc_type = cite.get("document_type", "")
-                        page_id = cite.get("page_id", "")
-                        score = cite.get("score", "")
+                citations = result.get("citations", [])
+                if citations:
+                    with st.expander("📚 Citations"):
+                        for cite in citations:
+                            doc_name = cite.get("document_name", "")
+                            doc_type = cite.get("document_type", "")
+                            page_id = cite.get("page_id", "")
+                            score = cite.get("score", "")
 
-                        if page_id:
-                            notion_url = f"https://notion.so/{page_id.replace('-', '')}"
-                            st.markdown(f"📄 [{doc_name}]({notion_url}) — {doc_type}")
-                        else:
-                            st.markdown(f"📄 {doc_name} — {doc_type}")
+                            if page_id:
+                                notion_url = f"https://notion.so/{page_id.replace('-', '')}"
+                                st.markdown(f"📄 [{doc_name}]({notion_url}) — {doc_type}")
+                            else:
+                                st.markdown(f"📄 {doc_name} — {doc_type}")
 
-                        if score:
-                            st.progress(float(score), text=f"Relevance: {score}")
+                            if score:
+                                st.progress(float(score), text=f"Relevance: {score}")
+
                 if result.get("ticket_created"):
                     ticket_url = result.get("ticket_url", "")
                     st.warning(
                         f"🎫 Support ticket raised for this query. "
                         f"[View Ticket in Notion]({ticket_url})"
                     )
+
     st.divider()
 
-    query = st.chat_input("Ask anything about your documents...")
+    # ── Single chat input with unique key ──
+    query = st.chat_input("Ask anything about your documents...", key="chat_input")
 
     if query:
+        st.session_state.chat_history.append({"question": query, "result": None})
+        st.rerun()
+
+    if st.session_state.chat_history and st.session_state.chat_history[-1]["result"] is None:
         with st.spinner("Thinking..."):
-            payload = {"query": query, "filters": None, "messages": st.session_state.messages, "summary": st.session_state.summary}
+            last = st.session_state.chat_history[-1]
+            payload = {
+                "query": last["question"],
+                "filters": None,
+                "messages": st.session_state.messages,
+                "summary": st.session_state.summary
+            }
             res = requests.post(f"{BACKEND_URL}/rag/chat", json=payload, timeout=60)
             if res.status_code == 200:
                 result = res.json()
-                st.session_state.chat_history.append({"question": query, "result": result})
-                # Update memory state from agent response
+                st.session_state.chat_history[-1]["result"] = result
                 st.session_state.messages = result.get("messages", [])
                 st.session_state.summary = result.get("summary", "")
                 st.rerun()
             else:
-                st.error("Search failed. Please try again.")
+                st.session_state.chat_history[-1]["result"] = {
+                    "answer": "Search failed. Please try again.",
+                    "citations": [], "tool_used": "", "refined_query": "",
+                    "messages": st.session_state.messages,
+                    "summary": st.session_state.summary
+                }
+                st.rerun()
 
 # ─────────────────────────────────────────────
 # RIGHT — EVALUATION SCORES SIDEBAR PANEL

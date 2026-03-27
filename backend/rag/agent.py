@@ -309,6 +309,21 @@ def run_agent(user_query: str, filters: dict = None,
         "content": final_state["answer"]
     })
 
+    # ── Log memory state after every query ──
+    logger.info("=" * 60)
+    logger.info(f"[MEMORY] Total messages in history: {len(updated_messages)}")
+    for i, msg in enumerate(updated_messages):
+        role = msg.get("role", "").upper()
+        content = msg.get("content", "")[:80]  # first 80 chars only
+        logger.info(f"[MEMORY] msg[{i}] {role}: {content}")
+
+    current_summary = final_state.get("summary", "")
+    if current_summary:
+        logger.info(f"[MEMORY] Summary: {current_summary[:200]}")
+    else:
+        logger.info("[MEMORY] Summary: (empty — not yet summarized)")
+    logger.info("=" * 60)
+
     return {
         "answer": final_state["answer"],
         "citations": final_state["citations"],

@@ -51,9 +51,9 @@ def refine_query(user_query: str) -> str:
 #######  check of the query is for the comparing or not. #######
 def is_compare_query(query: str) -> bool:
     prompt = f"""Does the following query ask to compare two or more documents?
-Answer with only YES or NO.
-
-Query: {query}"""
+    Answer with only YES or NO.
+    
+    Query: {query}"""
 
     response = client.chat.completions.create(
         model=DEPLOYMENT_NAME,
@@ -96,7 +96,7 @@ def extract_document_names(query: str) -> list:
         logger.warning("Could not extract document names")
         return []
 
-######## tool for he searching the relevant document for the user query. ########
+######## tool for the searching the relevant document for the user query. ########
 def search_tool(query: str, filters: dict = None) -> dict:
     logger.info(f"Search tool called with query: {query}")
 
@@ -283,19 +283,35 @@ def compare_tool(doc_name_1: str, doc_name_2: str) -> dict:
         ]
     }
 
-def handle_general_query(query: str) -> tuple[bool, str]:
+
+def handle_general_query(query: str, messages: list = None, summary: str = "") -> tuple[bool, str]:
+    # Build conversation context from memory
+    context = ""
+    if summary:
+        context += f"Previous conversation summary:\n{summary}\n\n"
+
+    if messages:
+        context += "Recent conversation:\n"
+        for msg in messages[-4:]:  # last 4 messages only
+            role = msg.get("role", "").capitalize()
+            content = msg.get("content", "")
+            context += f"{role}: {content}\n"
+        context += "\n"
+
     prompt = f"""You are an AI document assistant for a SaaS company.
 You have access to 92 company documents including Policies, Procedures, Guides, Plans, Agreements and Records.
 
-The user sent this message: "{query}"
+{context}
+Current message from user: "{query}"
 
 First decide — is this a general greeting or conversation message OR is it a question about company documents?
 
-If it is a general greeting or conversation — respond naturally and helpfully. Tell the user what you can help with.
+If it is a general greeting or conversation — respond naturally and helpfully using the conversation history above.
 If it is a document question — respond with exactly: DOCUMENT_QUERY
 
 Rules for general response:
 - Be friendly and professional
+- Use conversation history to answer personal questions (like remembering user's name)
 - Mention you can search company documents
 - Mention you can compare two documents
 - Keep response concise — 2 to 3 sentences maximum
@@ -316,3 +332,126 @@ Respond with either DOCUMENT_QUERY or your friendly response."""
         return False, ""
     else:
         return True, answer
+
+######## This is for the checking the message is available or not ########
+def check_answer_quality(question: str, answer: str) -> bool:
+    """
+    Uses LLM to judge if the answer properly addresses
+    the user's question.
+
+    Why LLM instead of hardcoded phrases:
+    - Understands meaning not just exact phrases
+    - Catches any form of "no answer found"
+    - Works even if LLM phrases response differently
+    - More intelligent and flexible
+
+    Args:
+        question : original user question
+        answer   : answer returned by search_tool
+
+    Returns:
+        True  → answer is good → return to user
+        False → answer is bad  → create ticket
+    """
+    logger.info(f"Checking answer quality for: {question[:50]}")
+
+    prompt = f"""You are evaluating whether an answer properly addresses a user's question.
+
+    Question: {question}
+    
+    Answer: {answer}
+    
+    Carefully evaluate:
+    - Does the answer contain relevant information about the question?
+    - Or does it say it could not find information?
+    - Or is it vague and does not address the question at all?
+    
+    Reply with ONLY one word:
+    YES — if the answer properly addresses the question
+    NO  — if the answer could not find relevant information or is vague
+    
+    Your reply:"""
+
+    response = client.chat.completions.create(
+        model=DEPLOYMENT_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.0
+    )
+
+    result = response.choices[0].message.content.strip().upper()
+    is_good = result == "YES"
+
+    logger.info(f"Answer quality check: {'GOOD' if is_good else 'BAD — will create ticket'}")
+    return is_good
+
+######## This funstions is for the summarizing the history ########
+def summarize_messages(messages: list, existing_summary: str = "") -> str:
+    """
+    Summarizes the oldest 4 messages into a compact summary.
+    Combines with existing summary if one exists.
+
+    How it works:
+    - Takes messages list (at least 4 messages)
+    - Formats them as readable conversation
+    - Sends to LLM with existing summary
+    - LLM creates updated compact summary
+    - Returns updated summary string
+
+    Args:
+        messages         : list of message dicts
+                           each dict has 'role' and 'content'
+        existing_summary : previous summary (empty on first call)
+
+    Returns:
+        updated summary string (max ~200 words)
+    """
+    logger.info("Summarizing conversation messages...")
+
+    # Format oldest 4 messages into readable text
+    messages_text = ""
+    for msg in messages[:4]:
+        role = msg.get("role", "unknown").capitalize()
+        content = msg.get("content", "")
+        messages_text += f"{role}: {content}\n\n"
+
+    # Build prompt — combines existing summary with new messages
+    if existing_summary:
+        prompt = f"""You are summarizing a conversation between a user and a document assistant.
+
+    Existing summary of earlier conversation:
+    {existing_summary}
+    
+    New messages to add to the summary:
+    {messages_text}
+    
+    Create an updated summary that:
+    - Combines the existing summary with the new messages
+    - Captures key topics discussed
+    - Captures questions asked and answers given
+    - Is concise — maximum 200 words
+    - Written in third person (e.g. "User asked about...")
+    
+    Updated summary:"""
+    else:
+        prompt = f"""You are summarizing a conversation between a user and a document assistant.
+
+    Conversation to summarize:
+    {messages_text}
+    
+    Create a summary that:
+    - Captures key topics discussed
+    - Captures questions asked and answers given
+    - Is concise — maximum 200 words
+    - Written in third person (e.g. "User asked about...")
+    
+    Summary:"""
+
+    response = client.chat.completions.create(
+        model=DEPLOYMENT_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.0
+    )
+
+    summary = response.choices[0].message.content.strip()
+    logger.info(f"Summary generated: {summary[:100]}...")
+    return summary

@@ -66,6 +66,8 @@ class IngestResponse(BaseModel):
 class RAGQueryRequest(BaseModel):
     query: str
     filters: Optional[dict] = None
+    messages: Optional[list] = []
+    summary: Optional[str] = ""
 
 class RAGQueryResponse(BaseModel):
     answer: str

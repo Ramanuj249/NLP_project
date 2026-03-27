@@ -1,5 +1,6 @@
 import os
 import re
+from datetime import date
 from notion_client import Client
 from dotenv import load_dotenv
 from schema import PushToNotionRequest
@@ -8,6 +9,7 @@ load_dotenv()
 
 notion = Client(auth=os.getenv("NOTION_API_TOKEN"))
 DATABASE_ID = os.getenv("NOTION_DATABASE_ID")
+TICKET_DATABASE_ID = os.getenv("NOTION_TICKET_DATABASE_ID")
 
 
 # ─────────────────────────────────────────────
@@ -42,10 +44,10 @@ def parse_rich_text(text: str) -> list:
 # Table Parser
 # ─────────────────────────────────────────────
 
-def is_table_row(line: str) -> bool: # helper functions
+def is_table_row(line: str) -> bool:
     return line.strip().startswith("|") and line.strip().endswith("|")
 
-def is_separator_row(line: str) -> bool: # helper functions
+def is_separator_row(line: str) -> bool:
     return is_table_row(line) and all(c in "|- :" for c in line.strip())
 
 def parse_table_rows(lines: list, start_idx: int):
@@ -67,7 +69,6 @@ def parse_table_rows(lines: list, start_idx: int):
 
     col_count = max(len(row) for row in rows)
 
-    # Pad rows to same column count
     for row in rows:
         while len(row) < col_count:
             row.append("")
@@ -111,12 +112,10 @@ def markdown_to_notion_blocks(content: str) -> list:
         line = lines[i]
         stripped = line.strip()
 
-        # --- Empty line → skip ---
         if stripped == "":
             i += 1
             continue
 
-        # --- Divider ---
         elif stripped == "---":
             blocks.append({
                 "object": "block",
@@ -125,7 +124,6 @@ def markdown_to_notion_blocks(content: str) -> list:
             })
             i += 1
 
-        # --- Heading 1 ---
         elif stripped.startswith("# ") and not stripped.startswith("## "):
             text = stripped[2:].strip()
             blocks.append({
@@ -135,7 +133,6 @@ def markdown_to_notion_blocks(content: str) -> list:
             })
             i += 1
 
-        # --- Heading 2 ---
         elif stripped.startswith("## ") and not stripped.startswith("### "):
             text = stripped[3:].strip()
             blocks.append({
@@ -145,7 +142,6 @@ def markdown_to_notion_blocks(content: str) -> list:
             })
             i += 1
 
-        # --- Heading 3 ---
         elif stripped.startswith("### "):
             text = stripped[4:].strip()
             blocks.append({
@@ -155,7 +151,6 @@ def markdown_to_notion_blocks(content: str) -> list:
             })
             i += 1
 
-        # --- Bullet points ---
         elif stripped.startswith("- ") or stripped.startswith("* "):
             text = stripped[2:].strip()
             blocks.append({
@@ -165,7 +160,6 @@ def markdown_to_notion_blocks(content: str) -> list:
             })
             i += 1
 
-        # --- Numbered list ---
         elif re.match(r'^\d+\.\s', stripped):
             text = re.sub(r'^\d+\.\s', '', stripped).strip()
             blocks.append({
@@ -175,13 +169,11 @@ def markdown_to_notion_blocks(content: str) -> list:
             })
             i += 1
 
-        # --- Table ---
         elif is_table_row(stripped):
             table_block, i = parse_table_rows(lines, i)
             if table_block:
                 blocks.append(table_block)
 
-        # --- Paragraph ---
         else:
             text = stripped.replace("`", "")
             blocks.append({
@@ -234,6 +226,10 @@ def push_document(data: PushToNotionRequest):
     return {"page_id": page_id, "url": response["url"]}
 
 
+# ─────────────────────────────────────────────
+# Get All Documents from Notion
+# ─────────────────────────────────────────────
+
 def get_all_documents() -> list:
     response = notion.databases.query(database_id=DATABASE_ID)
     documents = []
@@ -267,6 +263,10 @@ def get_all_documents() -> list:
     return documents
 
 
+# ─────────────────────────────────────────────
+# Get Document Content from Notion
+# ─────────────────────────────────────────────
+
 def get_document_content(page_id: str) -> str:
     response = notion.blocks.children.list(block_id=page_id)
     lines = []
@@ -295,3 +295,69 @@ def get_document_content(page_id: str) -> str:
         elif block_type == "divider":
             lines.append("---")
     return "\n\n".join(lines)
+
+
+# ─────────────────────────────────────────────
+# Create Support Ticket in Notion
+# ─────────────────────────────────────────────
+
+def create_ticket(user_query: str, refined_query: str) -> dict:
+    """
+    Creates a support ticket in the Notion Tickets database
+    with auto-incrementing ticket ID like TK-0001, TK-0002
+    """
+
+    # ── Step 1: Count existing tickets to generate next ID ──
+    existing = notion.databases.query(
+        database_id=TICKET_DATABASE_ID
+    )
+    ticket_count = len(existing["results"]) + 1
+    ticket_id_str = f"TK-{ticket_count:04d}"  # TK-0001, TK-0002 etc.
+
+    # Today's date
+    today = date.today().isoformat()
+
+    response = notion.pages.create(
+        parent={"database_id": TICKET_DATABASE_ID},
+        properties={
+            "Ticket_id": {
+                "title": [
+                    {
+                        "type": "text",
+                        "text": {"content": ticket_id_str}
+                    }
+                ]
+            },
+            "Query": {
+                "rich_text": [
+                    {
+                        "type": "text",
+                        "text": {"content": user_query}
+                    }
+                ]
+            },
+            "Status": {
+                "select": {
+                    "name": "open"
+                }
+            },
+            "Priority": {
+                "select": {
+                    "name": "medium"
+                }
+            },
+            "Created_at": {
+                "date": {
+                    "start": today
+                }
+            }
+        }
+    )
+
+    page_id = response["id"]
+    ticket_url = response["url"]
+
+    return {
+        "ticket_id": ticket_id_str,   # returns TK-0001 format
+        "ticket_url": ticket_url
+    }

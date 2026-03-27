@@ -238,7 +238,9 @@ def rag_chat(data: RAGQueryRequest):
         logger.info(f"RAG chat query received: {data.query}")
         result = run_agent(
             user_query=data.query,
-            filters=data.filters
+            filters=data.filters,
+            messages=data.messages,
+            summary=data.summary
         )
         logger.info(f"RAG chat complete — tool used: {result['tool_used']}")
         return result

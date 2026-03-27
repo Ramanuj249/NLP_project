@@ -4,17 +4,12 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
-from .tools import (
-    refine_query,
-    is_compare_query,
-    extract_document_names,
-    search_tool,
-    compare_tool
-)
 from rag.logger import logger
-from .tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool
+from .tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool, check_answer_quality, summarize_messages
+from notion_service import create_ticket
 
 class AgentState(TypedDict):
+    # ── Existing fields ──
     user_query: str
     refined_query: str
     is_compare: bool
@@ -23,6 +18,43 @@ class AgentState(TypedDict):
     answer: str
     citations: list
     tool_used: str
+
+    # ── New fields ──
+    answer_found: bool
+    ticket_created: bool
+    ticket_id: str
+    ticket_url: str
+
+    # ── Memory fields ──
+    messages: list
+    summary: str
+
+
+def memory_update_node(state: AgentState) -> AgentState:
+    """
+    Runs at start of every query.
+    If messages >= 6 → summarize oldest 4 → keep latest 2.
+    This keeps conversation memory clean and efficient.
+    """
+    logger.info("Running memory update node...")
+    messages = state.get("messages", [])
+
+    if len(messages) >= 6:
+        logger.info(f"Messages threshold reached ({len(messages)}) — summarizing...")
+        existing_summary = state.get("summary", "")
+
+        # Summarize oldest 4 messages
+        new_summary = summarize_messages(messages[:4], existing_summary)
+
+        # Keep only latest 2 messages
+        state["summary"] = new_summary
+        state["messages"] = messages[4:]
+        logger.info("Memory updated — oldest 4 messages summarized")
+    else:
+        logger.info(f"Memory OK — {len(messages)} messages in history")
+
+    return state
+
 
 def refine_node(state: AgentState) -> AgentState:
     logger.info("Running refine node...")
@@ -89,10 +121,69 @@ def compare_node(state: AgentState) -> AgentState:
     logger.info("Compare node complete")
     return state
 
+def check_answer_node(state: AgentState) -> AgentState:
+    """
+    Runs after search or compare.
+    LLM decides if answer properly addresses the question.
+    Sets answer_found = True or False.
+    """
+    logger.info("Running check answer node...")
+
+    is_good = check_answer_quality(
+        question=state["user_query"],
+        answer=state["answer"]
+    )
+
+    state["answer_found"] = is_good
+    logger.info(f"Answer quality: {'GOOD' if is_good else 'BAD — ticket will be created'}")
+    return state
+
+def create_ticket_node(state: AgentState) -> AgentState:
+    """
+    Runs when answer_found = False.
+    Creates support ticket in Notion.
+    Updates answer to inform user about ticket.
+    """
+    logger.info("Running create ticket node...")
+
+    try:
+        result = create_ticket(
+            user_query=state["user_query"],
+            refined_query=state["refined_query"]
+        )
+
+        state["ticket_created"] = True
+        state["ticket_id"] = result["ticket_id"]
+        state["ticket_url"] = result["ticket_url"]
+        state["answer"] = (
+            "I could not find relevant information "
+            "for your query in the documents.\n\n"
+            "🎫 A support ticket has been raised for your query. "
+            "Our team will get back to you shortly."
+        )
+
+        logger.info(f"Ticket created — id: {result['ticket_id']}")
+    except Exception as e:
+        logger.error(f"Ticket creation failed: {e}")
+        state["ticket_created"] = False
+        state["ticket_id"] = ""
+        state["ticket_url"] = ""
+
+    return state
+
+def route_after_check(state: AgentState) -> str:
+    """Routes to END if good answer, ticket if bad."""
+    if state["answer_found"]:
+        return "end"
+    return "ticket"
 
 def general_node(state: AgentState) -> AgentState:
     logger.info("Running general node...")
-    is_general, response = handle_general_query(state["user_query"])
+    is_general, response = handle_general_query(
+        state["user_query"],
+        messages=state.get("messages", []),
+        summary=state.get("summary", "")
+    )
 
     if is_general:
         state["answer"] = response
@@ -102,8 +193,13 @@ def general_node(state: AgentState) -> AgentState:
 
     return state
 
+
 def check_general(state: AgentState) -> str:
-    is_general, response = handle_general_query(state["user_query"])
+    is_general, response = handle_general_query(
+        state["user_query"],
+        messages=state.get("messages", []),
+        summary=state.get("summary", "")
+    )
     if is_general:
         state["answer"] = response
         state["citations"] = []
@@ -111,22 +207,26 @@ def check_general(state: AgentState) -> str:
         state["refined_query"] = state["user_query"]
         return "general"
     return "refine"
-
 def build_agent():
     graph = StateGraph(AgentState)
 
-    # Add nodes
+    # ── Add all nodes ──
+    graph.add_node("memory_update", memory_update_node)
+    graph.add_node("check_general", lambda state: state)
     graph.add_node("general", general_node)
     graph.add_node("refine", refine_node)
     graph.add_node("router", router_node)
     graph.add_node("search", search_node)
     graph.add_node("compare", compare_node)
+    graph.add_node("check_answer", check_answer_node)
+    graph.add_node("create_ticket", create_ticket_node)
 
-    # Set entry point
-    graph.set_entry_point("check_general")
-    graph.add_node("check_general", lambda state: state)
+    # ── Entry point ──
+    graph.set_entry_point("memory_update")
 
-    # Add edges
+    # ── Edges ──
+    graph.add_edge("memory_update", "check_general")
+
     graph.add_conditional_edges(
         "check_general",
         check_general,
@@ -135,8 +235,10 @@ def build_agent():
             "refine": "refine"
         }
     )
+
     graph.add_edge("general", END)
     graph.add_edge("refine", "router")
+
     graph.add_conditional_edges(
         "router",
         route_decision,
@@ -145,12 +247,26 @@ def build_agent():
             "compare": "compare"
         }
     )
-    graph.add_edge("search", END)
-    graph.add_edge("compare", END)
+
+    # ── Both search and compare go to check_answer ──
+    graph.add_edge("search", "check_answer")
+    graph.add_edge("compare", "check_answer")
+
+    graph.add_conditional_edges(
+        "check_answer",
+        route_after_check,
+        {
+            "end": END,
+            "ticket": "create_ticket"
+        }
+    )
+
+    graph.add_edge("create_ticket", END)
 
     return graph.compile()
 
-def run_agent(user_query: str, filters: dict = None) -> dict:
+def run_agent(user_query: str, filters: dict = None,
+              messages: list = None, summary: str = "") -> dict:
     logger.info(f"Agent started for query: {user_query}")
 
     agent = build_agent()
@@ -163,18 +279,47 @@ def run_agent(user_query: str, filters: dict = None) -> dict:
         filters=filters or {},
         answer="",
         citations=[],
-        tool_used=""
+        tool_used="",
+        answer_found=False,
+        ticket_created=False,
+        ticket_id="",
+        ticket_url="",
+        messages=messages or [],
+        summary=summary
     )
 
     final_state = agent.invoke(initial_state)
 
-    logger.info(f"Agent complete — tool used: {final_state['tool_used']}")
+    # ── Log graph path ──
+    logger.info(
+        f"[GRAPH] query='{user_query[:50]}' | "
+        f"tool={final_state['tool_used']} | "
+        f"answer_found={final_state['answer_found']} | "
+        f"ticket_created={final_state['ticket_created']}"
+    )
+
+    # ── Append this Q&A to messages ──
+    updated_messages = final_state.get("messages", [])
+    updated_messages.append({
+        "role": "user",
+        "content": user_query
+    })
+    updated_messages.append({
+        "role": "assistant",
+        "content": final_state["answer"]
+    })
 
     return {
         "answer": final_state["answer"],
         "citations": final_state["citations"],
         "tool_used": final_state["tool_used"],
-        "refined_query": final_state["refined_query"]
+        "refined_query": final_state["refined_query"],
+        "answer_found": final_state["answer_found"],
+        "ticket_created": final_state["ticket_created"],
+        "ticket_id": final_state["ticket_id"],
+        "ticket_url": final_state["ticket_url"],
+        "messages": updated_messages,
+        "summary": final_state.get("summary", "")
     }
 
 if __name__ == "__main__":

@@ -22,6 +22,12 @@ if "default_scores" not in st.session_state:
 if "default_scores_loaded" not in st.session_state:
     st.session_state.default_scores_loaded = False
 
+if "messages" not in st.session_state:
+    st.session_state.messages = []
+
+if "summary" not in st.session_state:
+    st.session_state.summary = ""
+
 if not st.session_state.rag_documents:
     try:
         res = requests.get(f"{BACKEND_URL}/rag/documents", timeout=5)
@@ -103,18 +109,26 @@ with chat_col:
 
                         if score:
                             st.progress(float(score), text=f"Relevance: {score}")
-
+                if result.get("ticket_created"):
+                    ticket_url = result.get("ticket_url", "")
+                    st.warning(
+                        f"🎫 Support ticket raised for this query. "
+                        f"[View Ticket in Notion]({ticket_url})"
+                    )
     st.divider()
 
     query = st.chat_input("Ask anything about your documents...")
 
     if query:
         with st.spinner("Thinking..."):
-            payload = {"query": query, "filters": None}
+            payload = {"query": query, "filters": None, "messages": st.session_state.messages, "summary": st.session_state.summary}
             res = requests.post(f"{BACKEND_URL}/rag/chat", json=payload, timeout=60)
             if res.status_code == 200:
                 result = res.json()
                 st.session_state.chat_history.append({"question": query, "result": result})
+                # Update memory state from agent response
+                st.session_state.messages = result.get("messages", [])
+                st.session_state.summary = result.get("summary", "")
                 st.rerun()
             else:
                 st.error("Search failed. Please try again.")

@@ -97,7 +97,8 @@ def extract_document_names(query: str) -> list:
         return []
 
 ######## tool for the searching the relevant document for the user query. ########
-def search_tool(query: str, filters: dict = None) -> dict:
+def search_tool(query: str, filters: dict = None,
+                messages: list = None, summary: str = "") -> dict:
     logger.info(f"Search tool called with query: {query}")
 
     query_vector = embed_text(query)
@@ -106,36 +107,53 @@ def search_tool(query: str, filters: dict = None) -> dict:
         top_k=10,
         filters=filters
     )
-    # for i, chunk in enumerate(chunks):
-    #     print(f"Chunk {i + 1}: {chunk['metadata']['document_name']} — score: {chunk['score']}")
-    #     print(f"Text preview: {chunk['text'][:200]}")
-    #     print("─" * 30)
 
-    if not chunks:
+    # ── Build conversation context from memory ──
+    conversation_context = ""
+    if summary:
+        conversation_context += f"Previous conversation summary:\n{summary}\n\n"
+    if messages:
+        conversation_context += "Recent conversation:\n"
+        for msg in messages[-4:]:
+            role = msg.get("role", "").capitalize()
+            content = msg.get("content", "")
+            conversation_context += f"{role}: {content}\n"
+        conversation_context += "\n"
+
+    # ── Build document context from chunks ──
+    context = ""
+    if chunks:
+        for i, chunk in enumerate(chunks):
+            doc_name = chunk["metadata"]["document_name"]
+            doc_type = chunk["metadata"]["document_type"]
+            context += f"\n\n--- Source {i+1}: {doc_name} ({doc_type}) ---\n"
+            context += chunk["text"]
+
+    # ── If no chunks AND no conversation context ──
+    if not chunks and not conversation_context:
         return {
-            "answer": "No relevant documents found.",
+            "answer": "I could not find relevant information in the documents.",
             "citations": []
         }
 
-    context = ""
-    for i, chunk in enumerate(chunks):
-        doc_name = chunk["metadata"]["document_name"]
-        doc_type = chunk["metadata"]["document_type"]
-        context += f"\n\n--- Source {i+1}: {doc_name} ({doc_type}) ---\n"
-        context += chunk["text"]
-
     prompt = f"""You are a helpful assistant for a SaaS company.
-    Answer the question based ONLY on the provided context.
-    If the answer is not in the context say "I could not find relevant information in the documents."
     
-    Context:
-    {context}
+    {conversation_context}
+    Answer the question using EITHER the provided document context
+    OR the conversation history above if the answer is already there.
+    
+    Document Context:
+    {context if context else "No relevant document chunks found."}
     
     Question: {query}
     
     Rules:
+    - If answer is in conversation history → use that directly
+    - If answer is in document context → use that
+    - If answer requires calculation from previous response → calculate it
+    - If answer is truly not available in either source → say "I could not find relevant information in the documents."
+    - Always mention source (document name or "based on our conversation")
     - Answer clearly and professionally
-    - Always mention which document the information came from
     - Do not make up any information
     
     Answer:"""
@@ -343,6 +361,61 @@ def handle_general_query(query: str, messages: list = None, summary: str = "") -
         return False, ""
     else:
         return True, answer
+
+######## classifier of the query type ########
+def classify_query(query: str) -> str:
+    """
+    Classifies query into 3 types:
+    GENERAL_CHAT      → greetings, casual conversation
+    GENERAL_KNOWLEDGE → general world knowledge questions
+    COMPANY_QUERY     → company document related questions
+
+    Returns: "GENERAL_CHAT", "GENERAL_KNOWLEDGE", or "COMPANY_QUERY"
+    """
+    logger.info(f"Classifying query: {query[:50]}")
+
+    prompt = f"""You are a query classifier for a company document assistant.
+
+    Classify the following query into exactly one of these 3 categories:
+    
+    GENERAL_CHAT      → greetings, casual conversation, personal questions
+                        Examples: "hi", "how are you", "what is your name"
+    
+    GENERAL_KNOWLEDGE → questions about world knowledge, famous people,
+                        general facts not related to any company
+                        Examples: "who is elon musk", "what is python",
+                        "who invented internet", "what is AI"
+    
+    COMPANY_QUERY     → questions about company policies, procedures,
+                        guides, agreements, HR, legal, engineering,
+                        finance, sales, product documents
+                        Examples: "what is the leave policy",
+                        "how do I apply for remote work",
+                        "what are the API rate limits"
+    
+    Query: {query}
+    
+    Reply with ONLY one of these exact words:
+    GENERAL_CHAT
+    GENERAL_KNOWLEDGE
+    COMPANY_QUERY"""
+
+    response = client.chat.completions.create(
+        model=DEPLOYMENT_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.0
+    )
+
+    result = response.choices[0].message.content.strip().upper()
+
+    # Safety check — if unexpected response default to COMPANY_QUERY
+    if result not in ["GENERAL_CHAT", "GENERAL_KNOWLEDGE", "COMPANY_QUERY"]:
+        logger.warning(f"Unexpected classification: {result} — defaulting to COMPANY_QUERY")
+        result = "COMPANY_QUERY"
+
+    logger.info(f"Query classified as: {result}")
+    return result
+
 
 ######## This is for the checking the message is available or not ########
 def check_answer_quality(question: str, answer: str) -> bool:

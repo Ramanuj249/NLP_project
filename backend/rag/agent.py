@@ -5,11 +5,10 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 from rag.logger import logger
-from .tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool, check_answer_quality, summarize_messages
+from .tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool, check_answer_quality, summarize_messages, classify_query
 from notion_service import create_ticket
 
 class AgentState(TypedDict):
-    # ── Existing fields ──
     user_query: str
     refined_query: str
     is_compare: bool
@@ -18,16 +17,13 @@ class AgentState(TypedDict):
     answer: str
     citations: list
     tool_used: str
-
-    # ── New fields ──
     answer_found: bool
     ticket_created: bool
     ticket_id: str
     ticket_url: str
-
-    # ── Memory fields ──
     messages: list
     summary: str
+    query_type: str
 
 
 def memory_update_node(state: AgentState) -> AgentState:
@@ -55,6 +51,62 @@ def memory_update_node(state: AgentState) -> AgentState:
 
     return state
 
+def classify_node(state: AgentState) -> AgentState:
+    """
+    Classifies query at the very start.
+    Sets query_type to GENERAL_CHAT,
+    GENERAL_KNOWLEDGE or COMPANY_QUERY.
+    """
+    logger.info("Running classify node...")
+    query_type = classify_query(state["user_query"])
+    state["query_type"] = query_type
+    return state
+
+def route_after_classify(state: AgentState) -> str:
+    """Routes based on query classification."""
+    query_type = state.get("query_type", "COMPANY_QUERY")
+    if query_type == "GENERAL_CHAT":
+        return "general"
+    elif query_type == "GENERAL_KNOWLEDGE":
+        return "decline"
+    else:
+        return "refine"
+
+def decline_node(state: AgentState) -> AgentState:
+    logger.info("Running decline node...")
+
+    # LLM generates dynamic polite decline
+    # based on what user actually asked
+    from .tools import client, DEPLOYMENT_NAME
+
+    prompt = f"""You are a company document assistant.
+
+    The user asked: "{state['user_query']}"
+    
+    This question is about general knowledge and is outside 
+    your scope as a company document assistant.
+    
+    Politely decline to answer and:
+    - Acknowledge what they asked
+    - Explain you can only help with company documents
+    - Suggest they use a search engine for this type of question
+    - Invite them to ask about company documents instead
+    
+    Keep response friendly and concise — 3 sentences maximum."""
+
+    response = client.chat.completions.create(
+        model=DEPLOYMENT_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7
+    )
+
+    state["answer"] = response.choices[0].message.content.strip()
+    state["citations"] = []
+    state["tool_used"] = "decline"
+    state["refined_query"] = state["user_query"]
+    state["answer_found"] = True
+    state["ticket_created"] = False
+    return state
 
 def refine_node(state: AgentState) -> AgentState:
     logger.info("Running refine node...")
@@ -90,7 +142,9 @@ def search_node(state: AgentState) -> AgentState:
 
     result = search_tool(
         query=refined_query,
-        filters=filters
+        filters=filters,
+        messages=state.get("messages", []),
+        summary=state.get("summary", "")
     )
 
     state["answer"] = result["answer"]
@@ -193,26 +247,13 @@ def general_node(state: AgentState) -> AgentState:
 
     return state
 
-
-def check_general(state: AgentState) -> str:
-    is_general, response = handle_general_query(
-        state["user_query"],
-        messages=state.get("messages", []),
-        summary=state.get("summary", "")
-    )
-    if is_general:
-        state["answer"] = response
-        state["citations"] = []
-        state["tool_used"] = "general"
-        state["refined_query"] = state["user_query"]
-        return "general"
-    return "refine"
 def build_agent():
     graph = StateGraph(AgentState)
 
     # ── Add all nodes ──
     graph.add_node("memory_update", memory_update_node)
-    graph.add_node("check_general", lambda state: state)
+    graph.add_node("classify", classify_node)           # ← NEW
+    graph.add_node("decline", decline_node)             # ← NEW
     graph.add_node("general", general_node)
     graph.add_node("refine", refine_node)
     graph.add_node("router", router_node)
@@ -225,18 +266,21 @@ def build_agent():
     graph.set_entry_point("memory_update")
 
     # ── Edges ──
-    graph.add_edge("memory_update", "check_general")
+    graph.add_edge("memory_update", "classify")         # ← CHANGED
 
+    # ── After classify → route to general, decline or refine ──
     graph.add_conditional_edges(
-        "check_general",
-        check_general,
+        "classify",
+        route_after_classify,
         {
             "general": "general",
+            "decline": "decline",                       # ← NEW
             "refine": "refine"
         }
     )
 
     graph.add_edge("general", END)
+    graph.add_edge("decline", END)                      # ← NEW
     graph.add_edge("refine", "router")
 
     graph.add_conditional_edges(
@@ -248,7 +292,6 @@ def build_agent():
         }
     )
 
-    # ── Both search and compare go to check_answer ──
     graph.add_edge("search", "check_answer")
     graph.add_edge("compare", "check_answer")
 

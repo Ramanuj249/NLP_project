@@ -539,3 +539,82 @@ def summarize_messages(messages: list, existing_summary: str = "") -> str:
     summary = response.choices[0].message.content.strip()
     logger.info(f"Summary generated: {summary[:100]}...")
     return summary
+
+def is_followup_query(query: str, messages: list) -> bool:
+    """
+    Detects if the user is asking a follow-up about
+    the assistant's PREVIOUS response (summarize, rephrase,
+    explain more, etc.) rather than asking a new document question.
+    Returns True if it's a follow-up, False if it's a new query.
+    """
+    if not messages:
+        return False
+
+    # Get last assistant message to give LLM context
+    last_assistant = ""
+    for msg in reversed(messages):
+        if msg.get("role") == "assistant":
+            last_assistant = msg.get("content", "")[:300]
+            break
+
+    if not last_assistant:
+        return False
+
+    prompt = f"""You are deciding if a user's message is a follow-up 
+about the assistant's PREVIOUS response, or a brand new question.
+
+Previous assistant response (first 300 chars):
+\"\"\"{last_assistant}\"\"\"
+
+User's new message: "{query}"
+
+Follow-up examples: "summarize that", "make it shorter", 
+"explain in simple terms", "what did you just say about leave",
+"can you bullet point that", "rephrase the above"
+
+New question examples: "what is the leave policy",
+"how do I apply for remote work", "compare policy A and B"
+
+Reply with only YES (follow-up) or NO (new question):"""
+
+    response = client.chat.completions.create(
+        model=DEPLOYMENT_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.0
+    )
+    result = response.choices[0].message.content.strip().upper()
+    logger.info(f"is_followup_query result: {result}")
+    return result == "YES"
+
+
+def answer_from_memory(query: str, messages: list, summary: str = "") -> str:
+    """
+    Answers a follow-up question using ONLY the conversation
+    history — no document search needed.
+    """
+    context = ""
+    if summary:
+        context += f"Previous conversation summary:\n{summary}\n\n"
+    if messages:
+        context += "Recent conversation:\n"
+        for msg in messages[-6:]:
+            role = msg.get("role", "").capitalize()
+            content = msg.get("content", "")
+            context += f"{role}: {content}\n"
+
+    prompt = f"""You are a helpful document assistant.
+The user is asking a follow-up about your previous response.
+Answer ONLY using the conversation history below — do not make up new information.
+
+{context}
+
+User follow-up: "{query}"
+
+Answer clearly and concisely:"""
+
+    response = client.chat.completions.create(
+        model=DEPLOYMENT_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.1
+    )
+    return response.choices[0].message.content.strip()

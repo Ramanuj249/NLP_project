@@ -5,13 +5,14 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 from rag.logger import logger
-from .tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool, check_answer_quality, summarize_messages, classify_query
+from .tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool, check_answer_quality, summarize_messages, classify_query, is_followup_query, answer_from_memory
 from notion_service import create_ticket
 
 class AgentState(TypedDict):
     user_query: str
     refined_query: str
     is_compare: bool
+    is_followup: bool
     doc_names: list
     filters: dict
     answer: str
@@ -107,6 +108,46 @@ def decline_node(state: AgentState) -> AgentState:
     state["answer_found"] = True
     state["ticket_created"] = False
     return state
+
+def check_followup_node(state: AgentState) -> AgentState:
+    """
+    Checks if the query is a follow-up about the last response.
+    If YES, sets a flag so the graph skips document search entirely.
+    """
+    logger.info("Running check_followup node...")
+    is_followup = is_followup_query(
+        state["user_query"],
+        state.get("messages", [])
+    )
+    state["is_followup"] = is_followup
+    logger.info(f"Is follow-up: {is_followup}")
+    return state
+
+
+def answer_from_memory_node(state: AgentState) -> AgentState:
+    """
+    Answers the follow-up using only conversation history.
+    No document search, no ticket.
+    """
+    logger.info("Running answer_from_memory node...")
+    answer = answer_from_memory(
+        query=state["user_query"],
+        messages=state.get("messages", []),
+        summary=state.get("summary", "")
+    )
+    state["answer"] = answer
+    state["citations"] = []
+    state["tool_used"] = "memory"
+    state["answer_found"] = True
+    state["ticket_created"] = False
+    state["refined_query"] = state["user_query"]
+    return state
+
+
+def route_after_followup(state: AgentState) -> str:
+    if state.get("is_followup", False):
+        return "memory"
+    return "refine"
 
 def refine_node(state: AgentState) -> AgentState:
     logger.info("Running refine node...")
@@ -252,8 +293,10 @@ def build_agent():
 
     # ── Add all nodes ──
     graph.add_node("memory_update", memory_update_node)
-    graph.add_node("classify", classify_node)           # ← NEW
-    graph.add_node("decline", decline_node)             # ← NEW
+    graph.add_node("check_followup", check_followup_node)
+    graph.add_node("answer_from_memory", answer_from_memory_node)
+    graph.add_node("classify", classify_node)
+    graph.add_node("decline", decline_node)
     graph.add_node("general", general_node)
     graph.add_node("refine", refine_node)
     graph.add_node("router", router_node)
@@ -265,22 +308,34 @@ def build_agent():
     # ── Entry point ──
     graph.set_entry_point("memory_update")
 
-    # ── Edges ──
-    graph.add_edge("memory_update", "classify")         # ← CHANGED
+    # ── memory_update → check_followup first, before anything else ──
+    graph.add_edge("memory_update", "check_followup")
 
-    # ── After classify → route to general, decline or refine ──
+    # ── check_followup branches: answer from memory OR continue to classify ──
+    graph.add_conditional_edges(
+        "check_followup",
+        route_after_followup,
+        {
+            "memory": "answer_from_memory",
+            "refine": "classify"
+        }
+    )
+
+    graph.add_edge("answer_from_memory", END)
+
+    # ── classify routes to general, decline, or refine ──
     graph.add_conditional_edges(
         "classify",
         route_after_classify,
         {
             "general": "general",
-            "decline": "decline",                       # ← NEW
+            "decline": "decline",
             "refine": "refine"
         }
     )
 
     graph.add_edge("general", END)
-    graph.add_edge("decline", END)                      # ← NEW
+    graph.add_edge("decline", END)
     graph.add_edge("refine", "router")
 
     graph.add_conditional_edges(
@@ -318,6 +373,7 @@ def run_agent(user_query: str, filters: dict = None,
         user_query=user_query,
         refined_query="",
         is_compare=False,
+        is_followup=False,
         doc_names=[],
         filters=filters or {},
         answer="",

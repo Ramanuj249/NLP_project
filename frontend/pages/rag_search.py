@@ -71,12 +71,12 @@ st.divider()
 # ─────────────────────────────────────────────
 # Main Layout — Chat (75%) | Evaluation (25%)
 # ─────────────────────────────────────────────
-chat_col, eval_col = st.columns([3, 1])
+chat_tab, score_tab = st.tabs(["💬 Chat", "📊 RAG Scores"])
 
 # ─────────────────────────────────────────────
 # LEFT — CHAT SECTION
 # ─────────────────────────────────────────────
-with chat_col:
+with chat_tab:
     for chat in st.session_state.chat_history:
         with st.chat_message("user"):
             st.write(chat["question"])
@@ -157,25 +157,50 @@ with chat_col:
 # ─────────────────────────────────────────────
 # RIGHT — EVALUATION SCORES SIDEBAR PANEL
 # ─────────────────────────────────────────────
-with eval_col:
-    st.subheader("📊 RAG Health")
-    st.caption("Live evaluation scores")
+with score_tab:
+    st.subheader("📊 RAG Evaluation Scores")
+    st.caption("Latest default evaluation scores")
     st.divider()
 
     if st.session_state.default_scores:
         scores = st.session_state.default_scores
-        st.metric("Faithfulness", f"{scores['faithfulness']:.2f}")
-        st.metric("Answer Relevancy", f"{scores['answer_relevancy']:.2f}")
-        st.metric("Context Precision", f"{scores['context_precision']:.2f}")
-        st.metric("Context Recall", f"{scores['context_recall']:.2f}")
-        st.caption(f"Based on {scores.get('num_questions', 10)} questions")
+
+        col1, col2 = st.columns(2)
+        with col1:
+            st.metric(
+                "🎯 Faithfulness",
+                f"{scores['faithfulness']:.4f}",
+                help="How factually consistent answers are with retrieved context"
+            )
+            st.metric(
+                "💡 Answer Relevancy",
+                f"{scores['answer_relevancy']:.4f}",
+                help="How relevant the answer is to the question asked"
+            )
+        with col2:
+            st.metric(
+                "🔍 Context Precision",
+                f"{scores['context_precision']:.4f}",
+                help="Whether retrieved chunks are useful for answering"
+            )
+            st.metric(
+                "📚 Context Recall",
+                f"{scores['context_recall']:.4f}",
+                help="Whether all needed information was retrieved"
+            )
+
+        st.divider()
+        st.caption(
+            f"Based on {scores.get('num_questions', 10)} questions | "
+            f"Last evaluated: {scores.get('evaluated_at', 'N/A')[:10]}"
+        )
     else:
-        st.info("No evaluation scores yet.")
+        st.info("No evaluation scores available yet.")
 
     st.divider()
-    st.caption("Run a custom evaluation:")
+    st.caption("Want to run a custom evaluation?")
     st.page_link(
         "pages/rag_evaluate.py",
-        label="📊 Evaluate RAG Quality",
+        label="📊 Run Custom Evaluation",
         use_container_width=True
     )

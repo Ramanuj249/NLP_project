@@ -370,3 +370,18 @@ def run_custom_evaluation_endpoint(data: EvaluationRequest):
     except Exception as e:
         logger.error(f"Custom evaluation failed — {str(e)}")
         raise HTTPException(status_code=500, detail=f"Custom evaluation failed: {str(e)}")
+
+@app.get("/rag/tickets")
+def get_tickets():
+    """
+    Fetches all support tickets from Notion tickets database.
+    Returns ticket_id, query, status, priority, created_at.
+    """
+    try:
+        from notion_service import get_all_tickets
+        tickets = get_all_tickets()
+        logger.info(f"Tickets fetched — {len(tickets)} tickets returned")
+        return tickets
+    except Exception as e:
+        logger.error(f"Error fetching tickets — {str(e)}")
+        raise HTTPException(status_code=500, detail=str(e))

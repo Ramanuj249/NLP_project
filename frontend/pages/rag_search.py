@@ -71,7 +71,7 @@ st.divider()
 # ─────────────────────────────────────────────
 # Main Layout — Chat (75%) | Evaluation (25%)
 # ─────────────────────────────────────────────
-chat_tab, score_tab = st.tabs(["💬 Chat", "📊 RAG Scores"])
+chat_tab, score_tab, ticket_tab = st.tabs(["💬 Chat", "📊 RAG Scores", "🎫 Tickets"])
 
 # ─────────────────────────────────────────────
 # LEFT — CHAT SECTION
@@ -204,3 +204,72 @@ with score_tab:
         label="📊 Run Custom Evaluation",
         use_container_width=True
     )
+
+with ticket_tab:
+    st.subheader("🎫 Support Tickets")
+    st.caption("All tickets raised from unanswered queries")
+    st.divider()
+
+    try:
+        res = requests.get(f"{BACKEND_URL}/rag/tickets", timeout=10)
+        if res.status_code == 200:
+            tickets = res.json()
+
+            if tickets:
+                # ── Ticket count summary ──
+                total = len(tickets)
+                open_count = sum(1 for t in tickets if t.get("status", "").lower() == "open")
+                progress_count = sum(1 for t in tickets if t.get("status", "").lower() == "progress")
+                resolved_count = sum(1 for t in tickets if t.get("status", "").lower() == "closed")
+
+                col1, col2, col3, col4 = st.columns(4)
+                with col1:
+                    st.metric("Total", total)
+                with col2:
+                    st.metric("Open", open_count)
+                with col3:
+                    st.metric("In Progress", progress_count)
+                with col4:
+                    st.metric("Resolved", resolved_count)
+
+                st.divider()
+
+                # ── Ticket list ──
+                for ticket in tickets:
+                    with st.container(border=True):
+                        col1, col2, col3, col4, col5 = st.columns([1, 3, 1, 1, 1])
+                        with col1:
+                            st.caption("🎫 ID")
+                            st.markdown(f"**{ticket.get('ticket_id', 'N/A')}**")
+                        with col2:
+                            st.caption("❓ Query")
+                            query = ticket.get("query", "")
+                            st.markdown(f"{query[:60]}{'...' if len(query) > 60 else ''}")
+                        with col3:
+                            st.caption("📌 Status")
+                            status = ticket.get("status", "open")
+                            if status.lower() == "open":
+                                st.markdown("🟡 Open")
+                            elif status.lower() == "progress":
+                                st.markdown("🔵 Progress")
+                            else:
+                                st.markdown("🟢 Closed")
+                        with col4:
+                            st.caption("⚡ Priority")
+                            priority = ticket.get("priority", "medium")
+                            if priority.lower() == "high":
+                                st.markdown("🔴 High")
+                            elif priority.lower() == "low":
+                                st.markdown("🟢 Low")
+                            else:
+                                st.markdown("🟡 Medium")
+                        with col5:
+                            st.caption("📅 Date")
+                            date = ticket.get("created_at", "")
+                            st.markdown(f"{str(date)[:10]}")
+            else:
+                st.info("No tickets raised yet.")
+        else:
+            st.error("Could not fetch tickets.")
+    except Exception as e:
+        st.error(f"Error loading tickets: {str(e)}")

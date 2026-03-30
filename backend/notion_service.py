@@ -361,3 +361,57 @@ def create_ticket(user_query: str, refined_query: str) -> dict:
         "ticket_id": ticket_id_str,   # returns TK-0001 format
         "ticket_url": ticket_url
     }
+
+def get_all_tickets() -> list:
+    """
+    Fetches all tickets from Notion Tickets database.
+    Returns list of ticket dicts with
+    ticket_id, query, status, priority, created_at.
+    """
+    response = notion.databases.query(
+        database_id=TICKET_DATABASE_ID,
+        sorts=[
+            {
+                "property": "Created_at",
+                "direction": "descending"
+            }
+        ]
+    )
+
+    tickets = []
+    for page in response["results"]:
+        props = page["properties"]
+
+        def get_title(prop):
+            try:
+                return prop["title"][0]["text"]["content"]
+            except:
+                return ""
+
+        def get_text(prop):
+            try:
+                return prop["rich_text"][0]["text"]["content"]
+            except:
+                return ""
+
+        def get_select(prop):
+            try:
+                return prop["select"]["name"]
+            except:
+                return ""
+
+        def get_date(prop):
+            try:
+                return prop["date"]["start"]
+            except:
+                return ""
+
+        tickets.append({
+            "ticket_id": get_title(props.get("Ticket_id", {})),
+            "query": get_text(props.get("Query", {})),
+            "status": get_select(props.get("Status", {})),
+            "priority": get_select(props.get("Priority", {})),
+            "created_at": get_date(props.get("Created_at", {}))
+        })
+
+    return tickets

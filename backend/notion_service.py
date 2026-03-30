@@ -301,64 +301,149 @@ def get_document_content(page_id: str) -> str:
 # Create Support Ticket in Notion
 # ─────────────────────────────────────────────
 
-def create_ticket(user_query: str, refined_query: str) -> dict:
+def create_ticket(user_query: str, refined_query: str,
+                  messages: list = None, summary: str = "") -> dict:
     """
-    Creates a support ticket in the Notion Tickets database
-    with auto-incrementing ticket ID like TK-0001, TK-0002
+    Creates a support ticket in Notion with
+    conversation context as page body.
     """
 
-    # ── Step 1: Count existing tickets to generate next ID ──
-    existing = notion.databases.query(
-        database_id=TICKET_DATABASE_ID
-    )
+    existing = notion.databases.query(database_id=TICKET_DATABASE_ID)
     ticket_count = len(existing["results"]) + 1
-    ticket_id_str = f"TK-{ticket_count:04d}"  # TK-0001, TK-0002 etc.
+    ticket_id_str = f"TK-{ticket_count:04d}"
+    ticket_title = ticket_id_str
 
-    # Today's date
     today = date.today().isoformat()
 
+    # ── Build conversation content blocks ──
+    content_blocks = []
+
+    # Section heading
+    content_blocks.append({
+        "object": "block",
+        "type": "heading_2",
+        "heading_2": {
+            "rich_text": [{"type": "text", "text": {"content": "📋 Conversation Context"}}]
+        }
+    })
+
+    content_blocks.append({
+        "object": "block",
+        "type": "divider",
+        "divider": {}
+    })
+
+    # Summary block if exists
+    if summary:
+        content_blocks.append({
+            "object": "block",
+            "type": "heading_3",
+            "heading_3": {
+                "rich_text": [{"type": "text", "text": {"content": "🗂️ Conversation Summary"}}]
+            }
+        })
+        content_blocks.append({
+            "object": "block",
+            "type": "paragraph",
+            "paragraph": {
+                "rich_text": [{"type": "text", "text": {"content": summary}}]
+            }
+        })
+        content_blocks.append({
+            "object": "block",
+            "type": "divider",
+            "divider": {}
+        })
+
+    # Messages block if exists
+    if messages:
+        content_blocks.append({
+            "object": "block",
+            "type": "heading_3",
+            "heading_3": {
+                "rich_text": [{"type": "text", "text": {"content": "💬 Recent Messages"}}]
+            }
+        })
+
+        for msg in messages:
+            role = msg.get("role", "").capitalize()
+            content = msg.get("content", "")
+            emoji = "👤" if role == "User" else "🤖"
+
+            content_blocks.append({
+                "object": "block",
+                "type": "paragraph",
+                "paragraph": {
+                    "rich_text": [
+                        {
+                            "type": "text",
+                            "text": {"content": f"{emoji} {role}: "},
+                            "annotations": {"bold": True}
+                        },
+                        {
+                            "type": "text",
+                            "text": {"content": content}
+                        }
+                    ]
+                }
+            })
+
+        content_blocks.append({
+            "object": "block",
+            "type": "divider",
+            "divider": {}
+        })
+
+    # Failed query block
+    content_blocks.append({
+        "object": "block",
+        "type": "heading_3",
+        "heading_3": {
+            "rich_text": [{"type": "text", "text": {"content": "❓ Unanswered Query"}}]
+        }
+    })
+    content_blocks.append({
+        "object": "block",
+        "type": "paragraph",
+        "paragraph": {
+            "rich_text": [
+                {
+                    "type": "text",
+                    "text": {"content": user_query},
+                    "annotations": {"bold": True}
+                }
+            ]
+        }
+    })
+
+    # ── Create Notion page with content ──
     response = notion.pages.create(
         parent={"database_id": TICKET_DATABASE_ID},
         properties={
             "Ticket_id": {
-                "title": [
-                    {
-                        "type": "text",
-                        "text": {"content": ticket_id_str}
-                    }
-                ]
+                "title": [{"type": "text", "text": {"content": ticket_title}}]
             },
             "Query": {
-                "rich_text": [
-                    {
-                        "type": "text",
-                        "text": {"content": user_query}
-                    }
-                ]
+                "rich_text": [{"type": "text", "text": {"content": user_query}}]
             },
             "Status": {
-                "select": {
-                    "name": "open"
-                }
+                "select": {"name": "open"}
             },
             "Priority": {
-                "select": {
-                    "name": "medium"
-                }
+                "select": {"name": "medium"}
             },
             "Created_at": {
-                "date": {
-                    "start": today
-                }
+                "date": {"start": today}
             }
-        }
+        },
+        children=content_blocks
     )
 
-    page_id = response["id"]
+    ticket_id = response["id"]
     ticket_url = response["url"]
 
     return {
-        "ticket_id": ticket_id_str,   # returns TK-0001 format
+        "ticket_id": ticket_id_str,
         "ticket_url": ticket_url
     }
 

@@ -244,7 +244,9 @@ def create_ticket_node(state: AgentState) -> AgentState:
     try:
         result = create_ticket(
             user_query=state["user_query"],
-            refined_query=state["refined_query"]
+            refined_query=state["refined_query"],
+            messages=state.get("messages", []),
+            summary=state.get("summary", "")
         )
 
         state["ticket_created"] = True

@@ -109,6 +109,7 @@ def decline_node(state: AgentState) -> AgentState:
     state["ticket_created"] = False
     return state
 
+
 def check_followup_node(state: AgentState) -> AgentState:
     """
     Checks if the query is a follow-up about the last response.

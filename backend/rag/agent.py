@@ -145,10 +145,6 @@ def answer_from_memory_node(state: AgentState) -> AgentState:
     return state
 
 
-def route_after_followup(state: AgentState) -> str:
-    if state.get("is_followup", False):
-        return "memory"
-    return "refine"
 
 def refine_node(state: AgentState) -> AgentState:
     logger.info("Running refine node...")
@@ -172,10 +168,6 @@ def router_node(state: AgentState) -> AgentState:
 
     return state
 
-def route_decision(state: AgentState) -> str:
-    if state["is_compare"]:
-        return "compare"
-    return "search"
 
 def search_node(state: AgentState) -> AgentState:
     logger.info("Running search node...")
@@ -269,12 +261,6 @@ def create_ticket_node(state: AgentState) -> AgentState:
 
     return state
 
-def route_after_check(state: AgentState) -> str:
-    """Routes to END if good answer, ticket if bad."""
-    if state["answer_found"]:
-        return "end"
-    return "ticket"
-
 def general_node(state: AgentState) -> AgentState:
     logger.info("Running general node...")
     is_general, response = handle_general_query(
@@ -317,7 +303,7 @@ def build_agent():
     # ── check_followup branches: answer from memory OR continue to classify ──
     graph.add_conditional_edges(
         "check_followup",
-        route_after_followup,
+        lambda state: "memory" if state.get("is_followup", False) else "refine",
         {
             "memory": "answer_from_memory",
             "refine": "classify"
@@ -343,7 +329,7 @@ def build_agent():
 
     graph.add_conditional_edges(
         "router",
-        route_decision,
+        lambda state: "compare" if state["is_compare"] else "search",
         {
             "search": "search",
             "compare": "compare"
@@ -355,7 +341,7 @@ def build_agent():
 
     graph.add_conditional_edges(
         "check_answer",
-        route_after_check,
+        lambda state: "end" if state["answer_found"] else "ticket",
         {
             "end": END,
             "ticket": "create_ticket"

@@ -302,52 +302,51 @@ def compare_tool(doc_name_1: str, doc_name_2: str) -> dict:
     }
 
 
-def handle_general_query(query: str, messages: list = None, summary: str = "") -> tuple[bool, str]:
-    # Build conversation context from memory
+def handle_general_query(query: str,
+                         messages: list = None,
+                         summary: str = "") -> str:
+    """
+    Generates a friendly response for GENERAL_CHAT queries.
+    Classification is already done by classify_and_followup_node.
+    This function ONLY generates the response — no classification.
+
+    Returns: response string directly (not tuple anymore)
+    """
+    logger.info(f"Handling general query: {query[:50]}")
+
+    # Build conversation context
     context = ""
     if summary:
         context += f"Previous conversation summary:\n{summary}\n\n"
-
     if messages:
         context += "Recent conversation:\n"
-        for msg in messages[-4:]:  # last 4 messages only
+        for msg in messages[-4:]:
             role = msg.get("role", "").capitalize()
             content = msg.get("content", "")
             context += f"{role}: {content}\n"
         context += "\n"
 
     prompt = f"""You are an AI document assistant for a SaaS company.
-    You have access to 92 company documents including Policies, Procedures, Guides, Plans, Agreements and Records.
-    
-    {context}
-    Current message from user: "{query}"
-    
-    First decide — is this a general greeting or casual 
-    conversation OR is it a question that requires searching 
-    company documents?
-    
-    IMPORTANT RULES for classification:
-    - If the message asks about company policies, procedures,
-      counts, numbers, details → DOCUMENT_QUERY
-    - If the message is a greeting, introduction, or casual 
-      chat → general response
-    - If the message asks a follow up question about documents
-      or information → DOCUMENT_QUERY
-    - When in doubt → DOCUMENT_QUERY
+You have access to 92 company documents including Policies, 
+Procedures, Guides, Plans, Agreements and Records.
 
-    If it is a general greeting or conversation — respond naturally and helpfully using the conversation history above.
-    If it is a document question — respond with exactly: DOCUMENT_QUERY
-    
-    Rules for general response:
-    - Be friendly and professional
-    - Use conversation history to answer personal questions (like remembering user's name)
-    - Mention you can search company documents
-    - Mention you can compare two documents
-    - Keep response concise — 2 to 3 sentences maximum
-    - Never say you are an AI language model
-    - Say you are a document assistant
-    
-    Respond with either DOCUMENT_QUERY or your friendly response."""
+{context}
+Current message from user: "{query}"
+
+Respond naturally and helpfully using the conversation 
+history above if relevant.
+
+Rules:
+- Be friendly and professional
+- Use conversation history to answer personal questions
+  (like remembering user's name)
+- Mention you can search company documents
+- Mention you can compare two documents
+- Keep response concise — 2 to 3 sentences maximum
+- Never say you are an AI language model
+- Say you are a document assistant
+
+Response:"""
 
     response = client.chat.completions.create(
         model=DEPLOYMENT_NAME,
@@ -355,12 +354,7 @@ def handle_general_query(query: str, messages: list = None, summary: str = "") -
         temperature=0.7
     )
 
-    answer = response.choices[0].message.content.strip()
-
-    if answer == "DOCUMENT_QUERY":
-        return False, ""
-    else:
-        return True, answer
+    return response.choices[0].message.content.strip()
 
 ######## classifier of the query type ########
 def classify_query(query: str) -> str:

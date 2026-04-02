@@ -259,18 +259,19 @@ def create_ticket_node(state: AgentState) -> AgentState:
 
 def general_node(state: AgentState) -> AgentState:
     logger.info("Running general node...")
-    is_general, response = handle_general_query(
+
+    # No classification needed — already done
+    # Just generate response directly
+    response = handle_general_query(
         state["user_query"],
         messages=state.get("messages", []),
         summary=state.get("summary", "")
     )
 
-    if is_general:
-        state["answer"] = response
-        state["citations"] = []
-        state["tool_used"] = "general"
-        state["refined_query"] = state["user_query"]
-
+    state["answer"] = response
+    state["citations"] = []
+    state["tool_used"] = "general"
+    state["refined_query"] = state["user_query"]
     return state
 
 def build_agent():

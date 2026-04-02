@@ -52,19 +52,34 @@ def memory_update_node(state: AgentState) -> AgentState:
 
     return state
 
-def classify_node(state: AgentState) -> AgentState:
-    """
-    Classifies query at the very start.
-    Sets query_type to GENERAL_CHAT,
-    GENERAL_KNOWLEDGE or COMPANY_QUERY.
-    """
-    logger.info("Running classify node...")
-    query_type = classify_query(state["user_query"])
-    state["query_type"] = query_type
+def classify_and_followup_node(state: AgentState) -> AgentState:
+    logger.info("Running classify and followup node...")
+
+    # Step 1 — check if follow-up
+    is_followup = is_followup_query(
+        state["user_query"],
+        state.get("messages", [])
+    )
+    state["is_followup"] = is_followup
+
+    # Step 2 — only classify if NOT a follow-up
+    if not is_followup:
+        query_type = classify_query(state["user_query"])
+        state["query_type"] = query_type
+        logger.info(f"Query classified as: {query_type}")
+    else:
+        logger.info("Follow-up query detected — skipping classification")
+
     return state
 
-def route_after_classify(state: AgentState) -> str:
-    """Routes based on query classification."""
+def route_after_classify_and_followup(state: AgentState) -> str:
+    """
+    Routes based on followup check and classification.
+    Handles all 4 possible routes in one function.
+    """
+    if state.get("is_followup", False):
+        return "memory"
+
     query_type = state.get("query_type", "COMPANY_QUERY")
     if query_type == "GENERAL_CHAT":
         return "general"
@@ -109,22 +124,6 @@ def decline_node(state: AgentState) -> AgentState:
     state["ticket_created"] = False
     return state
 
-
-def check_followup_node(state: AgentState) -> AgentState:
-    """
-    Checks if the query is a follow-up about the last response.
-    If YES, sets a flag so the graph skips document search entirely.
-    """
-    logger.info("Running check_followup node...")
-    is_followup = is_followup_query(
-        state["user_query"],
-        state.get("messages", [])
-    )
-    state["is_followup"] = is_followup
-    logger.info(f"Is follow-up: {is_followup}")
-    return state
-
-
 def answer_from_memory_node(state: AgentState) -> AgentState:
     """
     Answers the follow-up using only conversation history.
@@ -143,8 +142,6 @@ def answer_from_memory_node(state: AgentState) -> AgentState:
     state["ticket_created"] = False
     state["refined_query"] = state["user_query"]
     return state
-
-
 
 def refine_node(state: AgentState) -> AgentState:
     logger.info("Running refine node...")
@@ -167,7 +164,6 @@ def router_node(state: AgentState) -> AgentState:
         logger.info("Router decided: Search")
 
     return state
-
 
 def search_node(state: AgentState) -> AgentState:
     logger.info("Running search node...")
@@ -282,9 +278,8 @@ def build_agent():
 
     # ── Add all nodes ──
     graph.add_node("memory_update", memory_update_node)
-    graph.add_node("check_followup", check_followup_node)
+    graph.add_node("classify_and_followup", classify_and_followup_node)
     graph.add_node("answer_from_memory", answer_from_memory_node)
-    graph.add_node("classify", classify_node)
     graph.add_node("decline", decline_node)
     graph.add_node("general", general_node)
     graph.add_node("refine", refine_node)
@@ -298,30 +293,21 @@ def build_agent():
     graph.set_entry_point("memory_update")
 
     # ── memory_update → check_followup first, before anything else ──
-    graph.add_edge("memory_update", "check_followup")
+    graph.add_edge("memory_update", "classify_and_followup")
 
     # ── check_followup branches: answer from memory OR continue to classify ──
     graph.add_conditional_edges(
-        "check_followup",
-        lambda state: "memory" if state.get("is_followup", False) else "refine",
+        "classify_and_followup",
+        route_after_classify_and_followup,
         {
             "memory": "answer_from_memory",
-            "refine": "classify"
-        }
-    )
-
-    graph.add_edge("answer_from_memory", END)
-
-    # ── classify routes to general, decline, or refine ──
-    graph.add_conditional_edges(
-        "classify",
-        route_after_classify,
-        {
             "general": "general",
             "decline": "decline",
             "refine": "refine"
         }
     )
+
+    graph.add_edge("answer_from_memory", END)
 
     graph.add_edge("general", END)
     graph.add_edge("decline", END)

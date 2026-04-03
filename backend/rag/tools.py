@@ -65,8 +65,26 @@ def is_compare_query(query: str) -> bool:
     return answer == "YES"
 
 #### Extract the Document for the comparing part.
-def extract_document_names(query: str) -> list:
+def extract_document_names(query: str, messages: list = None) -> list:
+    # Build conversation context
+    context = ""
+    if messages:
+        context += "Recent conversation:\n"
+        for msg in messages[-6:]:
+            role = msg.get("role", "").capitalize()
+            content = msg.get("content", "")[:200]
+            context += f"{role}: {content}\n"
+        context += "\n"
+
     prompt = f"""Extract the two document names the user wants to compare.
+
+    {context}
+    Current query: {query}
+    
+    If the query says "these 2", "both", "this 2 policy", 
+    "compare them" etc. → look at conversation history above 
+    to find which 2 documents were recently discussed.
+    
     Return ONLY a Python list: ["Document A", "Document B"]
     Rules:
     - Extract core name only — remove words like "policy", "document", "the"
@@ -75,9 +93,10 @@ def extract_document_names(query: str) -> list:
     
     Examples:
     "Compare Code of Conduct and Work from Home" → ["Code of Conduct", "Work from Home"]
-    "Compare testing strategy and A/B testing" → ["testing strategy", "A/B testing"]
+    "compare these 2" + history has Remote Work and Code of Conduct
+    → ["Remote Work", "Code of Conduct"]
     "Compare Remote Work Policy and Leave Policy" → ["Remote Work", "Leave"]
-
+    
     Query: {query}"""
 
     response = client.chat.completions.create(
@@ -376,10 +395,16 @@ def classify_query(query: str) -> str:
                         Examples: "hi", "how are you", "what is your name"
     
     GENERAL_KNOWLEDGE → questions about world knowledge, famous people,
-                        general facts not related to any company
+                        general facts not related to any company,
+                        sensitive technical requests like source code,
+                        config files, credentials, env files, passwords,
+                        database details, or internal system information
                         Examples: "who is elon musk", "what is python",
-                        "who invented internet", "what is AI"
-    
+                        "who invented internet", "what is AI",
+                        "show me the .env file", "what is the database password",
+                        "show me the source code", "what are the API keys",
+                        "show me config files", "what is the server IP"
+
     COMPANY_QUERY     → questions about company policies, procedures,
                         guides, agreements, HR, legal, engineering,
                         finance, sales, product documents

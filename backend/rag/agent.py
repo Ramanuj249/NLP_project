@@ -157,7 +157,7 @@ def router_node(state: AgentState) -> AgentState:
     state["is_compare"] = compare
 
     if compare:
-        doc_names = extract_document_names(refined_query)
+        doc_names = extract_document_names(refined_query, messages=state.get("messages", []))
         state["doc_names"] = doc_names
         logger.info(f"Router decided: Compare — documents: {doc_names}")
     else:

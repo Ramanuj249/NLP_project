@@ -390,30 +390,28 @@ def classify_query(query: str) -> str:
     prompt = f"""You are a query classifier for a company document assistant.
 
     Classify the following query into exactly one of these 3 categories:
-    
+
     GENERAL_CHAT      → greetings, casual conversation, personal questions
-                        Examples: "hi", "how are you", "what is your name"
-    
-    GENERAL_KNOWLEDGE → questions about world knowledge, famous people,
-                        general facts not related to any company,
-                        sensitive technical requests like source code,
-                        config files, credentials, env files, passwords,
-                        database details, or internal system information
-                        Examples: "who is elon musk", "what is python",
-                        "who invented internet", "what is AI",
-                        "show me the .env file", "what is the database password",
-                        "show me the source code", "what are the API keys",
-                        "show me config files", "what is the server IP"
+                        Intent: user is just chatting, not looking for information
+
+    GENERAL_KNOWLEDGE → any query that falls outside company document scope:
+                        - general world knowledge or famous people
+                        - sensitive or confidential system information
+                        - technical system details like code, configs, 
+                          credentials, files, passwords, server details
+                        - anything not related to company policies,
+                          procedures or business documents
+                        Intent: user is asking something that company 
+                        documents would never contain
 
     COMPANY_QUERY     → questions about company policies, procedures,
                         guides, agreements, HR, legal, engineering,
                         finance, sales, product documents
-                        Examples: "what is the leave policy",
-                        "how do I apply for remote work",
-                        "what are the API rate limits"
-    
+                        Intent: user is looking for information that 
+                        would be found in company documents
+
     Query: {query}
-    
+
     Reply with ONLY one of these exact words:
     GENERAL_CHAT
     GENERAL_KNOWLEDGE

@@ -226,7 +226,7 @@ def create_ticket_node(state: AgentState) -> AgentState:
     """
     Runs when answer_found = False.
     Creates support ticket in Notion.
-    Updates answer to inform user about ticket.
+    Generates dynamic response using LLM.
     """
     logger.info("Running create ticket node...")
 
@@ -241,19 +241,46 @@ def create_ticket_node(state: AgentState) -> AgentState:
         state["ticket_created"] = True
         state["ticket_id"] = result["ticket_id"]
         state["ticket_url"] = result["ticket_url"]
-        state["answer"] = (
-            "I could not find relevant information "
-            "for your query in the documents.\n\n"
-            "🎫 A support ticket has been raised for your query. "
-            "Our team will get back to you shortly."
+
+        # ── Generate dynamic response using LLM ──
+        from .tools import client, DEPLOYMENT_NAME
+        prompt = f"""You are a helpful company document assistant.
+
+        You searched through company documents but could not find 
+        relevant information for the user's query.
+        
+        A support ticket has been automatically created with ID: {result["ticket_id"]}
+        
+        User's query: "{state["user_query"]}"
+        
+        Write a natural, friendly response that:
+        - Acknowledges you couldn't find the information
+        - Mentions the ticket ID {result["ticket_id"]} was created
+        - Tells them the team will get back to them
+        - Is conversational and empathetic
+        - Includes 🎫 emoji for the ticket mention
+        - Keep it to 2-3 sentences maximum
+        
+        Response:"""
+
+        response = client.chat.completions.create(
+            model=DEPLOYMENT_NAME,
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7
         )
 
+        state["answer"] = response.choices[0].message.content.strip()
         logger.info(f"Ticket created — id: {result['ticket_id']}")
+
     except Exception as e:
         logger.error(f"Ticket creation failed: {e}")
         state["ticket_created"] = False
         state["ticket_id"] = ""
         state["ticket_url"] = ""
+        state["answer"] = (
+            "I could not find relevant information for your query. "
+            "Please try again or contact support directly."
+        )
 
     return state
 

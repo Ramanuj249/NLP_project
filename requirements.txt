@@ -1,19 +1,89 @@
-fastapi
-uvicorn
-mysql-connector-python
-requests
-streamlit
-python-dotenv
-langchain-openai
-notion-client
-pymilvus
-milvus-lite
-tiktoken
-ragas
+# ─────────────────────────────────────────────
+# Core Backend
+# ─────────────────────────────────────────────
+fastapi==0.129.0
+uvicorn==0.41.0
+python-dotenv==1.2.1
+pydantic==2.12.5
+requests==2.32.5
 
-langgraph
-langchain
-langchain-openai
+# ─────────────────────────────────────────────
+# Database
+# ─────────────────────────────────────────────
+mysql-connector-python==9.6.0
+redis==7.2.1
 
-ragas
-datasets
+# ─────────────────────────────────────────────
+# Frontend
+# ─────────────────────────────────────────────
+streamlit==1.54.0
+altair==6.0.0
+
+# ─────────────────────────────────────────────
+# Azure OpenAI + LangChain
+# ─────────────────────────────────────────────
+openai==2.24.0
+langchain==1.2.12
+langchain-core==1.2.19
+langchain-openai==1.1.10
+langchain-community==0.4.1
+langchain-text-splitters==1.1.1
+langchain-classic==1.0.3
+langsmith==0.7.6
+
+# ─────────────────────────────────────────────
+# LangGraph Agent
+# ─────────────────────────────────────────────
+langgraph==1.1.2
+langgraph-checkpoint==4.0.1
+langgraph-prebuilt==1.0.8
+langgraph-sdk==0.3.11
+
+# ─────────────────────────────────────────────
+# Vector Database
+# ─────────────────────────────────────────────
+pymilvus==2.4.9
+milvus-lite==2.4.12
+
+# ─────────────────────────────────────────────
+# Notion
+# ─────────────────────────────────────────────
+notion-client==2.2.1
+
+# ─────────────────────────────────────────────
+# RAGAS Evaluation
+# ─────────────────────────────────────────────
+ragas==0.4.3
+datasets==4.7.0
+instructor==1.14.5
+diskcache==5.6.3
+
+# ─────────────────────────────────────────────
+# Embeddings + Tokenization
+# ─────────────────────────────────────────────
+tiktoken==0.12.0
+numpy==2.2.6
+scikit-network==0.33.5
+
+# ─────────────────────────────────────────────
+# Utilities
+# ─────────────────────────────────────────────
+httpx==0.28.1
+anyio==4.12.1
+tenacity==9.1.4
+tqdm==4.67.3
+rich==14.3.3
+pandas==2.3.3
+pyarrow==23.0.1
+huggingface_hub==1.7.1
+nest-asyncio==1.6.0
+networkx==3.4.2
+packaging==26.0
+pyyaml==6.0.3
+regex==2026.2.19
+scipy==1.15.3
+filelock==3.25.2
+fsspec==2026.2.0
+multiprocess==0.70.18
+xxhash==3.6.0
+typer==0.24.1

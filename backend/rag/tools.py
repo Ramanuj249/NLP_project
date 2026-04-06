@@ -65,39 +65,48 @@ def is_compare_query(query: str) -> bool:
     return answer == "YES"
 
 #### Extract the Document for the comparing part.
-def extract_document_names(query: str, messages: list = None) -> list:
-    # Build conversation context
+def extract_document_names(query: str, messages: list = None, summary: str = "") -> list:
+    """
+    Extracts two document names for comparison.
+    Looks at both conversation summary AND recent messages.
+    Does not modify or shorten document names.
+    """
+    # Build full conversation context — summary first then messages
     context = ""
+    if summary:
+        context += f"Conversation summary:\n{summary}\n\n"
     if messages:
-        context += "Recent conversation:\n"
+        context += "Recent messages:\n"
         for msg in messages[-6:]:
             role = msg.get("role", "").capitalize()
             content = msg.get("content", "")[:200]
             context += f"{role}: {content}\n"
         context += "\n"
 
-    prompt = f"""Extract the two document names the user wants to compare.
+    prompt = f"""You are extracting two document names that a user wants to compare.
 
     {context}
     Current query: {query}
-    
-    If the query says "these 2", "both", "this 2 policy", 
-    "compare them" etc. → look at conversation history above 
-    to find which 2 documents were recently discussed.
-    
-    Return ONLY a Python list: ["Document A", "Document B"]
-    Rules:
-    - Extract core name only — remove words like "policy", "document", "the"
-    - Keep names short — 2 to 4 words maximum
-    - Return ONLY the Python list — nothing else
-    
-    Examples:
-    "Compare Code of Conduct and Work from Home" → ["Code of Conduct", "Work from Home"]
-    "compare these 2" + history has Remote Work and Code of Conduct
-    → ["Remote Work", "Code of Conduct"]
-    "Compare Remote Work Policy and Leave Policy" → ["Remote Work", "Leave"]
-    
-    Query: {query}"""
+
+    Your task:
+    - If the query explicitly names two documents → extract those names
+    - If the query is vague (uses words like "both", "these", "them",
+      "the two", "both policies") → look at the conversation summary 
+      AND recent messages above to find the two most recently 
+      discussed document names
+
+    Rules for extraction:
+    - Extract the CORE document title only
+    - Remove company names (like "Turabit LLC", "Turbait LLC")
+    - Remove phrases like "document", "for the company", "policy document"
+    - Keep only the essential title — 2 to 5 words maximum
+    - Always return exactly 2 names
+    - If you cannot find 2 document names → return ["", ""]
+
+    Return ONLY a valid Python list with exactly 2 strings.
+    No explanation, no extra text, just the list.
+
+    Your response:"""
 
     response = client.chat.completions.create(
         model=DEPLOYMENT_NAME,
@@ -109,8 +118,12 @@ def extract_document_names(query: str, messages: list = None) -> list:
         import ast
         result = response.choices[0].message.content.strip()
         names = ast.literal_eval(result)
-        logger.info(f"Extracted document names: {names}")
-        return names
+        if isinstance(names, list) and len(names) == 2 and all(names):
+            logger.info(f"Extracted document names: {names}")
+            return names
+        else:
+            logger.warning(f"Invalid extraction result: {names}")
+            return []
     except:
         logger.warning("Could not extract document names")
         return []
@@ -577,22 +590,37 @@ def is_followup_query(query: str, messages: list) -> bool:
     if not last_assistant:
         return False
 
-    prompt = f"""You are deciding if a user's message is a follow-up 
-about the assistant's PREVIOUS response, or a brand new question.
+    prompt = f"""You are deciding if a user's message requires 
+    searching for new information or is only about reformatting 
+    the assistant's previous response.
 
-Previous assistant response (first 300 chars):
-\"\"\"{last_assistant}\"\"\"
+    Previous assistant response:
+    \"\"\"{last_assistant}\"\"\"
 
-User's new message: "{query}"
+    User's new message: "{query}"
 
-Follow-up examples: "summarize that", "make it shorter", 
-"explain in simple terms", "what did you just say about leave",
-"can you bullet point that", "rephrase the above"
+    STRICT RULES:
 
-New question examples: "what is the leave policy",
-"how do I apply for remote work", "compare policy A and B"
+    Reply YES only if the user's intent is PURELY about:
+    - Changing the FORMAT of the previous response
+    - Changing the LENGTH of the previous response
+    - Changing the STYLE of the previous response
+    - No new information is needed to answer
 
-Reply with only YES (follow-up) or NO (new question):"""
+    Reply NO if the user's intent involves:
+    - Getting any new or specific information
+    - Asking about any policy, procedure or document
+    - Requesting facts, numbers, dates or details
+    - Any question that requires searching documents
+    - Any topic not already fully covered in previous response
+    - Any ambiguity about whether new info is needed
+
+    IMPORTANT:
+    - When in doubt → always reply NO
+    - NO means search documents for fresh answer
+    - YES means reformat previous response only
+
+    Reply with only YES or NO:"""
 
     response = client.chat.completions.create(
         model=DEPLOYMENT_NAME,

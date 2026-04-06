@@ -1,11 +1,11 @@
 import os
 import sys
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 from rag.logger import logger
-from .tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool, check_answer_quality, summarize_messages, classify_query, is_followup_query, answer_from_memory
+from rag.tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool, check_answer_quality, summarize_messages, classify_query, is_followup_query, answer_from_memory
 from notion_service import create_ticket
 
 class AgentState(TypedDict):
@@ -157,7 +157,11 @@ def router_node(state: AgentState) -> AgentState:
     state["is_compare"] = compare
 
     if compare:
-        doc_names = extract_document_names(refined_query, messages=state.get("messages", []))
+        doc_names = extract_document_names(
+            refined_query,
+            messages=state.get("messages", []),
+            summary=state.get("summary", "")
+        )
         state["doc_names"] = doc_names
         logger.info(f"Router decided: Compare — documents: {doc_names}")
     else:
@@ -439,11 +443,14 @@ def run_agent(user_query: str, filters: dict = None,
         "summary": final_state.get("summary", "")
     }
 
+
 if __name__ == "__main__":
-    # Test search
-    print("Testing search...")
-    result = run_agent("What is the remote work policy?")
-    print(f"Tool used: {result['tool_used']}")
-    print(f"Refined query: {result['refined_query']}")
-    print(f"Answer: {result['answer'][:200]}")
-    print(f"Citations: {result['citations']}")
+    agent = build_agent()
+
+    # Save as PNG image
+    png_data = agent.get_graph().draw_mermaid_png()
+
+    with open("agent_graph.png", "wb") as f:
+        f.write(png_data)
+
+    print("✅ Graph saved as agent_graph.png")

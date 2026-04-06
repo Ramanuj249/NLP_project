@@ -359,26 +359,26 @@ def handle_general_query(query: str,
         context += "\n"
 
     prompt = f"""You are an AI document assistant for a SaaS company.
-You have access to 92 company documents including Policies, 
-Procedures, Guides, Plans, Agreements and Records.
-
-{context}
-Current message from user: "{query}"
-
-Respond naturally and helpfully using the conversation 
-history above if relevant.
-
-Rules:
-- Be friendly and professional
-- Use conversation history to answer personal questions
-  (like remembering user's name)
-- Mention you can search company documents
-- Mention you can compare two documents
-- Keep response concise — 2 to 3 sentences maximum
-- Never say you are an AI language model
-- Say you are a document assistant
-
-Response:"""
+    You have access to 92 company documents including Policies, 
+    Procedures, Guides, Plans, Agreements and Records.
+    
+    {context}
+    Current message from user: "{query}"
+    
+    Respond naturally and helpfully using the conversation 
+    history above if relevant.
+    
+    Rules:
+    - Be friendly and professional
+    - Use conversation history to answer personal questions
+      (like remembering user's name)
+    - Mention you can search company documents
+    - Mention you can compare two documents
+    - Keep response concise — 2 to 3 sentences maximum
+    - Never say you are an AI language model
+    - Say you are a document assistant
+    
+    Response:"""
 
     response = client.chat.completions.create(
         model=DEPLOYMENT_NAME,
@@ -648,14 +648,14 @@ def answer_from_memory(query: str, messages: list, summary: str = "") -> str:
             context += f"{role}: {content}\n"
 
     prompt = f"""You are a helpful document assistant.
-The user is asking a follow-up about your previous response.
-Answer ONLY using the conversation history below — do not make up new information.
-
-{context}
-
-User follow-up: "{query}"
-
-Answer clearly and concisely:"""
+    The user is asking a follow-up about your previous response.
+    Answer ONLY using the conversation history below — do not make up new information.
+    
+    {context}
+    
+    User follow-up: "{query}"
+    
+    Answer clearly and concisely:"""
 
     response = client.chat.completions.create(
         model=DEPLOYMENT_NAME,
@@ -663,3 +663,59 @@ Answer clearly and concisely:"""
         temperature=0.1
     )
     return response.choices[0].message.content.strip()
+
+
+def is_duplicate_ticket(new_query: str, open_tickets: list) -> tuple[bool, str]:
+    """
+    Checks if new query is asking for identical information
+    as any existing open ticket.
+    Uses loose approach — matches only on exact same intent.
+
+    Returns:
+        (True, ticket_id)  → duplicate found
+        (False, "")        → not a duplicate
+    """
+    if not open_tickets:
+        return False, ""
+
+    # Format existing tickets for LLM
+    tickets_text = ""
+    for ticket in open_tickets:
+        tickets_text += f"Ticket ID: {ticket['ticket_id']}\n"
+        tickets_text += f"Query: {ticket['query']}\n\n"
+
+    prompt = f"""You are checking if a new support query is asking 
+    for the EXACT same specific information as an existing ticket.
+    
+    Existing open tickets:
+    {tickets_text}
+    
+    New query: "{new_query}"
+    
+    Rules for DUPLICATE (reply with ticket ID):
+    - Both queries are asking for identical specific information
+    - Same exact question just worded slightly differently
+    - A user reading both would think they are the same question
+    
+    Rules for NOT DUPLICATE (reply with NONE):
+    - Queries are about same topic but different specific aspects
+    - One is more specific than the other
+    - They need different information to answer
+    - When in doubt → NOT DUPLICATE
+    
+    Reply with ONLY the ticket ID if duplicate (e.g. TK-0001)
+    Or reply with ONLY the word NONE if not duplicate:"""
+
+    response = client.chat.completions.create(
+        model=DEPLOYMENT_NAME,
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.0
+    )
+
+    result = response.choices[0].message.content.strip().upper()
+    logger.info(f"Duplicate ticket check result: {result}")
+
+    if result == "NONE":
+        return False, ""
+    else:
+        return True, result

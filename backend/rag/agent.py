@@ -5,8 +5,8 @@ sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")
 from typing import TypedDict
 from langgraph.graph import StateGraph, END
 from rag.logger import logger
-from rag.tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool, check_answer_quality, summarize_messages, classify_query, is_followup_query, answer_from_memory
-from notion_service import create_ticket
+from rag.tools import handle_general_query, refine_query, is_compare_query, extract_document_names, search_tool, compare_tool, check_answer_quality, summarize_messages, classify_query, is_followup_query, answer_from_memory, is_duplicate_ticket, client, DEPLOYMENT_NAME
+from notion_service import create_ticket, get_open_tickets
 
 class AgentState(TypedDict):
     user_query: str
@@ -229,52 +229,79 @@ def check_answer_node(state: AgentState) -> AgentState:
 def create_ticket_node(state: AgentState) -> AgentState:
     """
     Runs when answer_found = False.
-    Creates support ticket in Notion.
-    Generates dynamic response using LLM.
+    First checks for duplicate open tickets.
+    If duplicate → inform user.
+    If not duplicate → create new ticket.
     """
     logger.info("Running create ticket node...")
 
     try:
-        result = create_ticket(
-            user_query=state["user_query"],
-            refined_query=state["refined_query"],
-            messages=state.get("messages", []),
-            summary=state.get("summary", "")
+
+        # ── Step 1 — fetch all open tickets ──
+        open_tickets = get_open_tickets()
+        logger.info(f"Found {len(open_tickets)} open tickets")
+
+        # ── Step 2 — check for duplicate ──
+        is_duplicate, existing_ticket_id = is_duplicate_ticket(
+            new_query=state["user_query"],
+            open_tickets=open_tickets
         )
 
-        state["ticket_created"] = True
-        state["ticket_id"] = result["ticket_id"]
-        state["ticket_url"] = result["ticket_url"]
+        if is_duplicate:
+            # ── Duplicate found → inform user ──
+            logger.info(f"Duplicate ticket found: {existing_ticket_id}")
+            state["answer"] = (
+                f"Sorry, we are not able to answer this query but "
+                f"there is already a ticket raised with this query. "
+                f"Ticket {existing_ticket_id} is currently open and "
+                f"our team is working on it!"
+            )
+            state["ticket_created"] = False
+            state["ticket_id"] = existing_ticket_id
+            state["ticket_url"] = ""
+            state["answer_found"] = True
 
-        # ── Generate dynamic response using LLM ──
-        from .tools import client, DEPLOYMENT_NAME
-        prompt = f"""You are a helpful company document assistant.
+        else:
+            # ── Not duplicate → create new ticket ──
+            result = create_ticket(
+                user_query=state["user_query"],
+                refined_query=state["refined_query"],
+                messages=state.get("messages", []),
+                summary=state.get("summary", "")
+            )
 
-        You searched through company documents but could not find 
-        relevant information for the user's query.
-        
-        A support ticket has been automatically created with ID: {result["ticket_id"]}
-        
-        User's query: "{state["user_query"]}"
-        
-        Write a natural, friendly response that:
-        - Acknowledges you couldn't find the information
-        - Mentions the ticket ID {result["ticket_id"]} was created
-        - Tells them the team will get back to them
-        - Is conversational and empathetic
-        - Includes 🎫 emoji for the ticket mention
-        - Keep it to 2-3 sentences maximum
-        
-        Response:"""
+            state["ticket_created"] = True
+            state["ticket_id"] = result["ticket_id"]
+            state["ticket_url"] = result["ticket_url"]
 
-        response = client.chat.completions.create(
-            model=DEPLOYMENT_NAME,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.7
-        )
+            # Dynamic LLM response
+            prompt = f"""You are a helpful company document assistant.
 
-        state["answer"] = response.choices[0].message.content.strip()
-        logger.info(f"Ticket created — id: {result['ticket_id']}")
+    You searched through company documents but could not find 
+    relevant information for the user's query.
+    
+    A support ticket has been automatically created with ID: {result["ticket_id"]}
+    
+    User's query: "{state["user_query"]}"
+    
+    Write a natural friendly response that:
+    - Acknowledges you couldn't find the information
+    - Mentions ticket ID {result["ticket_id"]} was created
+    - Tells them the team will get back to them
+    - Is conversational and empathetic
+    - Includes 🎫 emoji for the ticket mention
+    - Keep it to 2-3 sentences maximum
+    
+    Response:"""
+
+            response = client.chat.completions.create(
+                model=DEPLOYMENT_NAME,
+                messages=[{"role": "user", "content": prompt}],
+                temperature=0.7
+            )
+
+            state["answer"] = response.choices[0].message.content.strip()
+            logger.info(f"Ticket created — id: {result['ticket_id']}")
 
     except Exception as e:
         logger.error(f"Ticket creation failed: {e}")

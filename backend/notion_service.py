@@ -500,3 +500,41 @@ def get_all_tickets() -> list:
         })
 
     return tickets
+
+def get_open_tickets() -> list:
+    """
+    Fetches all open tickets from Notion tickets database.
+    Returns list of dicts with ticket_id and query.
+    """
+    response = notion.databases.query(
+        database_id=TICKET_DATABASE_ID,
+        filter={
+            "property": "Status",
+            "select": {
+                "equals": "open"
+            }
+        }
+    )
+
+    tickets = []
+    for page in response["results"]:
+        props = page["properties"]
+
+        def get_title(prop):
+            try:
+                return prop["title"][0]["text"]["content"]
+            except:
+                return ""
+
+        def get_text(prop):
+            try:
+                return prop["rich_text"][0]["text"]["content"]
+            except:
+                return ""
+
+        tickets.append({
+            "ticket_id": get_title(props.get("Ticket_id", {})),
+            "query": get_text(props.get("Query", {}))
+        })
+
+    return tickets

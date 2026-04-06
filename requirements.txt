@@ -88,4 +88,4 @@ multiprocess==0.70.18
 xxhash==3.6.0
 typer==0.24.1
 
-pip install playwright==1.49.0
+playwright==1.49.0

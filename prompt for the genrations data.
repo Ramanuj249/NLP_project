@@ -1,0 +1,726 @@
+docuemntations_nlp_project_Prompt
+#######################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+This prompt is giving a simplest response to the user.
+#############################################################################################################################################################################################
+
+prompt = f"""
+## Role
+You are a professional document writer and industry expert.  
+Your task is to generate a complete, end-to-end document using the information provided by the user.
+
+The final document MUST be written entirely in Markdown format.
+
+---
+
+## User Inputs
+The user will provide the following inputs:
+
+1. Document Category: {data.category}
+
+2. Document Type: {data.document_type}
+
+3. Document Name: {data.document_name}
+
+4. Document Structure / Components: {data.components}
+
+5. User Responses to Guided Questions and its answers: {data.answers}
+
+---
+
+## Responsibilities
+Using the inputs above, you must:
+
+- Create a fully complete document from header to footer
+- Follow the exact document structure provided by the user
+- Use the user responses and company information to enrich the content
+- Ensure industry-appropriate length, tone, and depth
+- Write content that is ready for real-world professional use
+
+---
+
+## Mandatory Markdown Formatting Rules
+The document MUST use proper Markdown formatting:
+
+- `#` for the main document title
+- `##` and `###` for headings and subheadings
+- **Bold text** for emphasis
+- Bullet points using `-` or `*`
+- Numbered lists where applicable
+- Properly formatted Markdown tables where relevant
+- Clear spacing and readable structure
+
+---
+
+## Document Content Requirements
+Include the following where applicable:
+
+- Document Title (using the provided Document Name)
+- Document Metadata (version, date, author, company name)
+- Introduction / Overview
+- Main content sections based on the provided structure
+- Tables, bullet points, and structured content where useful
+- Conclusion / Summary
+- Footer (disclaimer, confidentiality notice, or company reference)
+
+---
+
+## Output Rules
+- Output ONLY the final document
+- Output ONLY in Markdown format
+- Do NOT explain reasoning
+- Do NOT restate user inputs
+- Do NOT mention that you are an AI
+- Do NOT add content outside the provided structure
+
+---
+
+## Final Instruction
+Generate a professional, polished, end-to-end document in Markdown format, strictly following the user’s inputs and structure.
+"""
+#######################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+This prompt is giving basic doceumnt liek small and user response type of Document.
+#############################################################################################################################################################################################
+
+prompt = f"""
+## Role
+You are a senior professional document writer and industry domain expert.
+Your task is to generate a complete, comprehensive, publication-ready document
+using the user's inputs as a foundation — enriched with your own professional
+knowledge, industry best practices, and expert insights.
+
+---
+
+## User Inputs
+
+1. Document Category: {data.category}
+2. Document Type: {data.document_type}
+3. Document Name: {data.document_name}
+4. Document Structure / Components: {data.components}
+5. Guided Q&A Responses: {data.answers}
+
+---
+
+## Your Two-Layer Writing Mandate
+
+### Layer 1 — User-Driven Content (Personalized)
+For sections that require company-specific or user-specific details:
+- Use the Q&A responses and document structure to write accurate, tailored content
+- Infer company details (industry, scale, culture, goals) from the answers provided
+- Where details are implied but not stated, make reasonable, professional inferences
+
+### Layer 2 — Expert-Augmented Content (Knowledge-Driven)
+You MUST independently contribute the following where applicable:
+
+- **Industry context**: Add relevant background, market standards, regulatory norms,
+  or domain-specific frameworks that a professional in {data.category} would include
+- **Best practice sections**: If a component is a standalone concept (e.g., "Risk 
+  Management Framework", "Code of Conduct", "Data Privacy Policy") that does not 
+  require company-specific data, write it fully from your expert knowledge
+- **Elaboration**: Expand every section with professional depth — definitions,
+  rationale, implications, examples, and implementation guidance where relevant
+- **Missing but expected components**: If a standard document of this type 
+  ({data.document_type}) conventionally includes sections not listed by the user,
+  ADD them with a note: `<!-- Expert Addition -->`. Do not omit content that a
+  professional reader would expect to find
+
+---
+
+## Document Length & Depth Standard
+
+This document must meet **professional publication standards**:
+- Every section must be substantively written — no thin or placeholder content
+- Aim for thorough, well-explained prose in each section
+- Use tables, lists, and structured content to maximize clarity and scannability
+- The final document should read as if written by a hired industry consultant
+
+---
+
+## Mandatory Markdown Formatting
+
+- `#` — Main document title
+- `##` / `###` — Section and subsection headings
+- **Bold** for key terms and emphasis
+- `-` or `*` for bullet points
+- Numbered lists for sequential steps or ranked items
+- Markdown tables for comparative or structured data
+- Horizontal rules (`---`) between major sections
+- Code blocks where technical content appears
+
+---
+
+## Document Structure Requirements
+
+Include ALL of the following:
+
+- **Title Block**: Document name, version, date, author, company (inferred or stated)
+- **Executive Summary / Overview**: High-level purpose and scope
+- **Main Sections**: Based on provided components — fully written and expert-enriched
+- **Standalone Sections**: Any industry-standard sections you add from your own knowledge
+- **Supporting Elements**: Tables, frameworks, checklists, or matrices where useful
+- **Conclusion / Recommendations**: Actionable takeaways
+- **Appendix** (if applicable): Glossary, references, or supplementary content
+- **Footer**: Confidentiality notice, disclaimer, or document control reference
+
+---
+
+## Autonomy Rules
+
+| Situation | Your Action |
+|---|---|
+| Section needs company data → provided | Write using the provided data |
+| Section needs company data → not provided | Infer from context or use professional placeholders |
+| Section is a standalone concept | Write fully from your expert knowledge |
+| Standard section missing from user's list | Add it with `<!-- Expert Addition -->` tag |
+| Content is thin or vague in inputs | Expand with industry depth and best practices |
+
+---
+
+## Output Rules
+
+- Output ONLY the final Markdown document
+- Do NOT explain your reasoning or process
+- Do NOT restate user inputs verbatim
+- Do NOT mention that you are an AI or reference this prompt
+- DO write as a credentialed human expert authoring a real deliverable
+
+---
+
+## Final Directive
+
+Generate an authoritative, end-to-end professional document in Markdown.
+Use the user's inputs as your foundation. Augment freely with your domain
+expertise. Every section must earn its place — detailed, purposeful, and
+ready for real-world professional use.
+"""
+#######################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+This response is giving very long explained doceumnt.
+#############################################################################################################################################################################################
+prompt = f"""
+## Role
+You are a senior industry consultant and professional document author with deep
+expertise in {data.category}. Your task is to produce a comprehensive,
+publication-grade document — the kind a firm would pay a consultant to deliver.
+
+---
+
+## User Inputs
+
+1. **Document Category:** {data.category}
+2. **Document Type:** {data.document_type}
+3. **Document Name:** {data.document_name}
+4. **Document Components:** {data.components}
+5. **Guided Q&A Responses:** {data.answers}
+
+---
+
+## Critical Length & Depth Directive
+
+This document MUST be **exhaustively detailed** — targeting a minimum of
+**6 to 9 full pages** of professional written content. This is non-negotiable.
+
+You achieve this length through **genuine depth and expertise**, not repetition
+or padding. Every paragraph must earn its place by adding informational value.
+
+---
+
+## The Component Expansion Protocol (Most Important Rule)
+
+For EVERY component listed in the Document Components, you MUST cover ALL of
+the following sub-layers that apply. Treat each component as a **full chapter**:
+
+### Mandatory Sub-Layers Per Component:
+
+1. **Definition & Purpose**
+   — What this component is, why it exists, what problem it solves
+
+2. **Industry Context & Standards**
+   — How leading organizations in {data.category} approach this; relevant
+     regulations, frameworks, or benchmarks that apply
+
+3. **Company-Specific Application**
+   — How this applies to this specific company based on the Q&A responses;
+     infer company size, industry position, and goals from the answers
+
+4. **Detailed Implementation Breakdown**
+   — Step-by-step, process-level detail on how this is executed in practice;
+     include roles, timelines, tools, or methods where applicable
+
+5. **Key Considerations & Challenges**
+   — Common pitfalls, risks, dependencies, or decisions that must be addressed
+
+6. **Best Practices & Recommendations**
+   — What expert practitioners recommend; what separates good from great
+     execution of this component
+
+7. **Metrics & Success Indicators** *(where applicable)*
+   — How this component is measured, tracked, or evaluated for effectiveness
+
+8. **Supporting Structure**
+   — Add at least ONE of the following per component: a table, a numbered
+     framework, a checklist, a process diagram in text form, or a comparison
+     matrix
+
+Do NOT compress these sub-layers. Each one is a paragraph minimum.
+
+---
+
+## Expert Addition Protocol
+
+Beyond the user-defined components, you MUST independently add the following
+sections drawn entirely from your professional knowledge of {data.document_type}
+documents in {data.category}. These require NO user input:
+
+### Mandatory Expert-Added Sections:
+
+- **Executive Summary** — Synthesize the document's purpose, scope, and key
+  takeaways in 2–3 substantive paragraphs
+
+- **Document Scope & Applicability** — Define who this document applies to,
+  what it governs, and what it excludes
+
+- **Regulatory & Compliance Landscape** — Identify relevant laws, standards,
+  or industry regulations that govern this document type in {data.category}
+
+- **Implementation Roadmap** — A phased timeline or rollout plan for putting
+  this document into practice (write from general industry knowledge)
+
+- **Roles & Responsibilities Matrix** — A table defining who owns, approves,
+  executes, and reviews each major component
+
+- **Glossary of Key Terms** — Define 8–12 domain-specific terms relevant to
+  this document type and category
+
+- **Appendix** — Include relevant templates, checklists, or reference
+  frameworks a practitioner would find useful
+
+If any of these sections overlap with user-defined components, expand the
+user's version rather than duplicating.
+
+---
+
+## Document Shell (Wrap Everything Inside This)
+
+Structure the entire document using this shell:
+```
+# [Document Name]
+
+---
+**Document Type:** ...
+**Category:** ...
+**Version:** 1.0
+**Date:** [Current Date]
+**Prepared For:** [Company Name inferred from Q&A]
+**Classification:** Confidential
+
+---
+
+## Table of Contents
+[Auto-generate from all sections]
+
+---
+
+[EXECUTIVE SUMMARY]
+
+---
+
+[SCOPE & APPLICABILITY]
+
+---
+
+[REGULATORY & COMPLIANCE LANDSCAPE]
+
+---
+
+[ALL USER-DEFINED COMPONENTS — each fully expanded]
+
+---
+
+[ROLES & RESPONSIBILITIES MATRIX]
+
+---
+
+[IMPLEMENTATION ROADMAP]
+
+---
+
+[GLOSSARY]
+
+---
+
+[APPENDIX]
+
+---
+
+*Footer: Confidentiality notice | Version control | Document owner*
+```
+
+---
+
+## Content Inference Rules
+
+When user Q&A responses are limited or vague, apply these rules:
+
+| Scenario | Action |
+|---|---|
+| Company size not stated | Infer from context clues in answers; write for mid-size org if unclear |
+| Industry specifics missing | Apply standard {data.category} industry norms and practices |
+| Component lacks detail | Expand using what ALL companies in this category universally require |
+| Answer is one-line | Treat it as a topic seed — expand with full professional context |
+| No answer for a sub-layer | Fill from domain expertise; mark with `*[Industry Standard Practice]*` |
+
+---
+
+## Prose & Formatting Standards
+
+- Write in **formal professional prose** — not bullet-point summaries
+- Bullets and tables supplement prose; they do not replace it
+- Each major section opens with a **2–3 sentence orienting paragraph**
+  before breaking into sub-content
+- Use `##` for components, `###` for sub-layers, `####` for breakdowns
+- Every table must have a descriptive caption line above it
+- Minimum **3 substantive tables** across the full document
+- Minimum **2 numbered frameworks or checklists** in the document
+
+---
+
+## Autonomy Authorization
+
+You have FULL authorization to:
+- Add sub-sections within any component that a professional would expect
+- Write complete standalone sections from domain knowledge
+- Expand thin answers into full professional context
+- Include real-world examples, analogies, or case references where helpful
+- Apply industry terminology, cite frameworks (ISO, PMBOK, GDPR, etc.)
+  where relevant to {data.category}
+
+You do NOT need user permission to add depth. Depth is the default expectation.
+
+---
+
+## Output Rules
+
+- Output ONLY the final Markdown document — nothing else
+- Do NOT explain, summarize, or comment on your process
+- Do NOT mention being an AI or reference this prompt
+- Do NOT pad with repetitive content — every sentence must add value
+- DO write as a credentialed human consultant delivering a client deliverable
+
+---
+
+## Final Directive
+
+Produce a complete, 6–9 page, professionally authoritative {data.document_type}
+for {data.category}. Use the user's inputs as your foundation and your domain
+expertise as the building material. The document must stand alone as a
+real-world professional deliverable — detailed, structured, and immediately
+usable by any organization in this industry.
+"""
+#######################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################################
+
+
+'1', 'Policy', '[Policy Title, Executive Summary, Purpose, Scope, Policy Statement, Roles & Responsibilities, Procedures / Guidelines, Compliance & Enforcement, Exceptions & Special Cases, Related Policies & References, Review & Updates, Approval & Effective Date]'
+'2', 'Procedure', '[Purpose, Scope, Basic Company Information, Roles & Responsibilities, Preconditions & Triggers, Required Tools or Inputs, Health & Safety Considerations, Step-by-Step Procedure, Quality Checks & Verification, Exceptions & Escalation, Related Documents & References, Review & Ownership]'
+'3', 'Guide', '[Document Header, Purpose & Scope, Intended Audience, Prerequisites & Assumptions, Core Content, Step-by-Step Instructions, Roles & Responsibilities, Tools, Resources & References, Troubleshooting & FAQs, Best Practices & Recommendations, Compliance, Security & Legal Notes, Change Log / Revision History]'
+'4', 'Plan', '[Document Title, Executive Summary, Purpose / Objective, Scope / Context, Assumptions & Constraints, Key Stakeholders / Team, Approach / Strategy / Steps, Timeline / Schedule, Budget & Resources, Risks / Challenges / Dependencies, Contingency Plan, Expected Outcomes / Success Metrics, Communication Plan, Additional Notes / References]'
+'6', 'Agreement', '[Title & Parties, Recitals & Background, Purpose, Scope & Obligations, Representations & Warranties, Commercial Terms, Payment Terms & Invoicing, Confidentiality & Data Protection, Ownership & Intellectual Property Rights, Limitation of Liability, Indemnification, Term & Termination, Dispute Resolution, Legal & General Terms, Signatures & Execution]'
+'7', 'Record', '[Document Title, Purpose, Context & Background, Scope, Main Content, Data & Evidence, Responsibilities, Constraints & Considerations, Findings & Analysis, Outcome / Usage, Version & Updates]'
+
+
+[Policy Title, Executive Summary, Purpose, Scope, Policy Statement, Roles & Responsibilities, Policy Objectives, Legal & Regulatory Framework, Procedures / Guidelines, Compliance & Enforcement, Non-Compliance Matrix, Exceptions & Special Cases, Related Policies & References, Communication & Rollout Plan, Training & Awareness, Review & Updates, Approval & Effective Date, Document Control]
+
+[Purpose, Scope, Basic Company Information, Introduction, Roles & Responsibilities, Preconditions & Triggers, Required Tools or Inputs, Health & Safety Considerations, Process Overview, Step-by-Step Procedure, Quality Checks & Verification, Risk & Controls, Exceptions & Escalation, Performance Metrics, Continuous Improvement, Related Documents & References, Review & Ownership]
+
+[Document Header, Purpose & Scope, Intended Audience, Prerequisites & Assumptions, Key Concepts & Background, Core Content, Step-by-Step Instructions, Roles & Responsibilities, Use Cases & Examples, Tools, Resources & References, Troubleshooting & FAQs, Common Mistakes & How to Avoid Them, Best Practices & Recommendations, Quick Reference Summary, Compliance, Security & Legal Notes, Change Log / Revision History]
+
+[Document Title, Executive Summary, Purpose / Objective, Scope / Context, Current State Assessment, Assumptions & Constraints, Key Stakeholders / Team, Approach / Strategy / Steps, Timeline / Schedule, Budget & Resources, Resource Plan, Risks / Challenges / Dependencies, Contingency Plan, Change Management Plan, Expected Outcomes / Success Metrics, Communication Plan, Post Implementation Review, Additional Notes / References]
+
+[Title & Parties, Recitals & Background, Purpose, Scope & Obligations, Representations & Warranties, Commercial Terms, Payment Terms & Invoicing, Service Level Agreement, Confidentiality & Data Protection, Ownership & Intellectual Property Rights, Limitation of Liability, Indemnification, Term & Termination, Change Management, Dispute Resolution, Audit & Compliance Rights, Force Majeure, Legal & General Terms, Signatures & Execution]
+
+[Document Title, Purpose, Context & Background, Scope, Main Content, Data & Evidence, Responsibilities, Constraints & Considerations, Findings & Analysis, Impact Assessment, Outcome / Usage, Recommendations, Next Steps & Action Items, Version & Updates]
+
+
+Turabit LLC
+1206, Shilp Epitome, Sindhu Bhavan, Ahmedabad, Gujrat, india
+India, United States, United Kingdom	
+
+
+Compliance Team
+please elaborate the employee type in the 1-2 lines.
+can you are 1-2 more role in this list.
+
+
+
+
+
+
+
+
+
+Evaluation Criteria
+
+1. Document Structure in Notion (Struture are little bit off.)
+All documents stored in Notion should follow a well-structured format. This includes properly organized tables, clear headers, and well-defined subheaders to ensure the document is easy to read and navigate.
+
+2. Basic Industry-Standard Document Generation (It is creating basic industry Documnet)
+The generated document should follow basic industry-standard requirements without requiring detailed inputs from the user. This allows the user to download the document and modify it later according to their specific needs while maintaining a clear and understandable base structure.
+
+3. Visibility of Pushed Documents (I can eslisy push the Doceumtn to the notion )
+Users should be able to view all documents that have been pushed or uploaded to Notion, ensuring transparency and easy access to their stored files.
+
+4. Editing AI-Generated Content
+If a document or any section of a document is generated by AI, the user should have the ability to review and edit that content to better suit their requirements.
+
+5. Quality of the Generated Document
+The generated document should maintain a good level of quality in terms of clarity, relevance, and completeness. The content should be meaningful, properly organized, and aligned with the purpose of the selected document type.
+
+Evaluation Workflow
+- First, select a document category from the available options.
+- After selecting the category, verify that all documents under that category are visible and accessible.
+- Next, select a specific document from the list and confirm that the document opens correctly.
+- Provide relevant answers to the questions associated with the selected document.
+- Verify that the AI generates the required sections or chunks of the document based on the provided responses.
+- Review the AI-generated content and confirm that there is an option available to edit or modify the generated sections.
+- Once the document is completed, verify that there is an option to push or upload the finalized document to Notion.
+- After pushing the document, confirm that the generated document appears in Notion and is visible for reference and viewing purposes.
+
+
+
+The side Doceumtn only allowe the user to edit the currect sections not the comploeted made as AI can get confus.
+good feature: Quick presets
+
+
+
+##################
+Based on the Trident Technologies company persona, you can fill the form like this:
+
+
+
+Product Name *
+TriMem SDK
+
+
+
+What does your product do? *
+TriMem SDK is a developer-focused memory infrastructure library for LLM-powered agents and chat applications. It provides a persistent, queryable memory layer that allows AI systems to store, retrieve, and prioritize past interactions, user preferences, and contextual information across sessions.
+Designed for AI engineers and product teams building with frameworks like LangChain, LlamaIndex, and AutoGen, TriMem enables developers to create agents that remember conversations, maintain long-term context, and deliver more personalized and intelligent user experiences without rebuilding their existing infrastructure.
+
+
+
+Key Problem You Solve *
+Large language models are stateless by default — they forget previous conversations once a session ends. This leads to repetitive interactions, loss of context, and poor user experiences in AI applications.
+TriMem solves this by providing a structured memory layer that allows LLM agents to retain long-term context, recall past interactions, and adapt responses based on historical data, enabling more natural, consistent, and personalized AI behavior.
+
+
+Compliance Readiness Status Report
+
+
+
+
+
+
+Little bit the Doceumnt formate can be improved.
+its a way long process to see the entire doceumtn or we can say to push the Doceumnt.
+Simgle Types of Questiosn only long text (Can add more types of questiosn like MCQ, multi ansers questioss.)
+Too many time AI call till reaching the final Document.
+CAn only see the entire Doceumnt on the notions page no view in the streamlit or in the UI.
+1-2 palces to imporve the UI
+1-2 places to improve the Doceumtn quality and formating.                   
+
+
+Good quality document.
+Nice UI
+Loved the feature that are added in the end directly changes the styles of the Document.
+good number of template counts.
+
+
+
+
+
+
+
+
+
+
+
+
+#################################################################################################################################################################################################################################################################################################################################@
+Project Feedback
+
+1. UI and User Flow
+
+Areas for Improvement
+The process to reach the final document feels quite long. Reducing the number of steps could improve the user experience.
+There are multiple LLM calls for creating each section, and the same prompt needs to be passed repeatedly for different sections. This could potentially be optimized.
+The overall workflow feels slow at times, which impacts usability.
+Document formatting can be improved further to enhance readability and presentation.
+Currently, most of the questions are long text–type inputs. Introducing different types of questions (e.g., multiple choice, guided inputs, structured fields) could make the process more efficient and user-friendly.
+
+Positive Aspects
+The UI is clean, nice, and interactive.
+The feature at the end that allows users to directly change the tone, style, and length of the document with a single button is very useful and well designed.
+
+2. Technical Code Review
+
+Areas for Improvement
+Not all functions currently include docstrings. Adding docstrings consistently would improve code readability and maintainability.
+Logging is not implemented in all files. Having a logger across the entire codebase would help with debugging and monitoring.
+The project does not include a requirements.txt file. Including this file would make it easier to install dependencies and set up the project environment.
+
+Positive Aspects
+The project has a well-organized and clear structure.
+The use of try and except blocks in most areas is good practice and helps improve error handling and stability.
+#################################################################################################################################################################################################################################################################################################################################@
+
+
+
+
+Project Summary – Notion RAG Sandbox
+We will build a Retrieval-Augmented Generation (RAG) system that uses documents stored in a Notion database as the knowledge base.
+
+Data Source
+The documents are stored in a Notion database accessed through the Notion API.
+1st column (Page type) → contains the document content.
+Remaining columns (2nd–last) → contain metadata such as industry, document type, etc.
+
+Vector Storage
+Document chunks will be converted into embeddings and stored in Milvus along with their metadata.
+
+Core Features
+1️⃣ Grounded Question Answering
+Users can ask questions about the documents.
+The system retrieves relevant content and generates answers using an LLM.
+The answer must include citations showing which documents were used.
+
+2️⃣ Metadata Filtering
+Users can filter results based on metadata fields such as:
+industry
+document type
+Example query:
+“Show fintech reports about investment.”
+
+3️⃣ Tool-Based Tasks
+The system should support tasks like:
+Search → find relevant documents
+Refine → narrow search results
+Compare → compare information across documents
+
+4️⃣ Evaluation
+Use RAGAS to evaluate the quality of the RAG system (retrieval and answer quality).
+
+
+basic workfloe.
+
+Notion Database
+      ↓
+Notion API (fetch documents)
+      ↓
+Chunk documents
+      ↓
+Create embeddings
+      ↓
+Store vectors + metadata in Milvus
+      ↓
+User query
+      ↓
+Retrieve relevant chunks
+      ↓
+LLM generates answer
+      ↓
+Return answer + citations
+
+
+Final Output
+The system should allow users to:
+Ask questions about the document library
+Receive accurate answers with citations
+Filter by metadata
+Perform search/refine/compare tasks
+Evaluate system performance with RAGAS
+
+
+
+
+{
+  "answer": "Could not find documents: Code of Conduct policy and Work from Home policy",
+  "citations": [],
+  "tool_used": "compare",
+  "refined_query": "Compare the Code of Conduct policy and the Work from Home policy."
+}
+
+{
+	
+  "answer": "Could not find documents: testing strategy and A/B testing strategy",
+  "citations": [],
+  "tool_used": "compare",
+  "refined_query": "compare \"testing strategy\" and \"A/B testing strategy\""
+}
+
+
+
+please compare the remote work policy and the code of conduct for me.
+
+can you please explane me the remote work policy in short and that to in easy way.
+
+
+
+4 parameters for evaluavating the answer.
+
+Faithfulness
+Answer Relevance 
+Context Precision
+Context Recall
+
+
+[
+  {
+    "question": "What is the approval process required for employees to start or modify a remote work arrangement at Turabit LLC?",
+    "ground_truth": "Employees must submit a formal remote work request to their direct manager including the proposed duration and location, and it must be approved by both the direct manager and the department head. Any changes to the remote work location also require prior approval.",
+    "document_name": "Remote Work Policy"
+  },
+  {
+    "question": "What happens when a user exceeds the API rate limit at Turabit LLC?",
+    "ground_truth": "When a user exceeds the API rate limit, additional requests are automatically rejected and an HTTP 429 error response is returned. Repeated violations may result in temporary throttling, restricted access, or suspension of the API key.",
+    "document_name": "API Rate Limiting Policy"
+  },
+  {
+    "question": "What are the requirements for employees when expressing personal opinions about the company on social media?",
+    "ground_truth": "Employees must clearly distinguish personal opinions from official company positions and include a disclaimer such as 'The views expressed are my own and do not represent the views of my employer' when discussing company-related topics.",
+    "document_name": "Social Media Policy"
+  },
+  {
+    "question": "What are the key components included in the scope of the Turabit Cloud Security Platform implementation for NovaTech Solutions Inc.?",
+    "ground_truth": "The scope includes deployment and configuration of the Turabit platform, integration with existing systems and cloud infrastructure, security monitoring setup and policy configuration, user access setup with role-based permissions, and initial onboarding and training for client teams.",
+    "document_name": "Sales Proposal Template"
+  },
+  {
+    "question": "What are the obligations of the receiving party regarding the use and handling of confidential information under the NDA?",
+    "ground_truth": "The receiving party must use the confidential information solely for evaluating the potential partnership, ensure confidentiality is maintained by employees and advisors, implement appropriate security measures, and return or destroy the information within 30 days upon request.",
+    "document_name": "Non-Disclosure Agreement (NDA)"
+  },
+  {
+    "question": "What are the key development practices required to ensure accessibility in Turbait products?",
+    "ground_truth": "Developers must use semantic HTML, ensure full keyboard navigation, implement ARIA attributes where appropriate, maintain proper focus management, and test for compatibility with screen readers such as JAWS and NVDA.",
+    "document_name": "Turbait Product Accessibility Guidelines"
+  },
+  {
+    "question": "What is the primary purpose of the AI-Powered Workflow Recommendation Engine in the Turbait AI Data Automation Platform?",
+    "ground_truth": "The primary purpose is to enhance user experience by providing AI-driven workflow recommendations based on historical data and usage patterns, reducing manual configuration time and optimizing automation processes.",
+    "document_name": "Product Requirements Document (PRD) for AI-Powered Workflow Recommendation Engine"
+  },
+  {
+    "question": "What were the main user challenges identified in the User Research Report for the Turbait AI Data Automation Platform?",
+    "ground_truth": "Users struggled with configuring complex workflows, faced limited customization options in the analytics dashboard, and experienced inconsistent integration reliability with external systems.",
+    "document_name": "User Research Report"
+  },
+  {
+    "question": "What are the eligibility requirements for employees to access benefits at Turbait Technologies Pvt. Ltd?",
+    "ground_truth": "Employees must complete their probation period to be eligible for benefits and must access the HR portal for enrollment and management.",
+    "document_name": "Benefits Guide"
+  },
+  {
+    "question": "What are the key preconditions required before executing a database migration at DataCore Technologies Pvt. Ltd.?",
+    "ground_truth": "Key preconditions include completing and verifying a full database backup, reviewing and approving migration scripts, conducting testing in a staging environment, validating data integrity and constraints, informing stakeholders of the migration schedule, and ensuring monitoring tools are configured.",
+    "document_name": "Database Migration SOP"
+  }
+]
+
